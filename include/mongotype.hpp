@@ -31,7 +31,7 @@
 #include <iostream>
 #include <memory>
 #include <time.h>
-#include <mongo/client/dbclient.h>
+#include <mongo/client/dbclientinterface.h>
 #include <mongo/bson/bsonobj.h>
 
 using namespace std;
