@@ -47,6 +47,7 @@
 #include <mongotype.hpp>
 #include <BSONTypeMap.hpp>
 #include <BSONObjectTypeDump.hpp>
+#include <BSONDotNotationDump.hpp>
 
 //----------------------------------------------------------------------------
 
@@ -59,7 +60,7 @@ namespace mongotype {
 
 //----------------------------------------------------------------------------
 
-static const string VERSION("2.0");
+static const string VERSION("2.1");
 static const string COPYRIGHT("Copyright (c) 2013 by Mark Deazley");
 static const string LICENSE(
 	"Free Software Foundation’s GNU AGPL v3.0.\n"
@@ -87,14 +88,20 @@ void dumpCollection(string& collectionName, string& hostPort) {
 	time_t t;
 	time(&t);
 
-	cout << collectionName << ".count:" << c.count(collectionName) << endl;
+	cout << collectionName << ".count:" << c.count(collectionName) << "\n";
 
 	unique_ptr<DBClientCursor> cursor = c.query(collectionName, BSONObj());
+	unsigned int i = 0;
 	while (cursor->more()) {
 		const BSONObj& o = cursor->next(); // Get the BSON
-		BSONObjectTypeDump typeDump(o, " ");
-		cout << typeDump;
-		cout << endl;
+//		BSONObjectTypeDump typeDump(o);
+//		cout << typeDump << endl;
+		string dotBase(collectionName);
+		dotBase += "{";
+		dotBase += to_string(i++);
+		dotBase += "}";
+		BSONDotNotationDump dotDump(o, dotBase);
+		cout << dotDump;
 	}
 }
 
@@ -107,14 +114,14 @@ int main(int argc, char* argv[]) {
 		// Remember argv[0] is image name, so first parameter is argv[1].
 		if (argc < 2) {
 			cerr
-				<< "MongoType v" << mongotype::VERSION << " by Mark Deazley" << endl << endl
-				<< "Usage:" << endl
-				<< "\tmongotype <collectionName> [<host>[:<port>]]" << endl << endl
-				<< "Where:" << endl
-				<< "\t\t<collectionName> is required. Format: <db>.<collection>" << endl
-				<< "\t\t<host> and <host>:<port> are optional." << endl
-				<< "\t\tDefault <host>:<port> is localhost:27017." << endl << endl
-				<< mongotype::COPYRIGHT << endl << endl
+				<< "MongoType v" << mongotype::VERSION << " by Mark Deazley" << "\n" << "\n"
+				<< "Usage:" << "\n"
+				<< "\tmongotype <collectionName> [<host>[:<port>]]" << "\n" << "\n"
+				<< "Where:" << "\n"
+				<< "\t\t<collectionName> is required. Format: <db>.<collection>" << "\n"
+				<< "\t\t<host> and <host>:<port> are optional." << "\n"
+				<< "\t\tDefault <host>:<port> is localhost:27017." << "\n" << "\n"
+				<< mongotype::COPYRIGHT << "\n" << "\n"
 				<< mongotype::LICENSE << endl;
 			exit(1);
 		}
@@ -125,7 +132,7 @@ int main(int argc, char* argv[]) {
 		}
 		mongotype::dumpCollection(collectionName, hostPort);
 	} catch (const mongo::DBException &e) {
-		cerr << "MongoType Error: \"" << e.what() << "\"" << endl;
+		cerr << "mongotype Error: \"" << e.what() << "\"" << endl;
 		exit(2);
 	}
 	return EXIT_SUCCESS;

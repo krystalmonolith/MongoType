@@ -69,17 +69,18 @@ protected: // IBSONObjectVisitor overrides.
 	virtual void onParseEnd() {	}
 
 	virtual void onObjectStart(const BSONObj& object, int arrayIndex) {
-		*osp << endl << istr(); // Output a newline and indent.
+		*osp << "\n" << istr(); // Output a newline and indent.
 		if (arrayIndex >= 0) { // If the object is an element of an array...
 			*osp << "[" << arrayIndex << "]: "; // Output an array index first.
 		}
-		*osp << "OBJECT {"; // Output the opening bracket for the object.
+		*osp << "{"; // Output the opening bracket for the object.
 		level++; // Increase the indent for the object's BSON elements.
 	}
 
 	virtual void onObjectEnd(const BSONObj& object, int arrayIndex) {
 		level--; // Decrease the indent level after the object's elements.
-		*osp << endl << istr() << "}"; // Output a newline, indent, and bracket closing the object.
+		*osp << "\n" << istr() << "}"; // Output a newline, indent, and bracket closing the object.
+
 	}
 
 	virtual void onArrayStart(const BSONElement& element, int count) {
@@ -93,7 +94,7 @@ protected: // IBSONObjectVisitor overrides.
 
 	virtual void onElement(const BSONElement& element, int arrayIndex) {
 		BSONTypeMap type(element);
-		*osp << endl << istr() << element << " " << type; // Output newline, indent, element text, element type text.
+		*osp << "\n" << istr() << element << " " << type; // Output newline, indent, element text, element type text.
 	}
 
 public: // User Interface
@@ -103,7 +104,7 @@ public: // User Interface
 	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	BSONObjectTypeDump(const BSONObj& pobject, const char *pindentStr) : object(pobject), indentStr(pindentStr), level(0), osp(NULL) {};
+	BSONObjectTypeDump(const BSONObj& pobject, const char *pindentStr = " ") : object(pobject), indentStr(pindentStr), level(0), osp(NULL) {}
 	virtual ~BSONObjectTypeDump() {};
 
 	/*!

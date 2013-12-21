@@ -26,11 +26,14 @@
 
 //----------------------------------------------------------------------------
 
+#include <time.h>
 #include <stdio.h>
+
 #include <cstdlib>
 #include <iostream>
 #include <memory>
-#include <time.h>
+#include <deque>
+
 #include <mongo/client/dbclientinterface.h>
 #include <mongo/bson/bsonobj.h>
 
