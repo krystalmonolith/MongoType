@@ -29,16 +29,32 @@
 #include <time.h>
 #include <stdio.h>
 
-#include <cstdlib>
 #include <iostream>
+#include <fstream>
 #include <memory>
 #include <deque>
+#include <map>
+#include <iterator>
+#include <cstdlib>
+
+#include <boost/any.hpp>
+#include <boost/program_options.hpp>
 
 #include <mongo/client/dbclientinterface.h>
 #include <mongo/bson/bsonobj.h>
 
 using namespace std;
 using namespace mongo;
+
+//----------------------------------------------------------------------------
+
+namespace mongotype {
+
+extern const string VERSION;
+extern const string COPYRIGHT;
+extern const string LICENSE;
+
+};
 
 //----------------------------------------------------------------------------
 

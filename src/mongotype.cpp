@@ -48,6 +48,7 @@
 #include <BSONTypeMap.hpp>
 #include <BSONObjectTypeDump.hpp>
 #include <BSONDotNotationDump.hpp>
+#include <Parameters.h>
 
 //----------------------------------------------------------------------------
 
@@ -60,9 +61,9 @@ namespace mongotype {
 
 //----------------------------------------------------------------------------
 
-static const string VERSION("2.1");
-static const string COPYRIGHT("Copyright (c) 2013 by Mark Deazley");
-static const string LICENSE(
+const string VERSION("2.2");
+const string COPYRIGHT("Copyright (c) 2013 by Mark Deazley");
+const string LICENSE(
 	"Free Software Foundation’s GNU AGPL v3.0.\n"
 	"This program is free software: you can redistribute it and/or modify\n"
 	"it under the terms of the GNU Affero General Public License as\n"
@@ -82,21 +83,24 @@ static const string LICENSE(
 
 //----------------------------------------------------------------------------
 
-void dumpCollection(string& collectionName, string& hostPort) {
+void dumpCollection(mongotype::Parameters& params) {
 	DBClientConnection c;
+	string hostPort(params.getHost());
+	if (hostPort.find(':') == string::npos) {
+		hostPort += ":";
+		hostPort += to_string(params.getPort());
+	}
 	c.connect(hostPort);
 	time_t t;
 	time(&t);
 
-	cout << collectionName << ".count:" << c.count(collectionName) << "\n";
+	cout << params.getDbCollection() << ".count:" << c.count(params.getDbCollection()) << "\n";
 
-	unique_ptr<DBClientCursor> cursor = c.query(collectionName, BSONObj());
+	unique_ptr<DBClientCursor> cursor = c.query(params.getDbCollection(), BSONObj());
 	unsigned int i = 0;
 	while (cursor->more()) {
 		const BSONObj& o = cursor->next(); // Get the BSON
-//		BSONObjectTypeDump typeDump(o);
-//		cout << typeDump << endl;
-		string dotBase(collectionName);
+		string dotBase(params.getDbCollection());
 		dotBase += "{";
 		dotBase += to_string(i++);
 		dotBase += "}";
@@ -111,26 +115,9 @@ void dumpCollection(string& collectionName, string& hostPort) {
 
 int main(int argc, char* argv[]) {
 	try {
-		// Remember argv[0] is image name, so first parameter is argv[1].
-		if (argc < 2) {
-			cerr
-				<< "MongoType v" << mongotype::VERSION << " by Mark Deazley" << "\n" << "\n"
-				<< "Usage:" << "\n"
-				<< "\tmongotype <collectionName> [<host>[:<port>]]" << "\n" << "\n"
-				<< "Where:" << "\n"
-				<< "\t\t<collectionName> is required. Format: <db>.<collection>" << "\n"
-				<< "\t\t<host> and <host>:<port> are optional." << "\n"
-				<< "\t\tDefault <host>:<port> is localhost:27017." << "\n" << "\n"
-				<< mongotype::COPYRIGHT << "\n" << "\n"
-				<< mongotype::LICENSE << endl;
-			exit(1);
-		}
-		string collectionName(argv[1]);
-		string hostPort("localhost");
-		if (argc > 2) {
-			hostPort = argv[2];
-		}
-		mongotype::dumpCollection(collectionName, hostPort);
+		mongotype::Parameters params;
+		params.parse(argc,argv);
+		mongotype::dumpCollection(params);
 	} catch (const mongo::DBException &e) {
 		cerr << "mongotype Error: \"" << e.what() << "\"" << endl;
 		exit(2);

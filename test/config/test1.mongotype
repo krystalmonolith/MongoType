@@ -1,0 +1,4 @@
+host=gienah
+port=27017
+style=json
+type=desc
