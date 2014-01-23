@@ -1,12 +1,12 @@
 /*
- * Parameters.h
+ * Parameters.hpp
  *
  *  Created on: Jan 21, 2014
  *      Author: mdeazley
  */
 
-#ifndef PARAMETERS_H_
-#define PARAMETERS_H_
+#ifndef PARAMETERS_HPP_
+#define PARAMETERS_HPP_
 
 #include <mongotype.hpp>
 
@@ -17,19 +17,19 @@
 namespace mongotype {
 
 enum StyleParam {
-	STYLE_UNDEF,
-	STYLE_DOTTED,
-	STYLE_TREE,
-	STYLE_JSON
+	STYLE_UNDEF  = -1,
+	STYLE_DOTTED = 0,
+	STYLE_TREE   = 1,
+	STYLE_JSON   = 2
 };
 
 enum TypeParamMask {
 	TYPE_UNDEF = -1,
-	TYPE_NONE = 0,
-	TYPE_NAME = 1,
-	TYPE_DESC = 2,
-	TYPE_CODE = 4,
-	TYPE_ALL  = 7
+	TYPE_NONE  = 0,
+	TYPE_NAME  = 1,
+	TYPE_DESC  = 2,
+	TYPE_CODE  = 4,
+	TYPE_ALL   = 7
 };
 
 template <class E> class EnumMapper {
@@ -49,12 +49,14 @@ class Parameters {
     string config_file;
     string host;
     int port;
+    bool scalarFirst;
     StyleParam style;
     TypeParamMask typeMask;
-    bool scalarFirst;
     string dbCollection;
     string query;
     string projection;
+
+    boost::program_options::variables_map vm;
 
 public:
 
@@ -64,6 +66,8 @@ public:
 	int parse(int ac, char* av[]);
 
 	bool isValid() { return valid; }
+
+	bool isDebug() { return vm.count("debug") > 0; }
 
 	const string& getConfigFile() const {
 		return config_file;
@@ -106,4 +110,4 @@ public:
 
 } /* namespace mongotype */
 
-#endif /* PARAMETERS_H_ */
+#endif /* PARAMETERS_HPP_ */

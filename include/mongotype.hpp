@@ -36,6 +36,7 @@
 #include <map>
 #include <iterator>
 #include <cstdlib>
+#include <functional>
 
 #include <boost/any.hpp>
 #include <boost/program_options.hpp>

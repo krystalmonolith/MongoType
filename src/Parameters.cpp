@@ -5,7 +5,7 @@
  *      Author: mdeazley
  */
 
-#include <Parameters.h>
+#include <Parameters.hpp>
 
 namespace po = boost::program_options;
 
@@ -29,7 +29,7 @@ static void mapperInit() {
 	}
 }
 
-Parameters::Parameters() : valid(false) {
+Parameters::Parameters() : valid(false), port(DEFAULT_PORT), scalarFirst(false), style(STYLE_DOTTED), typeMask(TYPE_ALL) {
 	mapperInit();
 }
 
@@ -80,8 +80,9 @@ int Parameters::parse(int ac, char* av[])
         // Options that will only be allowed on the command line.
         po::options_description general("General Options");
         general.add_options()
+            ("help", "print help message")
             ("version,v", "print version string")
-            ("help", "produce help message")
+            ("debug,d", "print debugging info")
             ("config,c", po::value<string>(&config_file)->default_value(DEFAULT_CONFIGURATION_FILE),
                   "path of configuration file. Default configuration file: " DEFAULT_CONFIGURATION_FILE)
             ;
@@ -131,11 +132,12 @@ int Parameters::parse(int ac, char* av[])
         p.add("query", 1);
         p.add("projection", 1);
 
-        po::variables_map vm;
         store(po::command_line_parser(ac, av).options(cmdline_options).positional(p).run(), vm);
         notify(vm);
 
-        cout << "111111\n" << *this;
+        if (isDebug()) {
+        	cout << "Parameters After Command Line:\n" << *this << "\n";
+        }
 
         ifstream ifs(config_file.c_str());
         if (ifs)
@@ -161,7 +163,10 @@ int Parameters::parse(int ac, char* av[])
         }
 
         valid = true;
-        cout << "222222\n" << *this;
+
+        if (isDebug()) {
+        	cout << "Parameters After Config File:\n" << *this << "\n";
+        }
    }
     catch(exception& e)
     {

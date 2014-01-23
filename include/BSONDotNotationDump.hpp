@@ -31,6 +31,8 @@
 #define BSONDOTNOTATIONDUMP_HPP_
 
 #include <mongotype.hpp>
+#include <Parameters.hpp>
+#include <IBSONRenderer.hpp>
 #include <BSONTypeMap.hpp>
 #include <BSONObjectParser.hpp>
 
@@ -46,10 +48,11 @@ namespace mongotype {
  * \see IBSONObjectVisitor, BSONObjectParser
  */
 
-class BSONDotNotationDump : virtual protected IBSONObjectVisitor {
+class BSONDotNotationDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisitor {
+	Parameters& params;
 	const BSONObj& object;
 	deque<string> dotStack;
-	ostream* osp;
+	function<ostream&()> getOStream; // std::function required to store a closure.
 
 protected: // IBSONObjectVisitor overrides.
 
@@ -92,7 +95,7 @@ protected: // IBSONObjectVisitor overrides.
 		acc += string(element);
 		acc += " ";
 		acc += type.to_string();
-		*osp << acc << "\n";
+		getOStream() << acc << "\n";
 	}
 
 public: // User Interface
@@ -102,11 +105,19 @@ public: // User Interface
 	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	BSONDotNotationDump(const BSONObj& pobject, string& initialToken) : object(pobject), osp(NULL) {
+	BSONDotNotationDump(Parameters& pparams, const BSONObj& pobject, string& initialToken) : params(pparams), object(pobject) {
 		dotStack.clear();
 		dotStack.push_back(initialToken);
 	};
 	virtual ~BSONDotNotationDump() {};
+
+	virtual std::ostream& render(std::ostream& os) {
+		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
+		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
+		objectParser.parse(object);     // Parse the object and write the text output the the output stream.
+		getOStream = NULL;
+		return os;
+	}
 
 	/*!
 	 * \brief BSON Object stream output operator.
@@ -115,9 +126,7 @@ public: // User Interface
 	 */
 
 	OSTREAM_FRIEND(BSONDotNotationDump& bos) {
-		bos.osp = &out; // Streams... Sigh.
-		BSONObjectParser objectParser(bos); // Construct a parser around this event handler.
-		objectParser.parse(bos.object);     // Parse the object and write the text output the the output stream.
+		bos.render(out);
 		return out;							// Required for stream chaining.
 	}
 };

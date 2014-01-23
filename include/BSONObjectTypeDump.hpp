@@ -31,6 +31,8 @@
 #define BSONOBJECTTYPEDUMP_HPP_
 
 #include <mongotype.hpp>
+#include <Parameters.hpp>
+#include <IBSONRenderer.hpp>
 #include <BSONTypeMap.hpp>
 #include <BSONObjectParser.hpp>
 
@@ -46,11 +48,12 @@ namespace mongotype {
  * \see IBSONObjectVisitor, BSONObjectParser
  */
 
-class BSONObjectTypeDump : virtual protected IBSONObjectVisitor {
+class BSONObjectTypeDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisitor {
+	Parameters& params;
 	const BSONObj& object;
 	string indentStr;
 	int level;
-	ostream* osp;
+	function<ostream&()> getOStream; // std::function required to store a closure.
 
 	string istr() {
 		string s;
@@ -69,22 +72,22 @@ protected: // IBSONObjectVisitor overrides.
 	virtual void onParseEnd() {	}
 
 	virtual void onObjectStart(const BSONObj& object, int arrayIndex) {
-		*osp << "\n" << istr(); // Output a newline and indent.
+		getOStream() << "\n" << istr(); // Output a newline and indent.
 		if (arrayIndex >= 0) { // If the object is an element of an array...
-			*osp << "[" << arrayIndex << "]: "; // Output an array index first.
+			getOStream() << "[" << arrayIndex << "]: "; // Output an array index first.
 		}
-		*osp << "{"; // Output the opening bracket for the object.
+		getOStream() << "{"; // Output the opening bracket for the object.
 		level++; // Increase the indent for the object's BSON elements.
 	}
 
 	virtual void onObjectEnd(const BSONObj& object, int arrayIndex) {
 		level--; // Decrease the indent level after the object's elements.
-		*osp << "\n" << istr() << "}"; // Output a newline, indent, and bracket closing the object.
+		getOStream() << "\n" << istr() << "}"; // Output a newline, indent, and bracket closing the object.
 
 	}
 
 	virtual void onArrayStart(const BSONElement& element, int count) {
-		*osp << " {ARRAY[" << count << "]}"; // Output the count of array elements.
+		getOStream() << " {ARRAY[" << count << "]}"; // Output the count of array elements.
 		level++; // Increase the indent for the array's BSON elements.
 	}
 
@@ -94,7 +97,7 @@ protected: // IBSONObjectVisitor overrides.
 
 	virtual void onElement(const BSONElement& element, int arrayIndex) {
 		BSONTypeMap type(element);
-		*osp << "\n" << istr() << element << " " << type; // Output newline, indent, element text, element type text.
+		getOStream() << "\n" << istr() << element << " " << type; // Output newline, indent, element text, element type text.
 	}
 
 public: // User Interface
@@ -104,8 +107,16 @@ public: // User Interface
 	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	BSONObjectTypeDump(const BSONObj& pobject, const char *pindentStr = " ") : object(pobject), indentStr(pindentStr), level(0), osp(NULL) {}
+	BSONObjectTypeDump(Parameters& pparams, const BSONObj& pobject, const char *pindentStr = " ") : params(pparams), object(pobject), indentStr(pindentStr), level(0) {}
 	virtual ~BSONObjectTypeDump() {};
+
+	virtual std::ostream& render(std::ostream& os) {
+		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
+		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
+		objectParser.parse(object);     // Parse the object and write the text output the the output stream.
+		getOStream = NULL;
+		return os;
+	}
 
 	/*!
 	 * \brief BSON Object stream output operator.
@@ -114,9 +125,7 @@ public: // User Interface
 	 */
 
 	OSTREAM_FRIEND(BSONObjectTypeDump& bos) {
-		bos.osp = &out; // Streams... Sigh.
-		BSONObjectParser objectParser(bos); // Construct a parser around this event handler.
-		objectParser.parse(bos.object);     // Parse the object and write the text output the the output stream.
+		bos.render(out);
 		return out;							// Required for stream chaining.
 	}
 };

@@ -45,10 +45,10 @@
 //----------------------------------------------------------------------------
 
 #include <mongotype.hpp>
+#include <Parameters.hpp>
 #include <BSONTypeMap.hpp>
 #include <BSONObjectTypeDump.hpp>
 #include <BSONDotNotationDump.hpp>
-#include <Parameters.h>
 
 //----------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ const string LICENSE(
 
 //----------------------------------------------------------------------------
 
-void dumpCollection(mongotype::Parameters& params) {
+void dumpCollection(Parameters& params) {
 	DBClientConnection c;
 	string hostPort(params.getHost());
 	if (hostPort.find(':') == string::npos) {
@@ -104,8 +104,25 @@ void dumpCollection(mongotype::Parameters& params) {
 		dotBase += "{";
 		dotBase += to_string(i++);
 		dotBase += "}";
-		BSONDotNotationDump dotDump(o, dotBase);
-		cout << dotDump;
+		//unique_ptr<IBSONRenderer> renderer(new BSONObjectTypeDump(params, o));
+		unique_ptr<IBSONRenderer> renderer;
+		switch (params.getStyle()) {
+		case STYLE_DOTTED:
+			renderer = unique_ptr<IBSONRenderer>(new BSONDotNotationDump(params, o, dotBase));
+			break;
+		case STYLE_TREE:
+			renderer = unique_ptr<IBSONRenderer>(new BSONObjectTypeDump(params, o));
+			break;
+		case STYLE_JSON:
+			throw std::logic_error("SORRY... NOT IMPLEMENTED YET!");
+			break;
+		default:
+			throw std::logic_error("ISE: Undefined STYLE!");
+			break;
+		}
+		if (renderer) {
+			renderer->render(cout);
+		}
 	}
 }
 
@@ -119,7 +136,10 @@ int main(int argc, char* argv[]) {
 		params.parse(argc,argv);
 		mongotype::dumpCollection(params);
 	} catch (const mongo::DBException &e) {
-		cerr << "mongotype Error: \"" << e.what() << "\"" << endl;
+		cerr << "mongotype MongoDB Error: \"" << e.what() << "\"" << endl;
+		exit(2);
+	} catch (std::logic_error &e) {
+		cerr << "mongotype Generic Error: \"" << e.what() << "\"" << endl;
 		exit(2);
 	}
 	return EXIT_SUCCESS;
