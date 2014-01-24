@@ -94,6 +94,7 @@ typedef BSONTypeStringsMap::value_type BSONTypeStringsMapPair;
 
 class BSONTypeMap {
 
+protected:
 	/*!
 	 * The BSON element supplying the type information.
 	 */
@@ -141,7 +142,7 @@ public:
 	 * \param[in,out] out The std::ostream to write the BSON type strings.
 	 * \param[in] bos The BSONTypeMap object to write to the output stream.
 	 */
-	OSTREAM_FRIEND(BSONTypeMap& bstn){
+	OSTREAM_FRIEND(BSONTypeMap& bstn) {
 		return out << bstn.to_string();
 	}
 };

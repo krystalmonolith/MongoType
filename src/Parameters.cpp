@@ -34,15 +34,6 @@ Parameters::Parameters() : valid(false), port(DEFAULT_PORT), scalarFirst(false),
 }
 
 Parameters::~Parameters() {
-	// TODO Auto-generated destructor stub
-}
-
-// A helper function to simplify the main part.
-template<class T>
-ostream& operator<<(ostream& os, const vector<T>& v)
-{
-    copy(v.begin(), v.end(), ostream_iterator<T>(cout, " "));
-    return os;
 }
 
 void validate(boost::any& v,

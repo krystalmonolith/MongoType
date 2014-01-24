@@ -15,8 +15,7 @@ namespace mongotype {
 
 class IBSONRenderer {
 public:
-	IBSONRenderer();
-	virtual ~IBSONRenderer();
+	virtual ~IBSONRenderer() {};
 	virtual std::ostream& render(std::ostream& os) = 0;
 };
 

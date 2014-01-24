@@ -33,7 +33,7 @@
 #include <mongotype.hpp>
 #include <Parameters.hpp>
 #include <IBSONRenderer.hpp>
-#include <BSONTypeMap.hpp>
+#include <BSONTypeFormatter.hpp>
 #include <BSONObjectParser.hpp>
 
 namespace mongotype {
@@ -86,7 +86,7 @@ protected: // IBSONObjectVisitor overrides.
 	}
 
 	virtual void onElement(const BSONElement& element, int arrayIndex) {
-		BSONTypeMap type(element);
+		BSONTypeFormatter type(params, element);
 		string acc;
 		for (string s: dotStack) {
 			acc += s;
