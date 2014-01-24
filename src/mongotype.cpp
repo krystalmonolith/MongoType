@@ -94,24 +94,23 @@ void dumpCollection(Parameters& params) {
 	time_t t;
 	time(&t);
 
-	cout << params.getDbCollection() << ".count:" << c.count(params.getDbCollection()) << "\n";
+	cout << params.getDbCollection() << ".count:" << c.count(params.getDbCollection());
 
 	unique_ptr<DBClientCursor> cursor = c.query(params.getDbCollection(), BSONObj());
 	unsigned int i = 0;
 	while (cursor->more()) {
 		const BSONObj& o = cursor->next(); // Get the BSON
-		string dotBase(params.getDbCollection());
-		dotBase += "{";
-		dotBase += to_string(i++);
-		dotBase += "}";
-		//unique_ptr<IBSONRenderer> renderer(new BSONObjectTypeDump(params, o));
+		string docIndex(params.getDbCollection());
+		docIndex += "{";
+		docIndex += to_string(i++);
+		docIndex += "}";
 		unique_ptr<IBSONRenderer> renderer;
 		switch (params.getStyle()) {
 		case STYLE_DOTTED:
-			renderer = unique_ptr<IBSONRenderer>(new BSONDotNotationDump(params, o, dotBase));
+			renderer = unique_ptr<IBSONRenderer>(new BSONDotNotationDump(params, o, docIndex));
 			break;
 		case STYLE_TREE:
-			renderer = unique_ptr<IBSONRenderer>(new BSONObjectTypeDump(params, o));
+			renderer = unique_ptr<IBSONRenderer>(new BSONObjectTypeDump(params, o, docIndex));
 			break;
 		case STYLE_JSON:
 			throw std::logic_error("SORRY... NOT IMPLEMENTED YET!");

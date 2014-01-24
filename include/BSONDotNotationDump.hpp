@@ -105,13 +105,15 @@ public: // User Interface
 	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	BSONDotNotationDump(Parameters& pparams, const BSONObj& pobject, string& initialToken) : params(pparams), object(pobject) {
+	BSONDotNotationDump(Parameters& pparams, const BSONObj& pobject, string& initialToken) :
+		params(pparams), object(pobject) {
 		dotStack.clear();
 		dotStack.push_back(initialToken);
 	};
 	virtual ~BSONDotNotationDump() {};
 
 	virtual std::ostream& render(std::ostream& os) {
+		os << "\n";
 		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
 		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
 		objectParser.parse(object);     // Parse the object and write the text output the the output stream.

@@ -112,10 +112,10 @@ int Parameters::parse(int ac, char* av[])
         hidden.add_options()
                     ("dbcollection", po::value<string>(&dbCollection), //->required(),
                     		"Database and collection names concatenated with a '.' between them, i.e., \"mydb.mycollection\".")
-                    ("query", po::value<string>(&query)->default_value(string("")),
-                       		"Optional JSON query, i.e., the first parameter to find()")
-                    ("projection", po::value<string>(&projection)->default_value(string("")),
-                       		"Optional JSON query projection, i.e., the second parameter to find().")
+//                    ("query", po::value<string>(&query)->default_value(string("")),
+//                       		"Optional JSON query, i.e., the first parameter to find()")
+//                    ("projection", po::value<string>(&projection)->default_value(string("")),
+//                       		"Optional JSON query projection, i.e., the second parameter to find().")
             ;
 
         po::options_description cmdline_options;
@@ -129,8 +129,8 @@ int Parameters::parse(int ac, char* av[])
 
         po::positional_options_description p;
         p.add("dbcollection", 1);
-        p.add("query", 1);
-        p.add("projection", 1);
+//        p.add("query", 1);
+//        p.add("projection", 1);
 
         store(po::command_line_parser(ac, av).options(cmdline_options).positional(p).run(), vm);
         notify(vm);
@@ -185,8 +185,8 @@ ostream& operator <<(ostream& os, Parameters& p) {
     os << "typeMask:" << p.typeMask << "\n";
     os << "scalarFirst:" << p.scalarFirst << "\n";
     os << "dbCollection:" << p.dbCollection << "\n";
-    os << "query:" << p.query << "\n";
-    os << "projection:" << p.projection << "\n";
+//    os << "query:" << p.query << "\n";
+//    os << "projection:" << p.projection << "\n";
     return os;
 }
 

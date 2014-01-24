@@ -52,6 +52,7 @@ class BSONObjectTypeDump : virtual public IBSONRenderer, virtual protected IBSON
 	Parameters& params;
 	const BSONObj& object;
 	string indentStr;
+	string initialToken;
 	int level;
 	function<ostream&()> getOStream; // std::function required to store a closure.
 
@@ -107,10 +108,12 @@ public: // User Interface
 	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	BSONObjectTypeDump(Parameters& pparams, const BSONObj& pobject, const char *pindentStr = " ") : params(pparams), object(pobject), indentStr(pindentStr), level(0) {}
+	BSONObjectTypeDump(Parameters& pparams, const BSONObj& pobject, string& pinitialToken, const char *pindentStr = " ") :
+		params(pparams), object(pobject), indentStr(pindentStr), initialToken(pinitialToken), level(0) {}
 	virtual ~BSONObjectTypeDump() {};
 
 	virtual std::ostream& render(std::ostream& os) {
+		os << "\n" << initialToken << " =>";
 		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
 		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
 		objectParser.parse(object);     // Parse the object and write the text output the the output stream.

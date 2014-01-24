@@ -53,8 +53,8 @@ class Parameters {
     StyleParam style;
     TypeParamMask typeMask;
     string dbCollection;
-    string query;
-    string projection;
+//    string query;
+//    string projection;
 
     boost::program_options::variables_map vm;
 
@@ -85,13 +85,13 @@ public:
 		return port;
 	}
 
-	const string& getProjection() const {
-		return projection;
-	}
-
-	const string& getQuery() const {
-		return query;
-	}
+//	const string& getProjection() const {
+//		return projection;
+//	}
+//
+//	const string& getQuery() const {
+//		return query;
+//	}
 
 	bool isScalarFirst() const {
 		return scalarFirst;
