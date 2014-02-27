@@ -48,6 +48,7 @@
 #include <BSONTypeMap.hpp>
 #include <BSONObjectTypeDump.hpp>
 #include <BSONDotNotationDump.hpp>
+#include <JSONDump.hpp>
 
 //----------------------------------------------------------------------------
 
@@ -90,8 +91,10 @@ void dumpCollection(Parameters& params) {
 	time_t t;
 	time(&t);
 
-	cout << params.getDbCollection() << ".count:"
-			<< c.count(params.getDbCollection());
+	if (params.isDebug()) {
+		cout << "{ " << params.getDbCollection() << ".count:"
+			<< c.count(params.getDbCollection()) << "}";
+	}
 
 	unique_ptr<DBClientCursor> cursor = c.query(params.getDbCollection(),
 			BSONObj());
@@ -113,7 +116,9 @@ void dumpCollection(Parameters& params) {
 					new BSONObjectTypeDump(params, o, docIndex));
 			break;
 		case STYLE_JSON:
-			throw std::logic_error("SORRY... NOT IMPLEMENTED YET!");
+		case STYLE_JSONPACKED:
+			renderer = unique_ptr<IBSONRenderer>(
+					new JSONDump(params, o));
 			break;
 		default:
 			throw std::logic_error("ISE: Undefined STYLE!");

@@ -18,9 +18,10 @@ static EnumMapper<TypeParamMask> typeMapper;
 static void mapperInit() {
 	if (initMap) {
 		initMap = false;
-		styleMapper.insert("dotted", STYLE_DOTTED);
-		styleMapper.insert("tree",   STYLE_TREE);
-		styleMapper.insert("json",   STYLE_JSON);
+		styleMapper.insert("dotted",      STYLE_DOTTED);
+		styleMapper.insert("tree",        STYLE_TREE);
+		styleMapper.insert("json",        STYLE_JSON);
+		styleMapper.insert("jsonpacked",  STYLE_JSONPACKED);
 		typeMapper.insert("none", TYPE_NONE);
 		typeMapper.insert("name", TYPE_NAME);
 		typeMapper.insert("desc", TYPE_DESC);
@@ -91,7 +92,7 @@ int Parameters::parse(int ac, char* av[])
         po::options_description oformat("Output Format Options");
         oformat.add_options()
 					("style,s", po::value<StyleParam>(&style)->default_value(STYLE_DOTTED),
-		                  "Output Style: {dotted,tree,json}.")
+		                  "Output Style: {dotted,tree,json,jsonpacked}.")
 	      			("type,t", po::value<TypeParamMask>(&typeMask)->default_value(TYPE_ALL),
                           "BSON Type: {none,name,desc,code,all}.")
                     ("scalarfirst,f", po::value<bool>(&scalarFirst)->default_value(false),

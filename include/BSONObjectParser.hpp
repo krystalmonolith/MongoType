@@ -77,51 +77,61 @@ public:
 	 * \fn void onObjectStart(const BSONObj& object, int arrayIndex)
 	 * \brief BSON Object Precursor Event
 	 * \param[in] object The object being parsed.
+	 * \param[in] elementIndex The zero based index of the element within object being parsed.
+	 * \param[in] elementCount The number of elements within object being parsed.
 	 * \param[in] arrayIndex The array index of the object being parsed.
 	 * <ul><li>arrayIndex == -1 if object is not contained in an array.</li><li>arrayIndex >= 0 if object is contained within an array.</li></ul>
 	 *
 	 * Invoked once per each non-terminal BSON object before parsing the contained BSON elements.
 	 */
-	virtual void onObjectStart(const BSONObj& object, int arrayIndex) = 0;
+	virtual void onObjectStart(const BSONObj& object, int elementIndex, int elementCount, int arrayIndex) = 0;
 	/*!
 	 * \fn void onObjectEnd(const BSONObj& object, int arrayIndex)
 	 * \brief BSON Object Successor Event
 	 * \param[in] object The object being parsed.
+	 * \param[in] elementIndex The zero based index of the element within object being parsed.
+	 * \param[in] elementCount The number of elements within object being parsed.
 	 * \param[in] arrayIndex The array index of the object being parsed.
 	 * <ul><li>arrayIndex == -1 if object is not contained in an array.</li><li>arrayIndex >= 0 if object is contained within an array.</li></ul>
 	 *
 	 * Invoked once per each non-terminal BSON object after parsing the contained BSON elements.
 	 */
-	virtual void onObjectEnd(const BSONObj& object, int arrayIndex) = 0;
+	virtual void onObjectEnd(const BSONObj& object, int elementIndex, int elementCount, int arrayIndex) = 0;
 
 	/*!
 	 * \fn void onArrayStart(const BSONElement& element, int count)
 	 * \brief BSON Array Precursor Event
 	 * \param[in] element The non-terminal array element being parsed.
+	 * \param[in] elementIndex The zero based index of the element within object being parsed.
+	 * \param[in] elementCount The number of elements within object being parsed.
 	 * \param[in] count The count of elements in the array.
 	 *
 	 * Invoked once per each non-terminal BSON array before parsing the contained BSON elements.
 	 */
-	virtual void onArrayStart(const BSONElement& element, int count) = 0;
+	virtual void onArrayStart(const BSONElement& element, int elementIndex, int elementCount, int count) = 0;
 	/*!
 	 * \fn void onArrayEnd(const BSONElement& element, int count)
 	 * \brief BSON Array Successor Event
 	 * \param[in] element The non-terminal array element being parsed.
+	 * \param[in] elementIndex The zero based index of the element within object being parsed.
+	 * \param[in] elementCount The number of elements within object being parsed.
 	 *
 	 * Invoked once per each non-terminal BSON array after parsing the contained BSON elements.
 	 */
-	virtual void onArrayEnd(const BSONElement& element) = 0;
+	virtual void onArrayEnd(const BSONElement& element, int elementIndex, int elementCount) = 0;
 
 	/*!
 	 * \fn void onElement(const BSONElement& element, int arrayIndex)
 	 * \brief BSON Element Event
 	 * \param[in] element The terminal element being parsed.
-	 * \param[in] arrayIndex The array index of the object being parsed.
+	 * \param[in] elementIndex The zero based index of the element within object being parsed.
+	 * \param[in] elementCount The number of elements within object being parsed.
+	 * \param[in] arrayIndex The zero based array index of the object being parsed.
 	 * <ul><li>arrayIndex == -1 if element is not contained in an array.</li><li>arrayIndex >= 0 if element is contained within an array.</li></ul>
 	 *
 	 * Invoked once per each terminal BSON element that is not a BSON object or a BSON array.
 	 */
-	virtual void onElement(const BSONElement& element, int arrayIndex) = 0;
+	virtual void onElement(const BSONElement& element, int elementIndex, int elementCount, int arrayIndex) = 0;
 };
 
 //----------------------------------------------------------------------------
@@ -151,6 +161,8 @@ protected:
 	/*!
 	 * \brief Recursively parse a BSONElement
 	 * \param[in] element The BSON element to dump.
+	 * \param[in] element The zero based index of the current BSON element within the current element's parent object.
+	 * \param[in] element The count of BSON elements within the current element's parent object.
 	 * \param[in] arrayIndex The array index of the BSON element being parsed.
 	 * <ul><li>arrayIndex == -1 if the element is not contained in an array.</li><li>arrayIndex >= 0 if the element is contained within an array.</li></ul>
 	 *
@@ -161,28 +173,28 @@ protected:
 	 * </ul>
 	 */
 
-	virtual void parseElementRecursive(BSONElement& element, int arrayIndex) {
+	virtual void parseElementRecursive(BSONElement& element, int elementIndex, int elementCount, int arrayIndex) {
 		BSONType btype = element.type();
 		switch (btype) {
 		case BSONType::Object:
 			{
 				const BSONObj& bobj = element.Obj();
-				parseObjectRecursive(bobj, arrayIndex);
+				parseObjectRecursive(bobj, elementIndex, elementCount, arrayIndex);
 			}
 			break;
 		case BSONType::Array:
 			{
-				std::vector<BSONElement> array = element.Array();
-				visitor.onArrayStart(element, array.size());
-				int i = 0;
-				for (BSONElement el : array) {
-					parseElementRecursive(el, i++);
+				std::vector<BSONElement> elementArray = element.Array();
+				visitor.onArrayStart(element, elementIndex, elementCount, elementArray.size());
+				int elementArrayIndex = 0;
+				for (BSONElement e : elementArray) {
+					parseElementRecursive(e, elementIndex, elementCount, elementArrayIndex++);
 				}
-				visitor.onArrayEnd(element);
+				visitor.onArrayEnd(element, elementIndex, elementCount);
 			}
 			break;
 		default:
-			visitor.onElement(element, arrayIndex);
+			visitor.onElement(element, elementIndex, elementCount, arrayIndex);
 			break;
 		}
 	}
@@ -198,15 +210,17 @@ protected:
 	 * Iterate through all the BSONElement(s) contained in the BSONObj and dump them via indirect recursion by calling parseElementRecursive().
 	 */
 
-	virtual void parseObjectRecursive(const BSONObj& object, int arrayIndex = -1) {
-		visitor.onObjectStart(object, arrayIndex);
+	virtual void parseObjectRecursive(const BSONObj& object, int elementIndex=0, int elementCount=1, int arrayIndex = -1) {
+		visitor.onObjectStart(object, elementIndex, elementCount, arrayIndex);
 		set<string> keys;
 		object.getFieldNames(keys); // Get the key names of the BSON object.
-		for (auto key : keys) { //
+		int ei = 0;
+		int ec = keys.size();
+		for (auto key : keys) {
 			BSONElement e = object.getField(key);
-			parseElementRecursive(e, arrayIndex);
+			parseElementRecursive(e, ei++, ec, arrayIndex);
 		}
-		visitor.onObjectEnd(object, arrayIndex);
+		visitor.onObjectEnd(object, elementIndex, elementCount, arrayIndex);
 	}
 
 public:

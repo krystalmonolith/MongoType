@@ -1,6 +1,6 @@
 /*!
- * \file BSONObjectTypeDump.hpp
- * \brief BSON Object Type Stream Definitions
+ * \file JSONDump.hpp
+ * \brief JSON Dump Definitions
  *
  * \author Mark Deazley &lt;mdeazley@gmail.com&gt;
  * \copyright Copyright &copy; 2013 by Mark Deazley<br/><br/>
@@ -27,75 +27,91 @@
 
 //----------------------------------------------------------------------------
 
-#ifndef BSONDOTNOTATIONDUMP_HPP_
-#define BSONDOTNOTATIONDUMP_HPP_
+#ifndef JSONDUMP_HPP_
+#define JSONDUMP_HPP_
 
 #include <mongotype.hpp>
 #include <Parameters.hpp>
 #include <IBSONRenderer.hpp>
-#include <BSONTypeFormatter.hpp>
 #include <BSONObjectParser.hpp>
 
 namespace mongotype {
 
 /*!
- * \brief Human readable BSON Object Dump
+ * \brief BSON -> JSON Dump
  *
- * Provides an std::ostream comparable output operator for dumping a human readable text
- * version of the given BSON object. BSONObjectTypeDump implements interface IBSONObjectVisitor and
- * uses the BSON object parsing events to output the BSON object's text representation.
+ * Provides an std::ostream comparable output operator for dumping a JSON representation of the given BSON object. JSONDump implements interface IBSONObjectVisitor and
+ * uses the BSON object parsing events to output the BSON object's JSON representation.
  *
- * \see IBSONObjectVisitor, BSONObjectParser
+ * \see IBSONObjectVisitor, BSONObjectParser, IBSONRenderer
  */
 
-class BSONDotNotationDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisitor {
+class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisitor {
 	Parameters& params;
 	const BSONObj& object;
-	deque<string> dotStack;
+	string indentStr;
+	int level;
 	function<ostream&()> getOStream; // std::function required to store a closure.
+
+	int cnt;
+
+	void xstr(string& token) {
+		string s;
+		for (int i=0; i<level; i++) {
+			s += indentStr;
+		}
+		getOStream() << "\n" << s << token;
+	}
+
+	void istr(const char* ctoken) {
+		string s(ctoken);
+		xstr(s);
+	}
+
+	void comma(int elementIndex, int arrayIndex = -1) {
+		if (elementIndex > 0 && arrayIndex != 0) {
+			getOStream() << ',';
+		}
+	}
 
 protected: // IBSONObjectVisitor overrides.
 
-	virtual void onParseStart() { }
+	virtual void onParseStart() {
+		level = 0; // Reset the indent level to zero.
+	}
 
 	virtual void onParseEnd() {	}
 
 	virtual void onObjectStart(const BSONObj& object, int elementIndex, int elementCount, int arrayIndex) {
-		if (arrayIndex >= 0) { // If the object is an element of an array...
-			 string s("[");
-			 s += to_string(arrayIndex);
-			 s += "]"; // Output an array index first.
-			 dotStack.push_back(s);
-		}
+		comma(elementIndex, arrayIndex);
+		istr("{"); // Output a newline and indent.
+		level++; // Increase the indent for the object's BSON elements.
 	}
 
 	virtual void onObjectEnd(const BSONObj& object, int elementIndex, int elementCount, int arrayIndex) {
-		if (arrayIndex >= 0) { // If the object is an element of an array...
-			dotStack.pop_back();
-		}
+		level--; // Decrease the indent level after the object's elements.
+		istr("}"); // Output a newline, indent, and bracket closing the object.
+
 	}
 
 	virtual void onArrayStart(const BSONElement& element, int elementIndex, int elementCount, int count) {
-		string s(".");
-		s += element.fieldName();
-		 dotStack.push_back(s);
+		comma(elementIndex);
+		istr("["); // Output a newline, indent, and bracket closing the object.
+		level++; // Increase the indent for the array's BSON elements.
 	}
 
 	virtual void onArrayEnd(const BSONElement& element, int elementIndex, int elementCount) {
-		dotStack.pop_back();
+		level--; // Decrease the indent after the array's BSON elements.
+		istr("]"); // Output a newline, indent, and bracket closing the object.
 	}
 
 	virtual void onElement(const BSONElement& element, int elementIndex, int elementCount, int arrayIndex) {
-		BSONTypeFormatter type(params, element);
-		string acc;
-		for (string s: dotStack) {
-			acc += s;
-		}
-		acc += '.';
-		acc += string(element);
-		acc += " ";
-		acc += type.to_string();
-		getOStream() << acc << "\n";
+		comma(elementIndex, arrayIndex);
+		stringstream ss;
+		ss << element;
+		string s = ss.str();
+		xstr(s); // Output newline, indent, element text.
+		cnt--; if (!cnt) exit(0);
 	}
 
 public: // User Interface
@@ -105,33 +121,29 @@ public: // User Interface
 	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	BSONDotNotationDump(Parameters& pparams, const BSONObj& pobject, string& initialToken) :
-		params(pparams), object(pobject) {
-		dotStack.clear();
-		dotStack.push_back(initialToken);
-	};
-	virtual ~BSONDotNotationDump() {};
+	JSONDump(Parameters& pparams, const BSONObj& pobject, const char *pindentStr = " ") :
+		params(pparams), object(pobject), indentStr(pindentStr), level(0), cnt(100) {}
+	virtual ~JSONDump() {};
 
 	virtual std::ostream& render(std::ostream& os) {
-		os << "\n";
 		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
 		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
 		objectParser.parse(object);     // Parse the object and write the text output the the output stream.
 		getOStream = NULL;
+		os << "\n";
 		return os;
 	}
 
 	/*!
 	 * \brief BSON Object stream output operator.
 	 * \param[in,out] out The std::ostream to write the BSON object dump.
-	 * \param[in] bos The BSONObjectTypeDump object to write to the output stream.
+	 * \param[in] bos The JSONDump object to write to the output stream.
 	 */
 
-	OSTREAM_FRIEND(BSONDotNotationDump& bos) {
-		bos.render(out);
-		return out;							// Required for stream chaining.
+	OSTREAM_FRIEND(JSONDump& bos) {
+		return bos.render(out);
 	}
 };
 
 } /* namespace mongotype */
-#endif /* BSONDOTNOTATIONDUMP_HPP_ */
+#endif /* JSONDUMP_HPP_ */

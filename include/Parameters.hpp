@@ -17,10 +17,11 @@
 namespace mongotype {
 
 enum StyleParam {
-	STYLE_UNDEF  = -1,
-	STYLE_DOTTED = 0,
-	STYLE_TREE   = 1,
-	STYLE_JSON   = 2
+	STYLE_UNDEF      = -1,
+	STYLE_DOTTED     = 0,
+	STYLE_TREE       = 1,
+	STYLE_JSON       = 2,
+	STYLE_JSONPACKED = 3
 };
 
 enum TypeParamMask {
