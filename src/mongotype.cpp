@@ -118,7 +118,7 @@ void dumpCollection(Parameters& params) {
 		case STYLE_JSON:
 		case STYLE_JSONPACKED:
 			renderer = unique_ptr<IBSONRenderer>(
-					new JSONDump(params, o));
+					new JSONDump(params, o, "  "));
 			break;
 		default:
 			throw std::logic_error("ISE: Undefined STYLE!");
@@ -132,7 +132,9 @@ void dumpCollection(Parameters& params) {
 	}
 }
 
-}
+//----------------------------------------------------------------------------
+
+} // End of namespace mongotype
 
 //----------------------------------------------------------------------------
 

@@ -53,65 +53,86 @@ class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisi
 	int level;
 	function<ostream&()> getOStream; // std::function required to store a closure.
 
-	int cnt;
+	void tstr(const char* token) {
+		getOStream() << token;
+		getOStream().flush(); // TEST!
+	}
 
-	void xstr(string& token) {
-		string s;
-		for (int i=0; i<level; i++) {
-			s += indentStr;
+	void tstr(string& token) {
+		tstr(token.c_str());
+	}
+
+	void istr(const char* token) {
+		const string cr("\n");
+		string indent;
+		indent.reserve(1024);
+		for (int i=0; i < level; i++) {
+			indent += indentStr;
 		}
-		getOStream() << "\n" << s << token;
+		string s(cr + indent + token);
+		tstr(s);
 	}
 
-	void istr(const char* ctoken) {
-		string s(ctoken);
-		xstr(s);
+	void istr(string& token) {
+		istr(token.c_str());
 	}
 
-	void comma(int elementIndex, int arrayIndex = -1) {
-		if (elementIndex > 0 && arrayIndex != 0) {
+	void comma(const BSONObjectVisitorParams& vp) {
+		if (vp.getElementIndex() > 0 && vp.getArrayIndex() != 0) {
 			getOStream() << ',';
+		}
+		if (vp.getParent() != NULL) {
+			string s(vp.getKey());
+			s += ": ";
+			istr(s);
 		}
 	}
 
 protected: // IBSONObjectVisitor overrides.
 
 	virtual void onParseStart() {
-		level = 0; // Reset the indent level to zero.
+		level = 1; // Reset the indent level to one, render() outputs level zero array square brackets.
 	}
 
-	virtual void onParseEnd() {	}
+	virtual void onParseEnd() {
+		level--;
+		if (params.isDebug() && level != 0) {
+			string s("ISE: Terminal Parse Level Error! : level=");
+			s += to_string(level);
+			throw std::logic_error(s);
+		}
+	}
 
-	virtual void onObjectStart(const BSONObj& object, int elementIndex, int elementCount, int arrayIndex) {
-		comma(elementIndex, arrayIndex);
-		istr("{"); // Output a newline and indent.
+	virtual void onObjectStart(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
+		comma(vparams);
+		tstr("{"); // Output a newline and indent.
 		level++; // Increase the indent for the object's BSON elements.
 	}
 
-	virtual void onObjectEnd(const BSONObj& object, int elementIndex, int elementCount, int arrayIndex) {
+	virtual void onObjectEnd(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
 		level--; // Decrease the indent level after the object's elements.
 		istr("}"); // Output a newline, indent, and bracket closing the object.
-
+		const BSONObjectVisitorParams vp;
+		comma(vp);
 	}
 
-	virtual void onArrayStart(const BSONElement& element, int elementIndex, int elementCount, int count) {
-		comma(elementIndex);
-		istr("["); // Output a newline, indent, and bracket closing the object.
+	virtual void onArrayStart(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
+		comma(vparams);
+		tstr("["); // Output a newline, indent, and bracket closing the object.
 		level++; // Increase the indent for the array's BSON elements.
 	}
 
-	virtual void onArrayEnd(const BSONElement& element, int elementIndex, int elementCount) {
+	virtual void onArrayEnd(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
 		level--; // Decrease the indent after the array's BSON elements.
 		istr("]"); // Output a newline, indent, and bracket closing the object.
+		const BSONObjectVisitorParams vp;
+		comma(vp);
 	}
 
-	virtual void onElement(const BSONElement& element, int elementIndex, int elementCount, int arrayIndex) {
-		comma(elementIndex, arrayIndex);
-		stringstream ss;
-		ss << element;
-		string s = ss.str();
-		xstr(s); // Output newline, indent, element text.
-		cnt--; if (!cnt) exit(0);
+	virtual void onElement(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
+		comma(vparams);
+		string s(element.toString(false,false));
+		tstr(s); // Output newline, indent, element text.
 	}
 
 public: // User Interface
@@ -122,13 +143,15 @@ public: // User Interface
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
 	JSONDump(Parameters& pparams, const BSONObj& pobject, const char *pindentStr = " ") :
-		params(pparams), object(pobject), indentStr(pindentStr), level(0), cnt(100) {}
+		params(pparams), object(pobject), indentStr(pindentStr), level(0) {}
 	virtual ~JSONDump() {};
 
 	virtual std::ostream& render(std::ostream& os) {
 		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
 		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
+		tstr("[\n");
 		objectParser.parse(object);     // Parse the object and write the text output the the output stream.
+		tstr("]");
 		getOStream = NULL;
 		os << "\n";
 		return os;
