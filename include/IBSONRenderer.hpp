@@ -16,7 +16,10 @@ namespace mongotype {
 class IBSONRenderer {
 public:
 	virtual ~IBSONRenderer() {};
-	virtual std::ostream& render(std::ostream& os) = 0;
+	virtual void setOutputStream(std::ostream& os) = 0;
+	virtual void begin(const char* prefix) = 0;
+	virtual void end(const char* suffix) = 0;
+	virtual void render(const BSONObj& object, int docIndex, int docCount) = 0;
 };
 
 } /* namespace mongotype */

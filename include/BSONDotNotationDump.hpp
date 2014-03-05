@@ -50,7 +50,6 @@ namespace mongotype {
 
 class BSONDotNotationDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisitor {
 	Parameters& params;
-	const BSONObj& object;
 	deque<string> dotStack;
 	function<ostream&()> getOStream; // std::function required to store a closure.
 
@@ -105,31 +104,43 @@ public: // User Interface
 	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	BSONDotNotationDump(Parameters& pparams, const BSONObj& pobject, string& initialToken) :
-		params(pparams), object(pobject) {
+	BSONDotNotationDump(Parameters& pparams, string& initialToken) :
+		params(pparams) {
 		dotStack.clear();
 		dotStack.push_back(initialToken);
 	};
+
 	virtual ~BSONDotNotationDump() {};
 
-	virtual std::ostream& render(std::ostream& os) {
-		os << "\n";
+	/*
+	 * \param[in] os The output stream to which the object(s) are rendered.
+	 */
+	virtual void setOutputStream(std::ostream& os) {
 		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
-		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
-		objectParser.parse(object);     // Parse the object and write the text output the the output stream.
-		getOStream = NULL;
-		return os;
 	}
 
-	/*!
-	 * \brief BSON Object stream output operator.
-	 * \param[in,out] out The std::ostream to write the BSON object dump.
-	 * \param[in] bos The BSONObjectTypeDump object to write to the output stream.
+	/*
+	 * \param[in] prefix The string to be output before the object is rendered, or NULL.
 	 */
+	virtual void begin(const char* prefix) {
+		if (prefix != NULL) {
+			getOStream() << prefix;
+		}
+	}
 
-	OSTREAM_FRIEND(BSONDotNotationDump& bos) {
-		bos.render(out);
-		return out;							// Required for stream chaining.
+	/*
+	 * \param[in] suffix The string to be output after the object is rendered, or NULL.
+	 */
+	virtual void end(const char* suffix) {
+		if (suffix != NULL) {
+			getOStream() << suffix;
+		}
+	}
+
+	virtual void render(const BSONObj& object, int docIndex, int docCount) {
+		getOStream() << "\n";
+		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
+		objectParser.parse(object);     // Parse the object and write the text output the the output stream.
 	}
 };
 

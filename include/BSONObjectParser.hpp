@@ -43,7 +43,7 @@ namespace mongotype {
 
 /*
  * \class BSONObjectVisitorParams
- * \brief Visitor Interface parameter container class.
+ * \brief Immutable visitor interface parameter container class.
  *
  * Used to pass the parameters common to all parsing events.
  */

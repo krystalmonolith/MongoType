@@ -9,4 +9,6 @@
 
 namespace mongotype {
 
+//PLACEHOLDER FOR FUTURE EXPANSION
+
 } /* namespace mongotype */

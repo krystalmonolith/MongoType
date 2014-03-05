@@ -61,7 +61,7 @@ namespace mongotype {
 
 //----------------------------------------------------------------------------
 
-const string VERSION("2.2");
+const string VERSION("2.3");
 const string COPYRIGHT("Copyright (c) 2013 by Mark Deazley");
 const string LICENSE(
 		"Free Software Foundation’s GNU AGPL v3.0.\n"
@@ -91,44 +91,47 @@ void dumpCollection(Parameters& params) {
 	time_t t;
 	time(&t);
 
+	int documentCount = c.count(params.getDbCollection());
+
 	if (params.isDebug()) {
-		cout << "{ " << params.getDbCollection() << ".count:"
-			<< c.count(params.getDbCollection()) << "}";
+		cout << "{ " << params.getDbCollection() << ".count: "
+			<< documentCount << " }";
 	}
 
-	unique_ptr<DBClientCursor> cursor = c.query(params.getDbCollection(),
-			BSONObj());
-	unsigned int i = 0;
-	while (cursor->more()) {
-		const BSONObj& o = cursor->next(); // Get the BSON
-		string docIndex(params.getDbCollection());
-		docIndex += "{";
-		docIndex += to_string(i++);
-		docIndex += "}";
-		unique_ptr<IBSONRenderer> renderer;
-		switch (params.getStyle()) {
-		case STYLE_DOTTED:
-			renderer = unique_ptr<IBSONRenderer>(
-					new BSONDotNotationDump(params, o, docIndex));
-			break;
-		case STYLE_TREE:
-			renderer = unique_ptr<IBSONRenderer>(
-					new BSONObjectTypeDump(params, o, docIndex));
-			break;
-		case STYLE_JSON:
-		case STYLE_JSONPACKED:
-			renderer = unique_ptr<IBSONRenderer>(
-					new JSONDump(params, o, "  "));
-			break;
-		default:
-			throw std::logic_error("ISE: Undefined STYLE!");
-			break;
+	string docPrefixString(params.getDbCollection());
+//	docIndex += "{";
+//	docIndex += to_string(i++);
+//	docIndex += "}";
+
+	unique_ptr<DBClientCursor> cursor = c.query(params.getDbCollection(), BSONObj());
+
+	unique_ptr<IBSONRenderer> renderer;
+	switch (params.getStyle()) {
+	case STYLE_DOTTED:
+		renderer = unique_ptr<IBSONRenderer>(new BSONDotNotationDump(params, docPrefixString));
+		break;
+	case STYLE_TREE:
+		renderer = unique_ptr<IBSONRenderer>(new BSONObjectTypeDump(params, docPrefixString));
+		break;
+	case STYLE_JSON:
+	case STYLE_JSONPACKED:
+		renderer = unique_ptr<IBSONRenderer>(new JSONDump(params, "  "));
+		break;
+	default:
+		throw std::logic_error("ISE: Undefined STYLE!");
+		break;
+	}
+	if (renderer) {
+		renderer->setOutputStream(cout);
+		renderer->begin(NULL);
+		int documentIndex = 0;
+		while (cursor->more()) {
+			const BSONObj& o = cursor->next(); // Get the BSON Object
+			renderer->render(o, documentIndex++, documentCount);
 		}
-		if (renderer) {
-			renderer->render(cout);
-		} else {
-			throw std::logic_error("ISE: Undefined renderer!");
-		}
+		renderer->end(NULL);
+	} else {
+		throw std::logic_error("ISE: Undefined renderer!");
 	}
 }
 

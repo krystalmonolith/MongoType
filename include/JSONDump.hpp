@@ -47,15 +47,21 @@ namespace mongotype {
  */
 
 class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisitor {
+
 	Parameters& params;
-	const BSONObj& object;
 	string indentStr;
+
 	int level;
+
 	function<ostream&()> getOStream; // std::function required to store a closure.
+
+	// Output Helper Functions
+	// tstr functions centralize token output primarily for debugging purposes.
+	// istr emit a carriage return, indentation whitespace, and a token
 
 	void tstr(const char* token) {
 		getOStream() << token;
-		getOStream().flush(); // TEST!
+		if (params.isDebug()) getOStream().flush(); // "Token Buffering" on debug.
 	}
 
 	void tstr(string& token) {
@@ -77,94 +83,113 @@ class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisi
 		istr(token.c_str());
 	}
 
-	void comma(const BSONObjectVisitorParams& vp) {
+	/*
+	 * Emit a comma and/or object label based on output state.
+	 * \note TODO: This is not good... Should not need these special cases, .eg. this should be parse state based.
+	 */
+	void emitKey(const BSONObjectVisitorParams& vp) {
 		if (vp.getElementIndex() > 0 && vp.getArrayIndex() != 0) {
 			getOStream() << ',';
 		}
 		if (vp.getParent() != NULL) {
-			string s(vp.getKey());
-			s += ": ";
+			string s("\"");
+			s += vp.getKey();
+			s += "\" : ";
 			istr(s);
 		}
 	}
 
-protected: // IBSONObjectVisitor overrides.
+protected: // IBSONObjectVisitor overrides. ---------------------------------------------------------------------------
 
 	virtual void onParseStart() {
-		level = 1; // Reset the indent level to one, render() outputs level zero array square brackets.
 	}
 
 	virtual void onParseEnd() {
-		level--;
-		if (params.isDebug() && level != 0) {
-			string s("ISE: Terminal Parse Level Error! : level=");
-			s += to_string(level);
-			throw std::logic_error(s);
-		}
 	}
 
 	virtual void onObjectStart(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
-		comma(vparams);
-		tstr("{"); // Output a newline and indent.
-		level++; // Increase the indent for the object's BSON elements.
+		emitKey(vparams);
+		tstr("{"); // Begin the JSON object
+		level++; // Increase the indent for the object's element(s).
 	}
 
 	virtual void onObjectEnd(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
-		level--; // Decrease the indent level after the object's elements.
-		istr("}"); // Output a newline, indent, and bracket closing the object.
+		level--; // Decrease the indent level after the object.
+		istr("}"); // End the JSON object.
 		const BSONObjectVisitorParams vp;
-		comma(vp);
+		emitKey(vp);
 	}
 
 	virtual void onArrayStart(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
-		comma(vparams);
-		tstr("["); // Output a newline, indent, and bracket closing the object.
-		level++; // Increase the indent for the array's BSON elements.
+		emitKey(vparams);
+		tstr("["); // Begin the JSON array.
+		level++; // Increase the indent for the JSON array element(s).
 	}
 
 	virtual void onArrayEnd(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
-		level--; // Decrease the indent after the array's BSON elements.
-		istr("]"); // Output a newline, indent, and bracket closing the object.
+		level--; // Decrease the indent after the array.
+		istr("]"); // End the JSON array.
 		const BSONObjectVisitorParams vp;
-		comma(vp);
+		emitKey(vp);
 	}
 
 	virtual void onElement(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
-		comma(vparams);
+		emitKey(vparams);
+		// TODO: Some element values produced by element.toString(..) need quoting for JSON.
 		string s(element.toString(false,false));
-		tstr(s); // Output newline, indent, element text.
+		tstr(s); // Output element value.
 	}
 
-public: // User Interface
+public: // User Interface ---------------------------------------------------------------------------------------------
 
 	/*!
 	 * \brief Construct a BSON object dumper.
-	 * \param[in] pobject The BSON object to be dumped.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
-	JSONDump(Parameters& pparams, const BSONObj& pobject, const char *pindentStr = " ") :
-		params(pparams), object(pobject), indentStr(pindentStr), level(0) {}
+	JSONDump(Parameters& pparams, const char *pindentStr = " ") :
+		params(pparams), indentStr(pindentStr), level(1) {}
+
 	virtual ~JSONDump() {};
 
-	virtual std::ostream& render(std::ostream& os) {
+	/*
+	 * \param[in] os The output stream to which the object(s) are rendered.
+	 */
+	virtual void setOutputStream(std::ostream& os) {
 		getOStream = [&] () -> ostream& { return os; }; // Wrap closure around ostream.
-		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
-		tstr("[\n");
-		objectParser.parse(object);     // Parse the object and write the text output the the output stream.
-		tstr("]");
-		getOStream = NULL;
-		os << "\n";
-		return os;
 	}
 
-	/*!
-	 * \brief BSON Object stream output operator.
-	 * \param[in,out] out The std::ostream to write the BSON object dump.
-	 * \param[in] bos The JSONDump object to write to the output stream.
+	/*
+	 * \param[in] prefix The string to be output before the object is rendered, or NULL.
 	 */
+	virtual void begin(const char* prefix) {
+		if (prefix != NULL) {
+			tstr(prefix);
+		}
+		tstr("[\n");
+		tstr(indentStr);
+	}
 
-	OSTREAM_FRIEND(JSONDump& bos) {
-		return bos.render(out);
+	/*
+	 * \param[in] suffix The string to be output after the object is rendered, or NULL.
+	 */
+	virtual void end(const char* suffix) {
+		if (suffix != NULL) {
+			tstr(suffix);
+		}
+		tstr("\n]\n");
+	}
+
+	/*
+	 * \param[in] pobject The BSON object to be dumped.
+	 * \param[in] pobject The output stream.
+	 */
+	virtual void render(const BSONObj& object, int docIndex, int docCount) {
+		if (docIndex > 0) {
+			tstr(",");
+			istr("");
+		}
+		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
+		objectParser.parse(object);     // !!! MAJOR ACTION HERE !!! >>> Parse the object and write to the output stream.
 	}
 };
 
