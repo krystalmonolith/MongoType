@@ -91,12 +91,13 @@ class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisi
 		if (vp.getElementIndex() > 0 && vp.getArrayIndex() != 0) {
 			getOStream() << ',';
 		}
+		string s;
 		if (vp.getParent() != NULL) {
-			string s("\"");
+			s += "\"";
 			s += vp.getKey();
 			s += "\" : ";
-			istr(s);
 		}
+		istr(s);
 	}
 
 protected: // IBSONObjectVisitor overrides. ---------------------------------------------------------------------------
@@ -144,6 +145,7 @@ public: // User Interface ------------------------------------------------------
 
 	/*!
 	 * \brief Construct a BSON object dumper.
+	 * \param[in] pparams The command line parameters object.
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
 	JSONDump(Parameters& pparams, const char *pindentStr = " ") :

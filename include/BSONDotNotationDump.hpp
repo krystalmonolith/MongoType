@@ -101,8 +101,8 @@ public: // User Interface
 
 	/*!
 	 * \brief Construct a BSON object dumper.
-	 * \param[in] pobject The BSON object to be dumped.
-	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
+	 * \param[in] pparams The command line parameters object.
+	 * \param[in] initialToken The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
 	BSONDotNotationDump(Parameters& pparams, string& initialToken) :
 		params(pparams) {

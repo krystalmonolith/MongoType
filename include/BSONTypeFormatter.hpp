@@ -30,6 +30,7 @@ public:
 
 	/*!
 	 * \brief Construct a type lookup instance.
+	 * \param[in] pparams The command line parameters object.
 	 * \param[in] e The BSONElement whose type string will be looked up.
 	 */
 	BSONTypeFormatter(Parameters& pparams, const BSONElement& e) :

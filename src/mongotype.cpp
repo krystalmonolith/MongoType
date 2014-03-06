@@ -1,45 +1,46 @@
 /*!
- "\file mongotype.cpp
- "\brief MongoType Main Implementation File.
+ * \file mongotype.cpp
+ * \brief MongoType Main Implementation File.
  *
- "\mainpage MongoType Utility
+ * \mainpage MongoType Utility
  *
- "MongoType is a command line utility designed to dump
- "out the contents of a MongoDB collection with the associated
- "BSON data types.<br/>
+ * MongoType is a command line utility designed to dump
+ * out the contents of a MongoDB collection with the associated
+ * BSON data types.<br/>
  *
- "<strong>BSON Definition: </strong><a href="http://bsonspec.org/">BSON Website</a><br>
- "<strong>JSON Definition: </strong><a href="http://json.org/">JSON Website</a>
+ * <strong>BSON Definition: </strong><a href="http://bsonspec.org/">BSON Website</a><br>
+ * <strong>JSON Definition: </strong><a href="http://json.org/">JSON Website</a><br/>
+ * <strong>MongoDB C++ Driver: </strong><a href="http://docs.mongodb.org/ecosystem/drivers/cpp/">MongoDB Docs Website</a>
  *
- "<h3>Usage:</h3>
+ * <h3>Usage:</h3>
  *
- "<b>mongotype</b> <i>&lt;collectionName&gt;</i> [<i>&lt;host>&gt;</i>[:<i>&lt;port&gt;</i>]]<br/>
+ * <b>mongotype</b> <i>&lt;collectionName&gt;</i> [<i>&lt;host>&gt;</i>[:<i>&lt;port&gt;</i>]]<br/>
  *
- "<h3>Where:</h3>
- "<ul>
- "  <li><i>&lt;collectionName&gt;</i> is the required name of the MongoDB collection to dump. Collection names follow the format &quot;<i>&lt;db&gt;</i>.<i>&lt;collection&gt;</i>&quot;.</li>
- "  <li><i>&lt;host&gt;</i> or <i>&lt;host&gt;</i>:<i>&lt;port&gt;</i> are the optional MongoDB host/port.</li>
- "  <li>The default &quot;<i>&lt;host&gt;</i>:<i>&lt;port&gt;</i>&quot; is &quot;localhost:27017&quot;.</li>
- "</ul>
+ * <h3>Where:</h3>
+ * <ul>
+ *   <li><i>&lt;collectionName&gt;</i> is the required name of the MongoDB collection to dump. Collection names follow the format &quot;<i>&lt;db&gt;</i>.<i>&lt;collection&gt;</i>&quot;.</li>
+ *   <li><i>&lt;host&gt;</i> or <i>&lt;host&gt;</i>:<i>&lt;port&gt;</i> are the optional MongoDB host/port.</li>
+ *   <li>The default &quot;<i>&lt;host&gt;</i>:<i>&lt;port&gt;</i>&quot; is &quot;localhost:27017&quot;.</li>
+ * </ul>
  *
- "\author Mark Deazley &lt;mdeazley@gmail.com&gt;
- "\version 2.0.0
- "\copyright Copyright &copy; 2013 by Mark Deazley<br/><br/>
+ * \author Mark Deazley &lt;mdeazley@gmail.com&gt;
+ * \version 2.3
+ * \copyright Copyright &copy; 2013-2014 by Mark Deazley<br/><br/>
  *
- "<b>License:</b> <i>Free Software Foundation’s GNU AGPL v3.0.</i><br/>
+ * <b>License:</b> <i>Free Software Foundation’s GNU AGPL v3.0.</i><br/>
  *
- "This program is free software: you can redistribute it and/or modify<br/>
- "it under the terms of the GNU Affero General Public License as<br/>
- "published by the Free Software Foundation, either version 3 of the<br/>
- "License, or (at your option) any later version.<br/>
+ * This program is free software: you can redistribute it and/or modify<br/>
+ * it under the terms of the GNU Affero General Public License as<br/>
+ * published by the Free Software Foundation, either version 3 of the<br/>
+ * License, or (at your option) any later version.<br/>
  *
- "This program is distributed in the hope that it will be useful,<br/>
- "but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
- "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
- "GNU Affero General Public License for more details.<br/>
+ * This program is distributed in the hope that it will be useful,<br/>
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+ * GNU Affero General Public License for more details.<br/>
  *
- "You should have received a copy of the GNU Affero General Public License<br/>
- "along with this program.  If not, see http://www.gnu.org/licenses/ .<br/>
+ * You should have received a copy of the GNU Affero General Public License<br/>
+ * along with this program.  If not, see http://www.gnu.org/licenses/ .<br/>
  */
 
 //----------------------------------------------------------------------------
@@ -53,8 +54,8 @@
 //----------------------------------------------------------------------------
 
 /*!
- "\namespace mongotype
- "All classes defined in the MongoType project are in C++ namespace \b mongotype.
+ * \namespace mongotype
+ * All classes defined in the MongoType project are in C++ namespace \b mongotype.
  */
 
 namespace mongotype {
