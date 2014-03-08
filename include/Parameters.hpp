@@ -70,6 +70,8 @@ public:
 
 	bool isDebug() { return vm.count("debug") > 0; }
 
+	bool isStackDebug() { return vm.count("stack") > 0; }
+
 	const string& getConfigFile() const {
 		return config_file;
 	}

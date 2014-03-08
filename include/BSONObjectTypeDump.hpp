@@ -71,31 +71,32 @@ protected: // IBSONObjectVisitor overrides.
 
 	virtual void onParseEnd() {	}
 
-	virtual void onObjectStart(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
+	virtual void onObjectStart(const BSONParserStack& stack) {
 		getOStream() << "\n" << istr(); // Output a newline and indent.
-		if (vparams.getArrayIndex() >= 0) { // If the object is an element of an array...
-			getOStream() << "[" << vparams.getArrayIndex() << "]: "; // Output an array index first.
+		if (stack.top().getArrayIndex() >= 0) { // If the object is an element of an array...
+			getOStream() << "[" << stack.top().getArrayIndex() << "]: "; // Output an array index first.
 		}
 		getOStream() << "{"; // Output the opening bracket for the object.
 		level++; // Increase the indent for the object's BSON elements.
 	}
 
-	virtual void onObjectEnd(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
+	virtual void onObjectEnd(const BSONParserStack& stack) {
 		level--; // Decrease the indent level after the object's elements.
 		getOStream() << "\n" << istr() << "}"; // Output a newline, indent, and bracket closing the object.
 
 	}
 
-	virtual void onArrayStart(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
-		getOStream() << " {ARRAY[" << vparams.getArrayCount() << "]}"; // Output the count of array elements.
+	virtual void onArrayStart(const BSONParserStack& stack) {
+		getOStream() << " {ARRAY[" << stack.top().getArrayCount() << "]}"; // Output the count of array elements.
 		level++; // Increase the indent for the array's BSON elements.
 	}
 
-	virtual void onArrayEnd(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
+	virtual void onArrayEnd(const BSONParserStack& stack) {
 		level--; // Decrease the indent after the array's BSON elements.
 	}
 
-	virtual void onElement(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
+	virtual void onElement(const BSONParserStack& stack) {
+		const BSONElement& element = stack.top().getElement();
 		BSONTypeFormatter type(params, element);
 		getOStream() << "\n" << istr() << element << " " << type; // Output newline, indent, element text, element type text.
 	}

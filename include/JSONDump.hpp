@@ -51,8 +51,6 @@ class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisi
 	Parameters& params;
 	string indentStr;
 
-	int level;
-
 	function<ostream&()> getOStream; // std::function required to store a closure.
 
 	// Output Helper Functions
@@ -68,7 +66,7 @@ class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisi
 		tstr(token.c_str());
 	}
 
-	void istr(const char* token) {
+	void istr(const char* token, int level) {
 		const string cr("\n");
 		string indent;
 		indent.reserve(1024);
@@ -79,25 +77,50 @@ class JSONDump : virtual public IBSONRenderer, virtual protected IBSONObjectVisi
 		tstr(s);
 	}
 
-	void istr(string& token) {
-		istr(token.c_str());
+	void istr(string& token, int level) {
+		istr(token.c_str(), level);
 	}
 
-	/*
-	 * Emit a comma and/or object label based on output state.
-	 * \note TODO: This is not good... Should not need these special cases, .eg. this should be parse state based.
+	/**
+	 * Emit a comma.
 	 */
-	void emitKey(const BSONObjectVisitorParams& vp) {
-		if (vp.getElementIndex() > 0 && vp.getArrayIndex() != 0) {
-			getOStream() << ',';
+	void emitComma(const BSONParserStack& stack) {
+		const int ARRAY_PARENT_OFFSET = 2;
+		if (stack.depth() >= ARRAY_PARENT_OFFSET) {
+			const BSONParserStackItem& parent = stack.item(-ARRAY_PARENT_OFFSET);
+			bool parentIsNotArray = parent.getType() != BSONParserStackItem::ItemType::ARRAY;
+			//if (stack.top().getElementIndex() > 0 && parentIsNotArray) {
+			if (stack.top().getElementIndex() > 0 && (parentIsNotArray || stack.top().getArrayIndex() > 0)) {
+				tstr(",");
+			}
+		}
+	}
+
+	void emitKey(const BSONParserStack& stack) {
+		const int ARRAY_PARENT_OFFSET = 2;
+		bool parentIsNotArray = true;
+		if (stack.depth() >= ARRAY_PARENT_OFFSET) {
+			const BSONParserStackItem& parent = stack.item(-ARRAY_PARENT_OFFSET);
+			parentIsNotArray = parent.getType() != BSONParserStackItem::ItemType::ARRAY;
 		}
 		string s;
-		if (vp.getParent() != NULL) {
+		if (stack.depth() > 1 && parentIsNotArray) {
 			s += "\"";
-			s += vp.getKey();
+			s += stack.top().getKey();
 			s += "\" : ";
 		}
-		istr(s);
+		istr(s, stack.depth());
+	}
+
+	/**
+	 * Emit a comma and/or object label based on output state.
+	 */
+	void nextLine(const BSONParserStack& stack) {
+		emitComma(stack);
+		if (params.isStackDebug()) {
+			tstr(string(("  ") + stack.toString()).c_str());
+		}
+		emitKey(stack);
 	}
 
 protected: // IBSONObjectVisitor overrides. ---------------------------------------------------------------------------
@@ -108,36 +131,28 @@ protected: // IBSONObjectVisitor overrides. ------------------------------------
 	virtual void onParseEnd() {
 	}
 
-	virtual void onObjectStart(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
-		emitKey(vparams);
+	virtual void onObjectStart(const BSONParserStack& stack) {
+		nextLine(stack);
 		tstr("{"); // Begin the JSON object
-		level++; // Increase the indent for the object's element(s).
 	}
 
-	virtual void onObjectEnd(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
-		level--; // Decrease the indent level after the object.
-		istr("}"); // End the JSON object.
-		const BSONObjectVisitorParams vp;
-		emitKey(vp);
+	virtual void onObjectEnd(const BSONParserStack& stack) {
+		istr("}", stack.depth()); // End the JSON object.
 	}
 
-	virtual void onArrayStart(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
-		emitKey(vparams);
+	virtual void onArrayStart(const BSONParserStack& stack) {
+		nextLine(stack);
 		tstr("["); // Begin the JSON array.
-		level++; // Increase the indent for the JSON array element(s).
 	}
 
-	virtual void onArrayEnd(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
-		level--; // Decrease the indent after the array.
-		istr("]"); // End the JSON array.
-		const BSONObjectVisitorParams vp;
-		emitKey(vp);
+	virtual void onArrayEnd(const BSONParserStack& stack) {
+		istr("]", stack.depth()); // End the JSON array.
 	}
 
-	virtual void onElement(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
-		emitKey(vparams);
+	virtual void onElement(const BSONParserStack& stack) {
+		nextLine(stack);
 		// TODO: Some element values produced by element.toString(..) need quoting for JSON.
-		string s(element.toString(false,false));
+		string s(stack.top().getElement().toString(false,false));
 		tstr(s); // Output element value.
 	}
 
@@ -149,7 +164,7 @@ public: // User Interface ------------------------------------------------------
 	 * \param[in] pindentStr The string used to indent the text output. The indent text is prepended to the output lines once for each indent level.
 	 */
 	JSONDump(Parameters& pparams, const char *pindentStr = " ") :
-		params(pparams), indentStr(pindentStr), level(1) {}
+		params(pparams), indentStr(pindentStr) {}
 
 	virtual ~JSONDump() {};
 
@@ -164,21 +179,14 @@ public: // User Interface ------------------------------------------------------
 	 * \param[in] prefix The string to be output before the object is rendered, or NULL.
 	 */
 	virtual void begin(const char* prefix) {
-		if (prefix != NULL) {
-			tstr(prefix);
-		}
-		tstr("[\n");
-		tstr(indentStr);
+		tstr("[");
 	}
 
 	/*
 	 * \param[in] suffix The string to be output after the object is rendered, or NULL.
 	 */
 	virtual void end(const char* suffix) {
-		if (suffix != NULL) {
-			tstr(suffix);
-		}
-		tstr("\n]\n");
+		tstr("\n]");
 	}
 
 	/*
@@ -188,7 +196,6 @@ public: // User Interface ------------------------------------------------------
 	virtual void render(const BSONObj& object, int docIndex, int docCount) {
 		if (docIndex > 0) {
 			tstr(",");
-			istr("");
 		}
 		BSONObjectParser objectParser(*this); // Construct a parser around this event handler.
 		objectParser.parse(object);     // !!! MAJOR ACTION HERE !!! >>> Parse the object and write to the output stream.

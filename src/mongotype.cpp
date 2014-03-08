@@ -96,7 +96,7 @@ void dumpCollection(Parameters& params) {
 
 	if (params.isDebug()) {
 		cout << "{ " << params.getDbCollection() << ".count: "
-			<< documentCount << " }";
+			<< documentCount << " }\n";
 	}
 
 	string docPrefixString(params.getDbCollection());

@@ -55,7 +55,8 @@ public:
 	 */
 	enum ItemType {
 		OBJECT, 	/*!< The contained object is mongo::BSONObj. */
-		ELEMENT 	/*!< The contained object is mongo::BSONElement. */
+		ARRAY, 		/*!< The contained object is mongo::BSONElement array. */
+		ELEMENT 	/*!< The contained object is mongo::BSONElement scalar. */
 	};
 
 private:
@@ -91,135 +92,10 @@ private:
 		Item(const BSONElement* pelement) : element(pelement) {}
 	} item;
 
-private:
-	/**
-	 * \fn validate Throw an error if the wrong type of fetch from the union occurs.
-	 * \param t The ItemType being fetched.
-	 * \throws std::logic_error Thrown if the passed type does not match the stored type.
-	 */
-	void validate(ItemType t) {
-		if (t != type) {
-			throw std::logic_error( string("Illegal Stack Item Type Access: ") + (t == OBJECT ? string("OBJECT") : string("ELEMENT")) );
-		}
-	}
-
-
-public:
-	/**
-	 * \fn BSONParserStackItem(const BSONObj* object)
-	 * \brief Construct a BSONParserStackItem containing a pointer to a mongo::BSONObj.
-	 * \param object The pointer to the mongo::BSONObj.
-	 */
-	BSONParserStackItem(const BSONObj* object)      : type(OBJECT),  item(object) {}
-	/**
-	 * \fn BSONParserStackItem(const BSONElement* element)
-	 * \brief Construct a BSONParserStackItem containing a pointer to a mongo::BSONElement.
-	 * \param element The pointer to the mongo::BSONElement.
-	 */
-	BSONParserStackItem(const BSONElement* element) : type(ELEMENT), item(element) {}
-
-	ItemType getType() { return type; }
-	const BSONObj*     getObject()  { validate(OBJECT);  return item.object; }
-	const BSONElement* getElement() { validate(ELEMENT); return item.element; }
-};
-
-//----------------------------------------------------------------------------
-
-/**
- * \class BSONParserStack
- * \brief Stack of BSONParserStackItem for storing the BSONObjectParser parse context.
- *
- * Stores the current state of the parsed BSON objects in a FILO data structure.
- */
-
-class BSONParserStack {
-	typedef std::deque<std::unique_ptr<const BSONParserStackItem>> Stack;
-
-	Stack stack;
-
-public:
-	int depth() const { return stack.size(); }
-
-private:
-	void throwCount(int count) const {
-		if (depth() < count) {
-			throw std::logic_error( string("ISE: Insufficient BSONParserStack Stack Entries:(" + to_string(count)) + "," + to_string(depth()) + ")" );
-		}
-	}
-
-public:
-	/**
-	 * \param[in] index Zero based index of the stack item where zero is the first item pushed. If negative the items are referenced from the top of the stack, ie.:
-	 * \li -1 item at top of stack.
-	 * \li -2 1st item below top of stack.
-	 * \li -3 2ed item below top of stack.
-	 * \li etc...
-	 * \return The pointer to the read-only stack item.
-	 * \throws std::logic_error On stack underflow.
-	 * \note Item ownership unaffected.
-	 */
-	const BSONParserStackItem* item(int index) const {
-		if (index >= 0) {
-			throwCount(index+1);
-			return stack[index].get();
-		} else {
-			int i = depth() + index + 1;
-			return item(i);
-		}
-	}
-
-	/**
-	 * Return the TOS item, leaving it in place.
-	 * \return The pointer to the read-only stack item.
-	 * \throws std::logic_error On stack underflow.
-	 * \note Item ownership unaffected.
-	 */
-	const BSONParserStackItem* top() const { // Item ownership unaffected.
-		return item(depth()-1);
-	}
-
-	/**
-	 * Pop the TOS item.
-	 * \return The pointer to the read-only stack item.
-	 * \throws std::logic_error On stack underflow.
-	 * \note Releases item ownership to caller, i.e., the called is now responsible for freeing the returned item.
-	 */
-	const BSONParserStackItem* pop(int index) {
-		throwCount(1);
-		const BSONParserStackItem* rv = stack.back().release();
-		stack.pop_back();
-		return rv;
-	}
-
-	/**
-	 * Push the item.
-	 * \param[in] item The bare pointer to the item to be stored on the stack.
-	 * \note Takes item ownership from caller, i.e., if not first popped the contained item(s) will be destroyed and freed when the BSONParserStack instance is destroyed .
-	 */
-	void push(const BSONParserStackItem* item) {
-		stack.push_back(unique_ptr<const BSONParserStackItem>(item));
-	}
-};
-
-//----------------------------------------------------------------------------
-
-/*
- * \class BSONObjectVisitorParams
- * \brief Immutable visitor interface parameter container class.
- *
- * Used to pass the parameters common to all parsing events.
- */
-
-class BSONObjectVisitorParams {
 	/*
 	 * \var Name of the BSON object/array/element, or the empty string if this is the root object.
 	 */
 	const string& key;
-
-	/*
-	 * \var  The parent BSONObj that contains the object/array/element, or NULL if this is the root object.
-	 */
-	const BSONObj* parent;
 
 	/*
 	 * \var The zero based index of the BSON object/array/element within the parent object.
@@ -243,20 +119,50 @@ class BSONObjectVisitorParams {
 	 */
 	int arrayCount;
 
+private:
+	/**
+	 * \fn validate Throw an error if the wrong type of fetch from the union occurs.
+	 * \param t The ItemType being fetched.
+	 * \throws std::logic_error Thrown if the passed type does not match the stored type.
+	 */
+	void validate(ItemType t) const {
+		if (t != type) {
+			throw std::logic_error( string("Illegal Stack Item Type Access: ") + (t == OBJECT ? string("OBJECT") : string("ELEMENT")) );
+		}
+	}
+
 public:
+	/**
+	 * \fn BSONParserStackItem(const BSONObj* object)
+	 * \brief Construct a BSONParserStackItem containing a pointer to a mongo::BSONObj.
+	 * \param object The pointer to the mongo::BSONObj.
+	 */
+	BSONParserStackItem(const BSONObj* object, const string& pkey, int pelementIndex, int pelementCount, int parrayIndex, int parrayCount)
+		: type(OBJECT), item(object), key(pkey), elementIndex(pelementIndex), elementCount(pelementCount), arrayIndex(parrayIndex), arrayCount(parrayCount) {}
+	/**
+	 * \fn BSONParserStackItem(const BSONElement* element)
+	 * \brief Construct a BSONParserStackItem containing a pointer to a mongo::BSONElement.
+	 * \param element The pointer to the mongo::BSONElement.
+	 */
+	BSONParserStackItem(ItemType ptype, const BSONElement* element, const string& pkey, int pelementIndex, int pelementCount, int parrayIndex, int parrayCount)
+		: type(ptype), item(element), key(pkey), elementIndex(pelementIndex), elementCount(pelementCount), arrayIndex(parrayIndex), arrayCount(parrayCount) {}
 
-	BSONObjectVisitorParams(const string& pkey = string(), const BSONObj* pparent = NULL, int pelementIndex=0, int pelementCount=1, int parrayIndex=-1, int parrayCount=0) :
-		key(pkey), parent(pparent), elementIndex(pelementIndex), elementCount(pelementCount), arrayIndex(parrayIndex), arrayCount(parrayCount) { }
+	ItemType getType() const {
+		return type;
+	}
 
-	BSONObjectVisitorParams(const BSONObjectVisitorParams& p) :
-		key(p.key), parent(p.parent), elementIndex(p.elementIndex), elementCount(p.elementCount), arrayIndex(p.arrayIndex), arrayCount(p.arrayCount) { }
+	const BSONObj& getObject() const {
+		validate(OBJECT);
+		return *item.object;
+	}
+
+	const BSONElement& getElement() const {
+		validate(ELEMENT);
+		return *item.element;
+	}
 
 	const string& getKey() const {
 		return key;
-	}
-
-	const BSONObj* getParent() const {
-		return parent;
 	}
 
 	int getElementIndex() const {
@@ -273,6 +179,148 @@ public:
 
 	int getArrayCount() const {
 		return arrayCount;
+	}
+
+	string toString() const {
+		string s("{");
+		switch (type) {
+		case OBJECT:
+			s += "OBJECT";
+			break;
+		case ARRAY:
+			s += "ARRAY";
+			break;
+		case ELEMENT:
+			s += "ELEMENT";
+			break;
+		default:
+			throw std::logic_error(string("toString Undefined ItemType!"));
+		}
+		s += ",\"" + key + "\"",
+		s += "," + to_string(elementIndex);
+		s += "," + to_string(elementCount);
+		s += "," + to_string(arrayIndex);
+		s += "," + to_string(arrayCount);
+		s += "}";
+		return s;
+	}
+};
+
+//----------------------------------------------------------------------------
+
+/**
+ * \class BSONParserStack
+ * \brief Stack of BSONParserStackItem for storing the BSONObjectParser parse context.
+ *
+ * Stores the current state of the parsed BSON objects in a FILO data structure.
+ *
+ * \note "TOS" == "Top Of Stack"<br/>"FILO" == "First-In-Last-Out"
+ */
+
+class BSONParserStack {
+	typedef std::deque<std::unique_ptr<const BSONParserStackItem>> Stack;
+
+	Stack stack;
+
+public:
+	int depth() const { return stack.size(); }
+
+private:
+	void throwCount(int count) const {
+		if (depth() < count) {
+			throw std::logic_error( string("ISE: Insufficient BSONParserStack Stack Entries:(" + to_string(count)) + "," + to_string(depth()) + ")" );
+		}
+	}
+
+protected:
+
+	/**
+	 * \brief Pop the TOS item.
+	 * \return The pointer to the read-only stack item.
+	 * \throws std::logic_error On stack underflow.
+	 * \note Releases item ownership to caller, i.e., the called is now responsible for freeing the returned item.
+	 */
+	const BSONParserStackItem* pop() {
+		throwCount(1);
+		const BSONParserStackItem* rv = stack.back().release();
+		stack.pop_back();
+		return rv;
+	}
+
+	/**
+	 * \brief Push the item.
+	 * \param[in] item The bare pointer to the item to be stored on the stack.
+	 * \note Takes item ownership from caller, i.e., if not first popped the contained item(s) will be destroyed and freed when the BSONParserStack instance is destroyed .
+	 */
+	void push(const BSONParserStackItem* item) {
+		stack.push_back(unique_ptr<const BSONParserStackItem>(item));
+	}
+
+public:
+	/**
+	 * \param[in] index Zero based index of the stack item where zero is the first item pushed. If negative the items are referenced from the top of the stack, ie.:
+	 * \li -1 item at top of stack.
+	 * \li -2 1st item below top of stack.
+	 * \li -3 2ed item below top of stack.
+	 * \li etc...
+	 * \return The pointer to the read-only stack item.
+	 * \throws std::logic_error On stack underflow.
+	 * \note Item ownership unaffected.
+	 */
+	const BSONParserStackItem& item(int index) const {
+		if (index >= 0) {
+			throwCount(index+1);
+			return *(stack[index].get());
+		} else {
+			int i = depth() + index;
+			return item(i);
+		}
+	}
+
+	/**
+	 * \brief Return the TOS item, leaving it in place.
+	 * \return The pointer to the read-only stack item.
+	 * \throws std::logic_error On stack underflow.
+	 * \note Item ownership unaffected.
+	 */
+	const BSONParserStackItem& top() const { // Item ownership unaffected.
+		return item(depth()-1);
+	}
+
+	/**
+	 * \brief Push the BSON object.
+	 * \param[in] object The bare pointer to the BSON object to be encapsulated in a BSONParserStackItem object and pushed on the stack.
+	 * \see void BSONParserStack::push(const BSONParserStackItem* item)
+	 */
+	void push(const BSONObj& object, const string& key = string(), int elementIndex=0, int elementCount=1, int arrayIndex=-1, int arrayCount=0) {
+		push(new BSONParserStackItem(&object, key, elementIndex, elementCount, arrayIndex, arrayCount));
+	}
+
+	/**
+	 * \brief Push the BSON element.
+	 * \param[in] element The bare pointer to the BSON element to be encapsulated in a BSONParserStackItem object and pushed on the stack.
+	 * \see void BSONParserStack::push(const BSONParserStackItem* item)
+	 */
+	void push(BSONParserStackItem::ItemType type, const BSONElement& element, const string& pkey = string(), int pelementIndex=0, int pelementCount=1, int parrayIndex=-1, int parrayCount=0) {
+		push(new BSONParserStackItem(type, &element, pkey, pelementIndex, pelementCount, parrayIndex, parrayCount));
+	}
+
+	/**
+	 * \brief Drop the TOS.
+	 * \note TOS item is destroyed.
+	 */
+	void drop() {
+		delete pop();
+	}
+
+	string toString() const {
+		string s("<<");
+		for (int i=0; i < depth(); i++) {
+			if (i > 0) s += ",";
+			s += item(i).toString();
+		}
+		s += ">>";
+		return s;
 	}
 };
 
@@ -311,66 +359,61 @@ public:
 	virtual void onParseEnd() = 0;
 
 	/*!
-	 * \fn void onObjectStart(const BSONObj& object, int arrayIndex)
+	 * \fn void onObjectStart(const BSONParserStack& stack)
 	 * \brief BSON Object Precursor Event
-	 * \param[in] vparams The \ref BSONObjectVisitorParams object containing the element properties.
-	 * \param[in] object The object being parsed.
+	 * \param[in] stack The \ref BSONParserStack object containing the current parse context.
 	 *
 	 * Invoked once per each non-terminal BSON object before parsing the contained BSON elements.
 	 */
-	virtual void onObjectStart(const BSONObjectVisitorParams& vparams, const BSONObj& object) = 0;
+	virtual void onObjectStart(const BSONParserStack& stack) = 0;
 	/*!
-	 * \fn void onObjectEnd(const BSONObj& object, int arrayIndex)
+	 * \fn void onObjectEnd(const BSONParserStack& stack)
 	 * \brief BSON Object Successor Event
-	 * \param[in] vparams The \ref BSONObjectVisitorParams object containing the element properties.
-	 * \param[in] object The object being parsed.
+	 * \param[in] stack The \ref BSONParserStack object containing the current parse context.
 	 *
 	 * Invoked once per each non-terminal BSON object after parsing the contained BSON elements.
 	 */
-	virtual void onObjectEnd(const BSONObjectVisitorParams& vparams, const BSONObj& object) = 0;
+	virtual void onObjectEnd(const BSONParserStack& stack) = 0;
 
 	/*!
-	 * \fn void onArrayStart(const BSONElement& element, int count)
+	 * \fn void onArrayStart(const BSONParserStack& stack)
 	 * \brief BSON Array Precursor Event
-	 * \param[in] vparams The \ref BSONObjectVisitorParams object containing the element properties.
-	 * \param[in] element The non-terminal array element being parsed.
+	 * \param[in] stack The \ref BSONParserStack object containing the current parse context.
 	 *
 	 * Invoked once per each non-terminal BSON array before parsing the contained BSON elements.
 	 */
-	virtual void onArrayStart(const BSONObjectVisitorParams& vparams, const BSONElement& element) = 0;
+	virtual void onArrayStart(const BSONParserStack& stack) = 0;
 	/*!
-	 * \fn void onArrayEnd(const BSONElement& element, int count)
+	 * \fn void onArrayEnd(const BSONParserStack& stack)
 	 * \brief BSON Array Successor Event
-	 * \param[in] vparams The \ref BSONObjectVisitorParams object containing the element properties.
-	 * \param[in] element The non-terminal array element being parsed.
+	 * \param[in] stack The \ref BSONParserStack object containing the current parse context.
 	 *
 	 * Invoked once per each non-terminal BSON array after parsing the contained BSON elements.
 	 */
-	virtual void onArrayEnd(const BSONObjectVisitorParams& vparams, const BSONElement& element) = 0;
+	virtual void onArrayEnd(const BSONParserStack& stack) = 0;
 
 	/*!
-	 * \fn void onElement(const BSONElement& element, int arrayIndex)
+	 * \fn void onElement(const BSONParserStack& stack)
 	 * \brief BSON Element Event
-	 * \param[in] vparams The \ref BSONObjectVisitorParams object containing the element properties.
-	 * \param[in] element The terminal element being parsed.
+	 * \param[in] stack The \ref BSONParserStack object containing the current parse context.
 	 *
 	 * Invoked once per each terminal BSON element that is not a BSON object or a BSON array.
 	 */
-	virtual void onElement(const BSONObjectVisitorParams& vparams, const BSONElement& element) = 0;
+	virtual void onElement(const BSONParserStack& stack) = 0;
 };
 
 //----------------------------------------------------------------------------
 
 /*!
  * \class BSONObjectParser
- * \brief Parser for BSON objects
+ * \brief The BSON Parser.
  *
  * This class is is used to tear apart a given BSON object and process its data content.
  *
  * It is intended to be fully extensible as the internal methods are all declared protected.
  *
  * \b Usage:
- * \see IBSONObjectVisitor
+ * \see BSONObjectParser::parse, IBSONObjectVisitor, BSONParserStack, BSONParserStackItem
  */
 
 class BSONObjectParser {
@@ -380,12 +423,12 @@ protected:
 	 * Visitor implementation that receives the parse events.
 	 */
 	IBSONObjectVisitor& visitor;
+	BSONParserStack stack;
 
 	//----------------------------------------------------------------------------
 
 	/*!
 	 * \brief Recursively parse a BSONElement
-	 * \param[in] vparams The visitor parameter block.
 	 * \param[in] element The element to recursively dump.
 	 *
 	 * <ul>
@@ -395,33 +438,37 @@ protected:
 	 * </ul>
 	 */
 
-	virtual void parseElementRecursive(const BSONObjectVisitorParams& vparams, BSONElement& element) {
+	virtual void parseElementRecursive(const BSONElement& element, string& key, int elementIndex=0, int elementCount=1, int arrayIndex = -1, int arrayCount = 0) {
 		BSONType btype = element.type();
 		switch (btype) {
 		case BSONType::Object:
 			{
 				const BSONObj& bobj = element.Obj();
 				string k(element.fieldName());
-				parseObjectRecursive(k, bobj, vparams.getParent(), vparams.getElementIndex(), vparams.getElementCount(), vparams.getArrayIndex());
+				parseObjectRecursive(bobj, k, elementIndex, elementCount, arrayIndex, arrayCount);
 			}
 			break;
 		case BSONType::Array:
 			{
+				stack.push(BSONParserStackItem::ItemType::ARRAY, element, key, elementIndex, elementCount, arrayIndex, arrayCount);
 				std::vector<BSONElement> elementArray = element.Array();
 				int elementArrayCount = elementArray.size();
-				BSONObjectVisitorParams vp(vparams.getKey(), vparams.getParent(), vparams.getElementIndex(), vparams.getElementCount(), -1, elementArrayCount);
-				visitor.onArrayStart(vp, element);
+				visitor.onArrayStart(stack);
 				int elementArrayIndex = 0;
 				for (BSONElement e : elementArray) {
 					string k(e.fieldName());
-					BSONObjectVisitorParams ve(k, vparams.getParent(), vparams.getElementIndex(), vparams.getElementCount(), elementArrayIndex++, elementArrayCount);
-					parseElementRecursive(ve, e);
+					parseElementRecursive(e, k, elementIndex, elementCount, elementArrayIndex++, elementArrayCount);
 				}
-				visitor.onArrayEnd(vp, element);
+				visitor.onArrayEnd(stack);
+				stack.drop();
 			}
 			break;
 		default:
-			visitor.onElement(vparams, element);
+			{
+				stack.push(BSONParserStackItem::ItemType::ELEMENT, element, key, elementIndex, elementCount, arrayIndex, arrayCount);
+				visitor.onElement(stack);
+				stack.drop();
+			}
 			break;
 		}
 	}
@@ -432,7 +479,6 @@ protected:
 	 * \brief Recursively parse a BSON Object.
 	 * \param[in] key The key string of the object to dump.
 	 * \param[in] object The BSON object to dump.
-	 * \param[in] parent Pointer to the parent BSONObj, or NULL if there is no parent.
 	 * \param[in] elementIndex The index of the object's BSONElement within its parent object.
 	 * \param[in] elementCount The count of BSONElement(s) within the parent object.
 	 * \param[in] arrayIndex The array index of the BSON object being parsed.
@@ -441,19 +487,19 @@ protected:
 	 * Iterate through all the BSONElement(s) contained in the BSONObj and dump them via indirect recursion by calling parseElementRecursive().
 	 */
 
-	virtual void parseObjectRecursive(string& key, const BSONObj& object, const BSONObj* parent=NULL, int elementIndex=0, int elementCount=1, int arrayIndex = -1) {
-		BSONObjectVisitorParams vparams(key, parent);
-		visitor.onObjectStart(vparams, object);
+	virtual void parseObjectRecursive(const BSONObj& object, string& key, int elementIndex=0, int elementCount=1, int arrayIndex = -1, int arrayCount = 0) {
+		stack.push(object, key, elementIndex, elementCount, arrayIndex, arrayCount);
+		visitor.onObjectStart(stack);
 		set<string> keys;
 		object.getFieldNames(keys); // Get the key names of the BSON object.
 		int ei = 0;
 		int ec = keys.size();
 		for (string key : keys) {
 			BSONElement e = object.getField(key);
-			BSONObjectVisitorParams vp(key, &object, ei++, ec, arrayIndex);
-			parseElementRecursive(vp, e);
+			parseElementRecursive(e, key, ei++, ec, arrayIndex);
 		}
-		visitor.onObjectEnd(vparams, object);
+		visitor.onObjectEnd(stack);
+		stack.drop();
 	}
 
 public:
@@ -475,13 +521,13 @@ public:
 	 * \brief Parse a BSON Object (BSONObj)
 	 * \param[in] object The BSON object to parse.
 	 *
-	 * Parse the given BSON object and invoke the event handlers of the registered IBSONObjectVisitor visitor subclass.
+	 * Parse the given BSON object and invoke the event handlers of the IBSONObjectVisitor visitor \i subclass registered by constructor BSONObjectParser::BSONObjectParser(IBSONObjectVisitor& pvisitor).
 	 */
 
 	virtual void parse(const BSONObj& object) {
 		visitor.onParseStart();
 		string emptyString("");
-		parseObjectRecursive(emptyString, object);
+		parseObjectRecursive(object, emptyString);
 		visitor.onParseEnd();
 	}
 

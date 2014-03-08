@@ -59,32 +59,33 @@ protected: // IBSONObjectVisitor overrides.
 
 	virtual void onParseEnd() {	}
 
-	virtual void onObjectStart(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
-		if (vparams.getArrayIndex() >= 0) { // If the object is an element of an array...
+	virtual void onObjectStart(const BSONParserStack& stack) {
+		if (stack.top().getArrayIndex() >= 0) { // If the object is an element of an array...
 			 string s("[");
-			 s += to_string(vparams.getArrayIndex());
+			 s += to_string(stack.top().getArrayIndex());
 			 s += "]"; // Output an array index first.
 			 dotStack.push_back(s);
 		}
 	}
 
-	virtual void onObjectEnd(const BSONObjectVisitorParams& vparams, const BSONObj& object) {
-		if (vparams.getArrayIndex() >= 0) { // If the object is an element of an array...
+	virtual void onObjectEnd(const BSONParserStack& stack) {
+		if (stack.top().getArrayIndex() >= 0) { // If the object is an element of an array...
 			dotStack.pop_back();
 		}
 	}
 
-	virtual void onArrayStart(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
+	virtual void onArrayStart(const BSONParserStack& stack) {
 		string s(".");
-		s += element.fieldName();
+		s += stack.top().getElement().fieldName();
 		 dotStack.push_back(s);
 	}
 
-	virtual void onArrayEnd(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
+	virtual void onArrayEnd(const BSONParserStack& stack) {
 		dotStack.pop_back();
 	}
 
-	virtual void onElement(const BSONObjectVisitorParams& vparams, const BSONElement& element) {
+	virtual void onElement(const BSONParserStack& stack) {
+		const BSONElement& element = stack.top().getElement();
 		BSONTypeFormatter type(params, element);
 		string acc;
 		for (string s: dotStack) {

@@ -75,6 +75,7 @@ int Parameters::parse(int ac, char* av[])
             ("help", "print help message")
             ("version,v", "print version string")
             ("debug,d", "print debugging info")
+            ("stack,q", "print stack debugging info")
             ("config,c", po::value<string>(&config_file)->default_value(DEFAULT_CONFIGURATION_FILE),
                   "path of configuration file. Default configuration file: " DEFAULT_CONFIGURATION_FILE)
             ;
