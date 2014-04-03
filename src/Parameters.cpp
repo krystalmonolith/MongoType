@@ -151,7 +151,7 @@ int Parameters::parse(int ac, char* av[])
         }
 
         if (vm.count("dbcollection") == 0) {
-            cout << po::invalid_syntax("<db.collection>", po::invalid_syntax::missing_parameter).what() << visible << "\n";
+            cout << po::invalid_syntax(po::invalid_syntax::missing_parameter, "<db.collection>").what() << visible << "\n";
             exit(0);
         }
 

@@ -76,7 +76,7 @@ protected: // IBSONObjectVisitor overrides.
 
 	virtual void onArrayStart(const BSONParserStack& stack) {
 		string s(".");
-		s += stack.top().getElement().fieldName();
+		s += stack.top().getArray().fieldName();
 		 dotStack.push_back(s);
 	}
 

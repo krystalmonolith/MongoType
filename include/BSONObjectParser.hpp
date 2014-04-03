@@ -161,6 +161,11 @@ public:
 		return *item.element;
 	}
 
+	const BSONElement& getArray() const {
+		validate(ARRAY);
+		return *item.element;
+	}
+
 	const string& getKey() const {
 		return key;
 	}

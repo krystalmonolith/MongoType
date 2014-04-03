@@ -41,7 +41,7 @@
 #include <boost/any.hpp>
 #include <boost/program_options.hpp>
 
-#include <mongo/client/dbclientinterface.h>
+#include <mongo/client/dbclient.h>
 #include <mongo/bson/bsonobj.h>
 
 using namespace std;
