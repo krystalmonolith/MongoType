@@ -1,0 +1,20 @@
+var NAVTREEINDEX1 =
+{
+"mongotype_8hpp.html#aa7044f40f93944aa7365bf3a9421653f":[3,0,12,2],
+"mongotype_8hpp_source.html":[3,0,12],
+"namespacemembers.html":[1,1,0],
+"namespacemembers_enum.html":[1,1,4],
+"namespacemembers_eval.html":[1,1,5],
+"namespacemembers_func.html":[1,1,1],
+"namespacemembers_type.html":[1,1,3],
+"namespacemembers_vars.html":[1,1,2],
+"namespacemongotype.html":[1,0,0],
+"namespacemongotype.html":[2,0,0],
+"namespaces.html":[1,0],
+"pages.html":[],
+"unionmongotype_1_1BSONParserStackItem_1_1Item.html":[2,0,0,1,0],
+"unionmongotype_1_1BSONParserStackItem_1_1Item.html#a5e5feff654f9d6386108bceca88da7f5":[2,0,0,1,0,0],
+"unionmongotype_1_1BSONParserStackItem_1_1Item.html#a7697f44d1274838b5c698366e54e6b74":[2,0,0,1,0,1],
+"unionmongotype_1_1BSONParserStackItem_1_1Item.html#aa909567cce34ef150d4ef613c8a0dfd7":[2,0,0,1,0,3],
+"unionmongotype_1_1BSONParserStackItem_1_1Item.html#afe7d8ebe49dec35aa5a10c3ea9337450":[2,0,0,1,0,2]
+};

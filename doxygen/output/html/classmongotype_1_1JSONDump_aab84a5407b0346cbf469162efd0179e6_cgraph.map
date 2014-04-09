@@ -1,0 +1,21 @@
+<map id="mongotype::JSONDump::onElement" name="mongotype::JSONDump::onElement">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStackItem.html#a8cbac385eecafb86290e103a667a0d2c" title="mongotype::BSONParserStack\lItem::getElement" alt="" coords="220,5,423,51"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1JSONDump.html#a132276ec44bfe46cd20e0e37d429a587" title="mongotype::JSONDump\l::nextLine" alt="" coords="239,454,404,501"/>
+<area shape="rect" id="node25" href="$classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c" title="Return the TOS item, leaving it in place." alt="" coords="727,656,956,685"/>
+<area shape="rect" id="node29" href="$classmongotype_1_1JSONDump.html#a51bb8e0adce524b8684592bb9661ede3" title="mongotype::JSONDump\l::tstr" alt="" coords="1025,141,1191,187"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONParserStackItem.html#ae3e88b1fc38b3f25eebd95939f6635db" title="mongotype::BSONParserStack\lItem::validate" alt="" coords="473,5,676,51"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1JSONDump.html#a39ff23a270f85c4c0be7f86470112abe" title="mongotype::JSONDump\l::emitComma" alt="" coords="492,381,657,427"/>
+<area shape="rect" id="node33" href="$classmongotype_1_1JSONDump.html#ae607e0e58de6a9d94b1b7f375121d83d" title="mongotype::JSONDump\l::emitKey" alt="" coords="492,526,657,573"/>
+<area shape="rect" id="node44" href="$classmongotype_1_1Parameters.html#a65719d1e416dca8c268713622cb39ce9" title="mongotype::Parameters\l::isStackDebug" alt="" coords="495,595,655,642"/>
+<area shape="rect" id="node46" href="$classmongotype_1_1BSONParserStack.html#addb6ed52ed767add9efa058fd0358e64" title="mongotype::BSONParserStack\l::toString" alt="" coords="740,829,943,875"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1BSONParserStack.html#a13dce75278ade60eda997f8001d1f774" title="mongotype::BSONParserStack\l::depth" alt="" coords="1513,677,1716,723"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1BSONParserStackItem.html#ae2c2311df5609e31f4995d9e9bc78c80" title="mongotype::BSONParserStack\lItem::getArrayIndex" alt="" coords="740,295,943,342"/>
+<area shape="rect" id="node15" href="$classmongotype_1_1BSONParserStackItem.html#a14fb4527317ae60064f21dc413a5b844" title="mongotype::BSONParserStack\lItem::getElementIndex" alt="" coords="740,226,943,273"/>
+<area shape="rect" id="node17" href="$classmongotype_1_1BSONParserStackItem.html#a7878639d398a86b9f6520f211633f727" title="mongotype::BSONParserStack\lItem::getType" alt="" coords="740,466,943,513"/>
+<area shape="rect" id="node19" href="$classmongotype_1_1BSONParserStack.html#a2e4311a04435506bc09bcf86beec0e4c" title="mongotype::BSONParserStack\l::item" alt="" coords="1007,731,1209,778"/>
+<area shape="rect" id="node22" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="1260,706,1463,753"/>
+<area shape="rect" id="node31" href="$classmongotype_1_1Parameters.html#ace3f2e2150dcc9de9bf4a8932929698c" title="mongotype::Parameters\l::isDebug" alt="" coords="1281,141,1441,187"/>
+<area shape="rect" id="node36" href="$classmongotype_1_1BSONParserStackItem.html#af6a0c07ce702d0b98ca94b69fb2d3e42" title="mongotype::BSONParserStack\lItem::getKey" alt="" coords="740,709,943,755"/>
+<area shape="rect" id="node39" href="$classmongotype_1_1JSONDump.html#a06c18632f0cd1033592b46f81c97545a" title="mongotype::JSONDump\l::istr" alt="" coords="759,535,924,582"/>
+<area shape="rect" id="node50" href="$classmongotype_1_1BSONParserStackItem.html#aae3df94dde75487ac91060d7cc660855" title="mongotype::BSONParserStack\lItem::toString" alt="" coords="1007,877,1209,923"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="mongotype::BSONParserStackItem::validate" name="mongotype::BSONParserStackItem::validate">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStackItem.html#a5f445d49a350bc0fd3d0e4812eaec4ad" title="mongotype::BSONParserStack\lItem::getArray" alt="" coords="260,22,463,69"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONParserStackItem.html#a8cbac385eecafb86290e103a667a0d2c" title="mongotype::BSONParserStack\lItem::getElement" alt="" coords="260,109,463,155"/>
+<area shape="rect" id="node15" href="$classmongotype_1_1BSONParserStackItem.html#a577cc5f11f05a58ec557aa42e8102780" title="mongotype::BSONParserStack\lItem::getObject" alt="" coords="260,178,463,225"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONDotNotationDump.html#a6385eed86a9f7588ed9737a4d68155a8" title="BSON Array Precursor Event." alt="" coords="512,5,715,51"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1BSONDotNotationDump.html#aa6b1571ea664362442d9c8c70003d38a" title="BSON Element Event." alt="" coords="512,74,715,121"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1BSONObjectTypeDump.html#ad1cb92b2db86fcb21a163b39d91c744b" title="BSON Element Event." alt="" coords="515,143,712,190"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1JSONDump.html#aab84a5407b0346cbf469162efd0179e6" title="BSON Element Event." alt="" coords="531,213,696,259"/>
+</map>

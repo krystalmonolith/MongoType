@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects." alt="" coords="5,32,216,61"/>
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONDotNotationDump.html" title="Human readable BSON Object Dump." alt="" coords="264,5,501,35"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONObjectTypeDump.html" title="Human readable BSON Object Dump." alt="" coords="265,59,500,88"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1JSONDump.html" title="BSON &#45;&gt; JSON Dump." alt="" coords="300,112,465,141"/>
+<area shape="rect" id="node8" href="$classmongotype_1_1IBSONRenderer.html" title="mongotype::IBSONRenderer" alt="" coords="16,85,205,115"/>
+</map>

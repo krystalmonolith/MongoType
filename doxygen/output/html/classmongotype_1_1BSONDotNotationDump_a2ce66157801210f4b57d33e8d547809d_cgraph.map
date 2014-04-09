@@ -1,0 +1,17 @@
+<map id="mongotype::BSONDotNotationDump::render" name="mongotype::BSONDotNotationDump::render">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)" alt="" coords="256,143,464,190"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1IBSONObjectVisitor.html#a87e35a5b471fb965f4f4451571b66e6e" title="Parser Construction Event." alt="" coords="512,74,723,121"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONObjectParser.html#a431940dbfd10c340180bfbe4e661fc3d" title="Recursively parse a BSON Object." alt="" coords="513,143,721,190"/>
+<area shape="rect" id="node34" href="$classmongotype_1_1IBSONObjectVisitor.html#ae8217e55bb47710fe63c8141ffcfc871" title="Parser Destruction Event." alt="" coords="512,213,723,259"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1BSONParserStack.html#ac3bdcca1115d778160c0a10599c04288" title="Push the item." alt="" coords="1033,5,1236,51"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1IBSONObjectVisitor.html#ad8bc407c759103ca3e9a6f92d1a52ca0" title="BSON Object Precursor Event." alt="" coords="771,74,981,121"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1BSONObjectParser.html#aa5708e37cde258cc1f68d97a70229072" title="Recursively parse a BSONElement." alt="" coords="772,143,980,190"/>
+<area shape="rect" id="node21" href="$classmongotype_1_1BSONParserStack.html#aebfb82fe311ccf91b1e66a4e9c8f1827" title="Drop the TOS." alt="" coords="1033,282,1236,329"/>
+<area shape="rect" id="node31" href="$classmongotype_1_1IBSONObjectVisitor.html#afa076a3394984a944ee3ffb244fa33b9" title="BSON Object Successor Event." alt="" coords="771,263,981,310"/>
+<area shape="rect" id="node17" href="$classmongotype_1_1IBSONObjectVisitor.html#a4ab1f9ab791c44284fb02262ae597df5" title="BSON Array Precursor Event." alt="" coords="1029,74,1240,121"/>
+<area shape="rect" id="node19" href="$classmongotype_1_1IBSONObjectVisitor.html#a0bbcb5016ed956bc98350e0b04bf9ea3" title="BSON Array Successor Event." alt="" coords="1029,143,1240,190"/>
+<area shape="rect" id="node29" href="$classmongotype_1_1IBSONObjectVisitor.html#a8cc8710f7c8a2c580ab03ef517c81ab0" title="BSON Element Event." alt="" coords="1029,213,1240,259"/>
+<area shape="rect" id="node23" href="$classmongotype_1_1BSONParserStack.html#a97e9ac805a0db1947d228bd7021718e9" title="Pop the TOS item." alt="" coords="1289,291,1521,320"/>
+<area shape="rect" id="node25" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="1572,282,1775,329"/>
+<area shape="rect" id="node27" href="$classmongotype_1_1BSONParserStack.html#a13dce75278ade60eda997f8001d1f774" title="mongotype::BSONParserStack\l::depth" alt="" coords="1825,282,2028,329"/>
+</map>

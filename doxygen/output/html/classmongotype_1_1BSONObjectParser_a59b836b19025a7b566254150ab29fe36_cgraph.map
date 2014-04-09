@@ -1,0 +1,17 @@
+<map id="mongotype::BSONObjectParser::parseObjectRecursive" name="mongotype::BSONObjectParser::parseObjectRecursive">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStack.html#aebfb82fe311ccf91b1e66a4e9c8f1827" title="Drop the TOS." alt="" coords="265,39,468,86"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1IBSONObjectVisitor.html#a1f9895c8a9ae62826f4c1000b3226521" title="BSON Object Successor Event." alt="" coords="261,143,472,190"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1IBSONObjectVisitor.html#a369786b9fad4526e96b2feefe69047d0" title="BSON Object Precursor Event." alt="" coords="261,213,472,259"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1BSONObjectParser.html#adac2ccaa43035a3b2a09e37e5bffe444" title="Recursively parse a BSONElement." alt="" coords="263,282,471,329"/>
+<area shape="rect" id="node32" href="$classmongotype_1_1BSONParserStack.html#ac3bdcca1115d778160c0a10599c04288" title="Push the item." alt="" coords="265,351,468,398"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="524,5,727,51"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONParserStack.html#a13dce75278ade60eda997f8001d1f774" title="mongotype::BSONParserStack\l::depth" alt="" coords="780,5,983,51"/>
+<area shape="rect" id="node15" href="$classmongotype_1_1BSONObjectVisitorParams.html#a9a4191b25169d5dc221778a96b9b02ae" title="mongotype::BSONObjectVisitor\lParams::getArrayIndex" alt="" coords="523,74,728,121"/>
+<area shape="rect" id="node17" href="$classmongotype_1_1BSONObjectVisitorParams.html#a5cb5e3db28d0e1a55d01f661a55f3f9b" title="mongotype::BSONObjectVisitor\lParams::getElementCount" alt="" coords="523,143,728,190"/>
+<area shape="rect" id="node19" href="$classmongotype_1_1BSONObjectVisitorParams.html#ab3df7c6d1aeabead1b41a4fb2ffc5209" title="mongotype::BSONObjectVisitor\lParams::getElementIndex" alt="" coords="523,213,728,259"/>
+<area shape="rect" id="node21" href="$classmongotype_1_1BSONObjectVisitorParams.html#a5395797ffef3935a3dd2ef9934565289" title="mongotype::BSONObjectVisitor\lParams::getKey" alt="" coords="523,282,728,329"/>
+<area shape="rect" id="node23" href="$classmongotype_1_1BSONObjectVisitorParams.html#aedf20c00aa3ff3a822759448e467206e" title="mongotype::BSONObjectVisitor\lParams::getParent" alt="" coords="523,351,728,398"/>
+<area shape="rect" id="node25" href="$classmongotype_1_1IBSONObjectVisitor.html#a09801037cdb9495e58d3261cb02ca4a8" title="BSON Array Successor Event." alt="" coords="520,421,731,467"/>
+<area shape="rect" id="node27" href="$classmongotype_1_1IBSONObjectVisitor.html#a584e40754c3a37d25bf86f0d15334433" title="BSON Array Precursor Event." alt="" coords="520,490,731,537"/>
+<area shape="rect" id="node29" href="$classmongotype_1_1IBSONObjectVisitor.html#a96244ef7cf4afcf7b2d7cdf9daeca10f" title="BSON Element Event." alt="" coords="520,559,731,606"/>
+</map>

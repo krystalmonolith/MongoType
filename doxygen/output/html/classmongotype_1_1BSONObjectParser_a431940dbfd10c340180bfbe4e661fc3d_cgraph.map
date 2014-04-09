@@ -1,0 +1,13 @@
+<map id="mongotype::BSONObjectParser::parseObjectRecursive" name="mongotype::BSONObjectParser::parseObjectRecursive">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStack.html#aebfb82fe311ccf91b1e66a4e9c8f1827" title="Drop the TOS." alt="" coords="524,5,727,51"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1IBSONObjectVisitor.html#afa076a3394984a944ee3ffb244fa33b9" title="BSON Object Successor Event." alt="" coords="261,65,472,111"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1IBSONObjectVisitor.html#ad8bc407c759103ca3e9a6f92d1a52ca0" title="BSON Object Precursor Event." alt="" coords="261,134,472,181"/>
+<area shape="rect" id="node15" href="$classmongotype_1_1BSONObjectParser.html#aa5708e37cde258cc1f68d97a70229072" title="Recursively parse a BSONElement." alt="" coords="263,203,471,250"/>
+<area shape="rect" id="node25" href="$classmongotype_1_1BSONParserStack.html#ac3bdcca1115d778160c0a10599c04288" title="Push the item." alt="" coords="524,282,727,329"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONParserStack.html#a97e9ac805a0db1947d228bd7021718e9" title="Pop the TOS item." alt="" coords="780,13,1012,43"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="1063,5,1265,51"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1BSONParserStack.html#a13dce75278ade60eda997f8001d1f774" title="mongotype::BSONParserStack\l::depth" alt="" coords="1316,5,1519,51"/>
+<area shape="rect" id="node18" href="$classmongotype_1_1IBSONObjectVisitor.html#a0bbcb5016ed956bc98350e0b04bf9ea3" title="BSON Array Successor Event." alt="" coords="520,74,731,121"/>
+<area shape="rect" id="node20" href="$classmongotype_1_1IBSONObjectVisitor.html#a4ab1f9ab791c44284fb02262ae597df5" title="BSON Array Precursor Event." alt="" coords="520,143,731,190"/>
+<area shape="rect" id="node22" href="$classmongotype_1_1IBSONObjectVisitor.html#a8cc8710f7c8a2c580ab03ef517c81ab0" title="BSON Element Event." alt="" coords="520,213,731,259"/>
+</map>

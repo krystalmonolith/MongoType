@@ -1,0 +1,11 @@
+<map id="mongotype::dumpCollection" name="mongotype::dumpCollection">
+<area shape="rect" id="node3" href="$classmongotype_1_1IBSONRenderer.html#aa9cb5569abf1b9422a222be572549a34" title="mongotype::IBSONRenderer\l::begin" alt="" coords="252,5,441,51"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1IBSONRenderer.html#aa85a88eda31915468141168bd0344633" title="mongotype::IBSONRenderer::end" alt="" coords="237,75,456,104"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1Parameters.html#ae1f0fdc5e2ee48cdf33c3ab6a7b49f11" title="mongotype::Parameters\l::getDbCollection" alt="" coords="267,127,427,174"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1Parameters.html#a3b48cfb5a3bfbfd8a5ad8e9f2a92f34f" title="mongotype::Parameters\l::getHost" alt="" coords="267,197,427,243"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1Parameters.html#a6efa928073abe1cd741f77016f129d2c" title="mongotype::Parameters\l::getPort" alt="" coords="267,266,427,313"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1Parameters.html#a6e70c1395ccef013d0a773d0ffd09982" title="mongotype::Parameters\l::getStyle" alt="" coords="267,335,427,382"/>
+<area shape="rect" id="node15" href="$classmongotype_1_1Parameters.html#ace3f2e2150dcc9de9bf4a8932929698c" title="mongotype::Parameters\l::isDebug" alt="" coords="267,405,427,451"/>
+<area shape="rect" id="node17" href="$classmongotype_1_1IBSONRenderer.html#a8fc0535940ee3ce828302605dc8874bd" title="mongotype::IBSONRenderer\l::render" alt="" coords="252,474,441,521"/>
+<area shape="rect" id="node19" href="$classmongotype_1_1IBSONRenderer.html#a561c1edda7a52b94a7dba75f8d69dae1" title="mongotype::IBSONRenderer\l::setOutputStream" alt="" coords="252,543,441,590"/>
+</map>

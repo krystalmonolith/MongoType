@@ -1,0 +1,7 @@
+<map id="mongotype::BSONObjectVisitorParams" name="mongotype::BSONObjectVisitorParams">
+<area shape="rect" id="node2" title="STL class." alt="" coords="1273,21,1353,51"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="936,5,1061,51"/>
+<area shape="rect" id="node6" href="$classmongotype_1_1BSONParserStack.html" title="Stack of BSONParserStackItem for storing the BSONObjectParser parse context." alt="" coords="1212,76,1415,105"/>
+<area shape="rect" id="node12" href="$classmongotype_1_1BSONParserStackItem.html" title="Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement." alt="" coords="289,83,519,112"/>
+<area shape="rect" id="node14" href="$unionmongotype_1_1BSONParserStackItem_1_1Item.html" title="mongotype::BSONParserStack\lItem::Item" alt="" coords="7,74,209,121"/>
+</map>

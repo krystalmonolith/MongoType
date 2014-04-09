@@ -1,0 +1,13 @@
+<map id="mongotype::BSONDotNotationDump::onElement" name="mongotype::BSONDotNotationDump::onElement">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStackItem.html#a8cbac385eecafb86290e103a667a0d2c" title="mongotype::BSONParserStack\lItem::getElement" alt="" coords="271,39,473,86"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="BSON Object Type Strings Stream Output Operator." alt="" coords="264,178,480,225"/>
+<area shape="rect" id="node17" href="$classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c" title="Return the TOS item, leaving it in place." alt="" coords="257,360,487,389"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONParserStackItem.html#ae3e88b1fc38b3f25eebd95939f6635db" title="mongotype::BSONParserStack\lItem::validate" alt="" coords="540,5,743,51"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e" title="mongotype::Parameters\l::getTypeMask" alt="" coords="561,74,721,121"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1BSONTypeMap.html#addfd21b6af551ac771978196ebdfa2c1" title="mongotype::BSONTypeMap\l::lookup" alt="" coords="548,143,735,190"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1BSONTypeElement.html#ab0b2e6ef6c50afc27fefd13369859311" title="mongotype::BSONTypeElement\l::getName" alt="" coords="537,213,745,259"/>
+<area shape="rect" id="node15" href="$classmongotype_1_1BSONTypeElement.html#a79adfcb8cf9c643f75170d5537c2690a" title="mongotype::BSONTypeElement\l::getDesc" alt="" coords="537,282,745,329"/>
+<area shape="rect" id="node19" href="$classmongotype_1_1BSONParserStack.html#a2e4311a04435506bc09bcf86beec0e4c" title="mongotype::BSONParserStack\l::item" alt="" coords="540,351,743,398"/>
+<area shape="rect" id="node23" href="$classmongotype_1_1BSONParserStack.html#a13dce75278ade60eda997f8001d1f774" title="mongotype::BSONParserStack\l::depth" alt="" coords="1049,361,1252,407"/>
+<area shape="rect" id="node21" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="796,301,999,347"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="mongotype::BSONDotNotationDump::onArrayStart" name="mongotype::BSONDotNotationDump::onArrayStart">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStackItem.html#a5f445d49a350bc0fd3d0e4812eaec4ad" title="mongotype::BSONParserStack\lItem::getArray" alt="" coords="271,9,473,55"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c" title="Return the TOS item, leaving it in place." alt="" coords="257,83,487,112"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONParserStackItem.html#ae3e88b1fc38b3f25eebd95939f6635db" title="mongotype::BSONParserStack\lItem::validate" alt="" coords="537,5,740,51"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1BSONParserStack.html#a2e4311a04435506bc09bcf86beec0e4c" title="mongotype::BSONParserStack\l::item" alt="" coords="537,74,740,121"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1BSONParserStack.html#a13dce75278ade60eda997f8001d1f774" title="mongotype::BSONParserStack\l::depth" alt="" coords="1044,83,1247,130"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="791,23,993,70"/>
+</map>

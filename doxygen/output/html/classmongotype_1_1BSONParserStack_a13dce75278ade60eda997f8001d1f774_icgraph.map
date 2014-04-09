@@ -1,0 +1,29 @@
+<map id="mongotype::BSONParserStack::depth" name="mongotype::BSONParserStack::depth">
+<area shape="rect" id="node3" href="$classmongotype_1_1JSONDump.html#a39ff23a270f85c4c0be7f86470112abe" title="mongotype::JSONDump\l::emitComma" alt="" coords="1096,323,1261,370"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1JSONDump.html#ae607e0e58de6a9d94b1b7f375121d83d" title="mongotype::JSONDump\l::emitKey" alt="" coords="1096,254,1261,301"/>
+<area shape="rect" id="node16" href="$classmongotype_1_1BSONParserStack.html#a2e4311a04435506bc09bcf86beec0e4c" title="mongotype::BSONParserStack\l::item" alt="" coords="528,334,731,381"/>
+<area shape="rect" id="node18" href="$classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c" title="Return the TOS item, leaving it in place." alt="" coords="796,504,1025,533"/>
+<area shape="rect" id="node37" href="$classmongotype_1_1BSONParserStack.html#addb6ed52ed767add9efa058fd0358e64" title="mongotype::BSONParserStack\l::toString" alt="" coords="809,194,1012,241"/>
+<area shape="rect" id="node42" href="$classmongotype_1_1JSONDump.html#aadf254ce5de667b570510ce9e05f9940" title="BSON Array Successor Event." alt="" coords="279,535,444,582"/>
+<area shape="rect" id="node44" href="$classmongotype_1_1JSONDump.html#ad63e5e6c1badd585ecb09e3582e71ccf" title="BSON Object Successor Event." alt="" coords="279,605,444,651"/>
+<area shape="rect" id="node46" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="260,314,463,361"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1JSONDump.html#a132276ec44bfe46cd20e0e37d429a587" title="mongotype::JSONDump\l::nextLine" alt="" coords="1352,283,1517,330"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1JSONDump.html#afac97b53777d190aad7fc9a6c2e16415" title="BSON Object Precursor Event." alt="" coords="1608,291,1773,338"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1JSONDump.html#adf34bb8af9cdf7be7c871aa94ba4fa49" title="BSON Array Precursor Event." alt="" coords="1608,222,1773,269"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1JSONDump.html#aab84a5407b0346cbf469162efd0179e6" title="BSON Element Event." alt="" coords="1608,375,1773,422"/>
+<area shape="rect" id="node20" href="$classmongotype_1_1BSONDotNotationDump.html#a2496c6ff6e9b52427e01c65f423bef63" title="BSON Object Precursor Event." alt="" coords="1077,582,1280,629"/>
+<area shape="rect" id="node22" href="$classmongotype_1_1BSONDotNotationDump.html#a3ba14176c53923ae1537edf0a859bf3b" title="BSON Object Successor Event." alt="" coords="1077,651,1280,698"/>
+<area shape="rect" id="node24" href="$classmongotype_1_1BSONDotNotationDump.html#a6385eed86a9f7588ed9737a4d68155a8" title="BSON Array Precursor Event." alt="" coords="1077,721,1280,767"/>
+<area shape="rect" id="node26" href="$classmongotype_1_1BSONDotNotationDump.html#aa6b1571ea664362442d9c8c70003d38a" title="BSON Element Event." alt="" coords="1077,790,1280,837"/>
+<area shape="rect" id="node28" href="$classmongotype_1_1BSONObjectTypeDump.html#aab6a887664e1b6d442de32ab6872d0a8" title="BSON Object Precursor Event." alt="" coords="1080,859,1277,906"/>
+<area shape="rect" id="node30" href="$classmongotype_1_1BSONObjectTypeDump.html#a2b4dd1b3b734d806566e823fb73fc4aa" title="BSON Array Precursor Event." alt="" coords="1080,443,1277,490"/>
+<area shape="rect" id="node32" href="$classmongotype_1_1BSONObjectTypeDump.html#ad1cb92b2db86fcb21a163b39d91c744b" title="BSON Element Event." alt="" coords="1080,513,1277,559"/>
+<area shape="rect" id="node48" href="$classmongotype_1_1BSONParserStack.html#a97e9ac805a0db1947d228bd7021718e9" title="Pop the TOS item." alt="" coords="513,211,745,240"/>
+<area shape="rect" id="node50" href="$classmongotype_1_1BSONParserStack.html#aebfb82fe311ccf91b1e66a4e9c8f1827" title="Drop the TOS." alt="" coords="809,125,1012,171"/>
+<area shape="rect" id="node52" href="$classmongotype_1_1BSONObjectParser.html#aa5708e37cde258cc1f68d97a70229072" title="Recursively parse a BSONElement." alt="" coords="1075,74,1283,121"/>
+<area shape="rect" id="node54" href="$classmongotype_1_1BSONObjectParser.html#a431940dbfd10c340180bfbe4e661fc3d" title="Recursively parse a BSON Object." alt="" coords="1331,74,1539,121"/>
+<area shape="rect" id="node57" href="$classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)" alt="" coords="1587,74,1795,121"/>
+<area shape="rect" id="node59" href="$classmongotype_1_1BSONDotNotationDump.html#a2ce66157801210f4b57d33e8d547809d" title="mongotype::BSONDotNotation\lDump::render" alt="" coords="1843,5,2045,51"/>
+<area shape="rect" id="node61" href="$classmongotype_1_1BSONObjectTypeDump.html#a852f127fe68519856703944a456b665c" title="mongotype::BSONObjectType\lDump::render" alt="" coords="1845,74,2043,121"/>
+<area shape="rect" id="node63" href="$classmongotype_1_1JSONDump.html#aa665e226752e13fa66af689c9f7186c0" title="mongotype::JSONDump\l::render" alt="" coords="1861,143,2027,190"/>
+</map>

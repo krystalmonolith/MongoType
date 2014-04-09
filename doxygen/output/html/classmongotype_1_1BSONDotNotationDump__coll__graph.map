@@ -1,0 +1,7 @@
+<map id="mongotype::BSONDotNotationDump" name="mongotype::BSONDotNotationDump">
+<area shape="rect" id="node2" href="$classmongotype_1_1IBSONRenderer.html" title="mongotype::IBSONRenderer" alt="" coords="397,5,587,35"/>
+<area shape="rect" id="node4" href="$classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects." alt="" coords="387,59,597,88"/>
+<area shape="rect" id="node6" href="$classmongotype_1_1Parameters.html" title="mongotype::Parameters" alt="" coords="412,112,572,141"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="184,140,264,169"/>
+<area shape="rect" id="node10" title="STL class." alt="" coords="7,131,132,178"/>
+</map>

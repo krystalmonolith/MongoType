@@ -1,0 +1,17 @@
+<map id="mongotype::BSONParserStack::item" name="mongotype::BSONParserStack::item">
+<area shape="rect" id="node3" href="$classmongotype_1_1JSONDump.html#a39ff23a270f85c4c0be7f86470112abe" title="mongotype::JSONDump\l::emitComma" alt="" coords="557,131,723,178"/>
+<area shape="rect" id="node13" href="$classmongotype_1_1JSONDump.html#ae607e0e58de6a9d94b1b7f375121d83d" title="mongotype::JSONDump\l::emitKey" alt="" coords="557,62,723,109"/>
+<area shape="rect" id="node16" href="$classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c" title="Return the TOS item, leaving it in place." alt="" coords="260,329,489,359"/>
+<area shape="rect" id="node35" href="$classmongotype_1_1BSONParserStack.html#addb6ed52ed767add9efa058fd0358e64" title="mongotype::BSONParserStack\l::toString" alt="" coords="273,5,476,51"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1JSONDump.html#a132276ec44bfe46cd20e0e37d429a587" title="mongotype::JSONDump\l::nextLine" alt="" coords="789,127,955,174"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1JSONDump.html#afac97b53777d190aad7fc9a6c2e16415" title="BSON Object Precursor Event." alt="" coords="1003,143,1168,190"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1JSONDump.html#adf34bb8af9cdf7be7c871aa94ba4fa49" title="BSON Array Precursor Event." alt="" coords="1003,74,1168,121"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1JSONDump.html#aab84a5407b0346cbf469162efd0179e6" title="BSON Element Event." alt="" coords="1003,229,1168,275"/>
+<area shape="rect" id="node18" href="$classmongotype_1_1BSONDotNotationDump.html#a2496c6ff6e9b52427e01c65f423bef63" title="BSON Object Precursor Event." alt="" coords="539,321,741,367"/>
+<area shape="rect" id="node20" href="$classmongotype_1_1BSONDotNotationDump.html#a3ba14176c53923ae1537edf0a859bf3b" title="BSON Object Successor Event." alt="" coords="539,390,741,437"/>
+<area shape="rect" id="node22" href="$classmongotype_1_1BSONDotNotationDump.html#a6385eed86a9f7588ed9737a4d68155a8" title="BSON Array Precursor Event." alt="" coords="539,459,741,506"/>
+<area shape="rect" id="node24" href="$classmongotype_1_1BSONDotNotationDump.html#aa6b1571ea664362442d9c8c70003d38a" title="BSON Element Event." alt="" coords="539,529,741,575"/>
+<area shape="rect" id="node26" href="$classmongotype_1_1BSONObjectTypeDump.html#aab6a887664e1b6d442de32ab6872d0a8" title="BSON Object Precursor Event." alt="" coords="541,598,739,645"/>
+<area shape="rect" id="node28" href="$classmongotype_1_1BSONObjectTypeDump.html#a2b4dd1b3b734d806566e823fb73fc4aa" title="BSON Array Precursor Event." alt="" coords="541,667,739,714"/>
+<area shape="rect" id="node30" href="$classmongotype_1_1BSONObjectTypeDump.html#ad1cb92b2db86fcb21a163b39d91c744b" title="BSON Element Event." alt="" coords="541,201,739,247"/>
+</map>

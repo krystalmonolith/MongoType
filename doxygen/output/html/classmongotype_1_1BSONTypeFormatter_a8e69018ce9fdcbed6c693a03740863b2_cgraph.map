@@ -1,0 +1,7 @@
+<map id="mongotype::BSONTypeFormatter::OSTREAM_FRIEND" name="mongotype::BSONTypeFormatter::OSTREAM_FRIEND">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="BSON Object Type Strings Stream Output Operator." alt="" coords="273,109,489,155"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e" title="mongotype::Parameters\l::getTypeMask" alt="" coords="564,5,724,51"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONTypeMap.html#addfd21b6af551ac771978196ebdfa2c1" title="mongotype::BSONTypeMap\l::lookup" alt="" coords="551,74,737,121"/>
+<area shape="rect" id="node9" href="$classmongotype_1_1BSONTypeElement.html#ab0b2e6ef6c50afc27fefd13369859311" title="mongotype::BSONTypeElement\l::getName" alt="" coords="540,143,748,190"/>
+<area shape="rect" id="node11" href="$classmongotype_1_1BSONTypeElement.html#a79adfcb8cf9c643f75170d5537c2690a" title="mongotype::BSONTypeElement\l::getDesc" alt="" coords="540,213,748,259"/>
+</map>

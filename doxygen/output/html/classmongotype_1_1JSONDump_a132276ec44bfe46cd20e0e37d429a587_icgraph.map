@@ -1,0 +1,5 @@
+<map id="mongotype::JSONDump::nextLine" name="mongotype::JSONDump::nextLine">
+<area shape="rect" id="node3" href="$classmongotype_1_1JSONDump.html#adf34bb8af9cdf7be7c871aa94ba4fa49" title="BSON Array Precursor Event." alt="" coords="219,5,384,51"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1JSONDump.html#aab84a5407b0346cbf469162efd0179e6" title="BSON Element Event." alt="" coords="219,74,384,121"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1JSONDump.html#afac97b53777d190aad7fc9a6c2e16415" title="BSON Object Precursor Event." alt="" coords="219,143,384,190"/>
+</map>

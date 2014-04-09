@@ -1,0 +1,5 @@
+<map id="mongotype::BSONParserStack::drop" name="mongotype::BSONParserStack::drop">
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStack.html#a97e9ac805a0db1947d228bd7021718e9" title="Pop the TOS item." alt="" coords="260,13,492,43"/>
+<area shape="rect" id="node5" href="$classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca" title="mongotype::BSONParserStack\l::throwCount" alt="" coords="543,5,745,51"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONParserStack.html#a13dce75278ade60eda997f8001d1f774" title="mongotype::BSONParserStack\l::depth" alt="" coords="796,5,999,51"/>
+</map>
