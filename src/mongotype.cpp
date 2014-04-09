@@ -62,7 +62,7 @@ namespace mongotype {
 
 //----------------------------------------------------------------------------
 
-const string VERSION("2.3");
+const string VERSION("2.4");
 const string COPYRIGHT("Copyright (c) 2013 by Mark Deazley");
 const string LICENSE(
 		"Free Software Foundation’s GNU AGPL v3.0.\n"
