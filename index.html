@@ -37,7 +37,19 @@
       contents of a collection and its associated BSON type information.</h2>
       
       <hr/>
-      <a name="doxygen-docs" href="doxygen/output/html/index.html"><span>Code Documentation</span>(by <a href="www.stack.nl/~dimitri/doxygen/">doxygen</a>)</a>
+	<ul>
+	  <li>
+	    <a name="doxygen-docs" href="doxygen/output/html/index.html"><span>Code Documentation</span>(by <a href="www.stack.nl/~dimitri/doxygen/"><img alt="doxygen" src="images/doxygen_small.png"/></a>)</a>
+	  </li>
+	  <li>
+	    <h3>Compilation &amp; Linking Prerequisites:</h3>
+	    <ul>
+	      <li>g++ (gcc v4.7.3 or greater, uses --std=c++0x )</li>
+	      <li>MongoDB C++ Client Library</li>
+	      <li>Boost 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>Probably will compile with Boost 1.50+ with minor backporting.</li>
+	    </ul>
+	  </li>
+	</ul>
       <hr/>
       
     </section>
