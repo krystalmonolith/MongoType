@@ -45,7 +45,7 @@
 	    <h3>Compilation &amp; Linking Prerequisites:</h3>
 	    <ul>
 	      <li>g++ (gcc v4.7.3 or greater, uses --std=c++0x )</li>
-	      <li><a href="https://github.com/mongodb/mongo">MongoDB C++ Client Library</a></li>
+	      <li><a href="https://github.com/mongodb/mongo-cxx-driver">MongoDB C++ Client Library</a> using the "legacy" branch.</li>
 	      <li><a href="http://www.boost.org/">Boost</a> 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>. MongoType will probably compile with Boost 1.50+ with minor backporting.</li>
 	    </ul>
 	  </li>
