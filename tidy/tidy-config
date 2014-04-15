@@ -1,0 +1,4 @@
+#new-inline-tags: tag1, tag2, tag3
+#new-empty-tags: tag1, tag2, tag3
+new-blocklevel-tags: header, footer, section 
+#new-pre-tags: tag1, tag2, tag3
