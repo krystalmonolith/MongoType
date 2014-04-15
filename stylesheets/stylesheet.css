@@ -421,3 +421,15 @@ Small Device Styles
   }
 
 }
+
+/************************
+ * MJD
+************************/
+
+#mjd-logo {
+  position: relative;
+  margin: 0 auto;
+  max-width: 739px;
+  padding: 1px;
+  margin: 0px;
+}
