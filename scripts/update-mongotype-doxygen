@@ -1,0 +1,19 @@
+#!/bin/bash -x
+
+PROJECT=MongoType
+BASEDIR=${HOME}/github
+REMOTENAME=github
+
+SRCDIR=${HOME}/git/${PROJECT}/doxygen/output
+DESTDIR=${BASEDIR}/${PROJECT}/doxygen
+
+
+pushd ${BASEDIR}/${PROJECT}
+git remote -v
+git checkout gh-pages
+git branch -v
+rsync -vr ${SRCDIR} ${DESTDIR}
+git add ${DESTDIR}
+git commit -am "${PROJECT} doxygen Autoupdate."
+git push --set-upstream github gh-pages
+popd

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "x$1" == "x" ]; then
+  echo "COMMIT MESSAGE REQUIRED!";
+  git status
+  exit;
+fi
+git commit -m "$1"
+git push github gh-pages
+

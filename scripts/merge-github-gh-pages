@@ -1,0 +1,24 @@
+#!/bin/bash -x
+
+BASEDIR=${HOME}/github
+GITBASE=${HOME}/git
+PROJECT=MongoType
+
+REMOTENAME=github
+REMOTEURI=git@github.com:krystalmonolith/MongoType.git
+
+pushd ${BASEDIR}
+rm -rf ${PROJECT}
+git clone ${GITBASE}/${PROJECT}
+cd ${PROJECT}
+git remote add ${REMOTENAME} ${REMOTEURI}
+git remote -v
+git checkout --orphan gh-pages
+git rm -rf .
+git pull github gh-pages
+git branch -v
+ls
+git checkout master
+git branch -v
+ls
+popd
