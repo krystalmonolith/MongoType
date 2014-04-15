@@ -10,7 +10,7 @@
  *
  * <strong>BSON Definition: </strong><a href="http://bsonspec.org/">BSON Website</a><br>
  * <strong>JSON Definition: </strong><a href="http://json.org/">JSON Website</a><br/>
- * <strong>MongoDB C++ Driver: </strong><a href="http://docs.mongodb.org/ecosystem/drivers/cpp/">MongoDB Docs Website</a>
+ * <strong>MongoDB C++ Driver: </strong><a href="https://github.com/mongodb/mongo-cxx-driver">mongo-cxx-driver at GitHub</a>
  *
  * <h3>Usage:</h3>
  *
@@ -24,7 +24,7 @@
  * </ul>
  *
  * \author Mark Deazley &lt;mdeazley@gmail.com&gt;
- * \version 2.3
+ * \version 2.4
  * \copyright Copyright &copy; 2013-2014 by Mark Deazley<br/><br/>
  *
  * <b>License:</b> <i>Free Software Foundation’s GNU AGPL v3.0.</i><br/>
