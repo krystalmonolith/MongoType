@@ -427,9 +427,7 @@ Small Device Styles
 ************************/
 
 #mjd-logo {
-  position: relative;
-  margin: 0 auto;
-  max-width: 739px;
+  margin: 0;
   padding: 1px;
   margin: 0px;
 }
