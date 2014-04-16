@@ -426,8 +426,10 @@ Small Device Styles
  * MJD
 ************************/
 
-#mjd-logo {
+.mjd-logo {
   margin: 0;
-  padding: 1px;
-  margin: 0px;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: text-bottom;
 }
