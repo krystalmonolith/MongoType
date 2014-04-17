@@ -445,6 +445,13 @@ Small Device Styles
   text-wrap: suppress;
 }
 
+.mjd-usagekeyword {
+  font-size: 105%;
+  font-style: bold;
+  font-family: "Courier New", Courier, serif;
+  text-wrap: suppress;
+}
+
 .mjd-usagecommand {
   font-size: 120%;
   font-style: normal;
