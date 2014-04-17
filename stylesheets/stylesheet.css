@@ -355,7 +355,9 @@ Full-Width Styles
 #main_content_wrap {
   background-image: url("../images/MT_Background1_1024x1119.jpg");
   background-repeat:no-repeat;
-  background-attachment:fixed;  
+  background-attachment:fixed;
+  background-position: center;
+  background-size: cover;  
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
