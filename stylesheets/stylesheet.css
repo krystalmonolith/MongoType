@@ -447,7 +447,8 @@ Small Device Styles
 
 .mjd-usagekeyword {
   font-size: 105%;
-  font-style: bold;
+  font-style: normal;
+  font-weight: bold;
   font-family: "Courier New", Courier, serif;
   text-wrap: suppress;
 }
