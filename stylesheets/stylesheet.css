@@ -48,6 +48,14 @@ table {
 Theme Styles
 *******************************************************************************/
 
+html { 
+  background: url("../images/MT_Background1_1024x1119.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
   box-sizing: border-box;
   color:#373737;
@@ -285,11 +293,7 @@ Full-Width Styles
 }
 
 #header_wrap {
-  background-image: url("../images/MT_Background1_1024x1119.jpg");
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-position: center;
-  background-size: cover;  
+  background: #212121
   background: -moz-linear-gradient(top, #373737, #212121);
   background: -webkit-linear-gradient(top, #373737, #212121);
   background: -ms-linear-gradient(top, #373737, #212121);
