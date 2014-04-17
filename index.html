@@ -36,23 +36,36 @@
       "#a-mongodb-command-line-tool-to-dump-the-contents-of-a-collection-and-its-associated-bson-type-information"></a>A MongoDB command line tool to dump the
       contents of a collection and its associated BSON type information.</h2>
       
-      <hr/>
-	<a name="doxygen-docs" href="doxygen/output/html/index.html">
-	  <span class="mjd-highlights">MongoType Code Documentation</span>
-	</a> complements of 
-	<a href="http://www.stack.nl/~dimitri/doxygen/">
-	  <img class="mjd-logo" alt="doxygen" src="images/doxygen_small.png"/>
-	</a><br/>
 	
-	<h3>Compilation &amp; Linking Prerequisites:</h3>
-	<ul>
-	  <li>GNU g++ (gcc v4.7.3 or greater, uses --std=c++0`x )</li>
-	  <li><a href="https://github.com/mongodb/mongo-cxx-driver">MongoDB C++ Client Library</a> using the "legacy" branch.</li>
-	  <li><a href="http://www.boost.org/">Boost</a> 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See 
-	      <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>. MongoType will probably compile with Boost 1.50+ with minor backporting.
-	  </li>
-	</ul>
+      <h3>Usage:</h3>
+<code>
+mongotype <collectionName> [<host>>[:<port>]]
+</code>
+
+      <span class="mjd-usagetitle">Where:</span><br/>
+      <span class="mjd-usagetext"><b>&lt;collectionName&gt;</b> is the required name of the MongoDB collection to dump. Collection names follow the format "<b>&lt;db&gt;.&lt;collection&gt;</b>".</span><br/>
+      <span class="mjd-usagetext"><b>&lt;host&gt;</b> or <b>&lt;host&gt;:&lt;port&gt;</b> are the optional MongoDB host/port.</span><br/>
+      <span class="mjd-usagetext">The default "<b>&lt;host&gt;:&lt;port&gt;</b>" is "localhost:27017".</span><br/>
+
       <hr/>
+
+      <a name="doxygen-docs" href="doxygen/output/html/index.html">
+	<span class="mjd-highlights">MongoType Code Documentation</span>
+      </a> complements of 
+      <a href="http://www.stack.nl/~dimitri/doxygen/">
+	<img class="mjd-logo" alt="doxygen" src="images/doxygen_small.png"/>
+      </a>
+
+      <hr/>
+
+      <h3>Compilation &amp; Linking Prerequisites:</h3>
+      <ul>
+	<li>GNU g++ (gcc v4.7.3 or greater, uses --std=c++0`x )</li>
+	<li><a href="https://github.com/mongodb/mongo-cxx-driver">MongoDB C++ Client Library</a> using the "legacy" branch.</li>
+	<li><a href="http://www.boost.org/">Boost</a> 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See 
+	    <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>. MongoType will probably compile with Boost 1.50+ with minor backporting.
+	</li>
+      </ul>
       
     </section>
   </div><!-- FOOTER  -->
