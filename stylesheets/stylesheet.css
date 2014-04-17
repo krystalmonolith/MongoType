@@ -353,7 +353,7 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background-image: url("images/MT_Background1_1024x1119.jpg");
+  background-image: url("../images/MT_Background1_1024x1119.jpg");
   background-repeat:no-repeat;
   background-attachment:fixed;  
   border-top: 1px solid #111;
@@ -427,6 +427,10 @@ Small Device Styles
 /************************
  * MJD styles
 ************************/
+
+.mjd-text {
+  color: red;
+}
 
 .mjd-logo {
   margin: 0;

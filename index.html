@@ -17,7 +17,7 @@
     <header class="inner">
       <a id="forkme_banner" href="https://github.com/krystalmonolith/MongoType">View on GitHub</a>
 
-      <span id="project_title" class="">MongoType</span>
+      <span id="project_title" class="">MongoType</span><br/>
 
       <span id="project_tagline" class=""><a href="https://github.com/krystalmonolith/MongoType">https://github.com/krystalmonolith/MongoType</a></span>
 
@@ -33,36 +33,37 @@
       contents of a collection and its associated BSON type information.</h2>
       
 	
-      <h2>Usage:</h2>
-      <h3>MongoType Command Line Syntax:</h3>
-      <div>
-	<span class="mjd-usagecommand">
-	  <span class="mjd-usageexe">mongotype</span> [
-	  <span class="mjd-usagekeyword">&lt;options&gt;</span>]
-	  <span class="mjd-usagekeyword">&lt;db&gt;</span>.
-	  <span class="mjd-usagekeyword">&lt;collection&gt;</span>
-	</span>
-      </div>
-      
-      <h4>Where:</h4>
-      <ul>
-	<li><span class="mjd-usagetext"><span class="mjd-usagekeyword">&lt;db&gt;.&lt;collection&gt;</span>" is the required name of the MongoDB collection to process as input.</span></li>
-      </ul>
+      <div class="mjd-text">
+	<h2>Usage:</h2>
+	<h3>MongoType Command Line Syntax:</h3>
+	<div>
+	  <span class="mjd-usagecommand">
+	    <span class="mjd-usageexe">mongotype</span> [
+	    <span class="mjd-usagekeyword">&lt;options&gt;</span>]
+	    <span class="mjd-usagekeyword">&lt;db&gt;.&lt;collection&gt;</span>
+	  </span>
+	</div>
+	
+	<h4>Where:</h4>
+	<ul>
+	  <li><span class="mjd-usagetext"><span class="mjd-usagekeyword">&lt;db&gt;.&lt;collection&gt;</span>" is the required name of the MongoDB collection to process as input.</span></li>
+	</ul>
 
-      <h4>Options:</h4>
-      <h5>General Options:</h5>
-      <table  style="text-align: center; border: 1px solid black;">
-	<thead>
-	  <tr style="font-weight: bold"><th>Short<br/>Option</th><th>Long<br/>Option</th><th>Option<br/>Description</th></tr>
-	</thead>
-	<tbody>
-	  <tr><td>-h</td><td>--help</td><td>print help message</td></tr>
-	  <tr><td>-v</td><td>--version</td><td>print version string</td></tr>
-	  <tr><td>-d</td><td>--debug</td><td>print debugging info</td></tr>
-	  <tr><td>-q</td><td>--stack</td><td>print stack debugging info</td></tr>
-	  <tr><td>-c</td><td>--config</td><td>path of configuration file. Default configuration file: ~/.mongotype</td></tr>
-	</tbody>
-      </table>
+	<h4>Options:</h4>
+	<h5>General Options:</h5>
+	<table  style="text-align: center; border: 1px solid black;">
+	  <thead>
+	    <tr style="font-weight: bold"><th>Short<br/>Option</th><th>Long<br/>Option</th><th>Option<br/>Description</th></tr>
+	  </thead>
+	  <tbody>
+	    <tr><td>-h</td><td>--help</td><td>print help message</td></tr>
+	    <tr><td>-v</td><td>--version</td><td>print version string</td></tr>
+	    <tr><td>-d</td><td>--debug</td><td>print debugging info</td></tr>
+	    <tr><td>-q</td><td>--stack</td><td>print stack debugging info</td></tr>
+	    <tr><td>-c</td><td>--config</td><td>path of configuration file. Default configuration file: ~/.mongotype</td></tr>
+	  </tbody>
+	</table>
+      </div>
 
 <h5>MongoDB Server Options:</h5>
     -h [ --host ] arg (=localhost) MongoDB server host name: <host>[:port]
