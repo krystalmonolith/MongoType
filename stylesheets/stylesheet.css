@@ -459,3 +459,8 @@ Small Device Styles
   font-family: "Courier New", Courier, monospace;
   border: 1px dotted blue;
 }
+
+.mjd-usageexe {
+  font-style: italic;
+  font-weight: bolder;
+}

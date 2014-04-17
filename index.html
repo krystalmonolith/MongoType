@@ -37,15 +37,51 @@
       contents of a collection and its associated BSON type information.</h2>
       
 	
-      <h3>MongoType Usage:</h3>
-      <div><span class="mjd-usagecommand"><i>mongotype</i> <b>&lt;collectionName&gt;</b> [<b>&lt;host&gt;&gt;</b>[:<b>&lt;port&gt;</b>]]</span></div>
+      <h2>Usage:</h2>
+      <h3>MongoType Command Line Syntax:</h3>
+      <div>
+	<span class="mjd-usagecommand">
+	  <span class="mjd-usageexe">mongotype</span> [
+	  <span class="mjd-usagekeyword">&lt;options&gt;</span>]
+	  <span class="mjd-usagekeyword">&lt;db&gt;</span>.
+	  <span class="mjd-usagekeyword">&lt;collectionName&gt;</span>
+	</span>
+      </div>
+      
       <h4>Where:</h4>
       <ul>
 	<li><span class="mjd-usagetext"><span class="mjd-usagekeyword">&lt;collectionName&gt;</span> is the required name of the MongoDB collection to dump.</span></li>
-	<li><span class="mjd-usagetext">Collection names follow the format "<span class="mjd-usagekeyword">&lt;db&gt;.&lt;collection&gt;</span>".</span></li>
-	<li><span class="mjd-usagetext"><span class="mjd-usagekeyword">&lt;host&gt;</span> or <span class="mjd-usagekeyword">&lt;host&gt;:&lt;port&gt;</span> are the optional MongoDB host/port.</span></li>
-	<li><span class="mjd-usagetext">The default "<span class="mjd-usagekeyword">&lt;host&gt;:&lt;port&gt;</span>" is "localhost:27017".</span></li>
+	<li><span class="mjd-usagetext"><span class="mjd-usagekeyword">&lt;db&gt;.&lt;collection&gt;</span>" is the required name of the MongoDB collection to process as input.</span></li>
+	<li><span class="mjd-usagetext"><span class="mjd-usagekeyword"></span>.</span></li>
       </ul>
+
+      <h4>Options:</h4>
+      <h5>General Options:</h5>
+      <table>
+	<thead>
+	  <tr><th>Short<br/>Option</th><th>Long<br/>Option</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+	  <tr><td>-h</td><td>--help</td><td>print help message</td></tr>
+	  <tr><td>-v</td><td>--version</td><td>print version string</td></tr>
+	  <tr><td>-d</td><td>--debug</td><td>print debugging info</td></tr>
+	  <tr><td>-q</td><td>--stack</td><td>print stack debugging info</td></tr>
+	  <tr><td>-c</td><td>--config</td><td>path of configuration file. Default configuration file: ~/.mongotype</td></tr>
+	</tbody>
+      </table>
+
+<h5>MongoDB Server Options:</h5>
+    -h [ --host ] arg (=localhost) MongoDB server host name: <host>[:port]
+    -p [ --port ] arg (=27017)     MongoDB server port number.
+
+<h5>Output Format Options:</h5>
+    -s [ --style ] arg (=0)       Output Style: {dotted,tree,json,jsonpacked}.
+    -t [ --type ] arg (=7)        BSON Type: {none,name,desc,code,all}.
+    -f [ --scalarfirst ] arg (=0) Output scalar objects elements before any 
+      <ul>
+      </ul>
+
+                                embedded objects or arrays.
 
       <hr/>
 
