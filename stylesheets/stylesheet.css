@@ -48,14 +48,6 @@ table {
 Theme Styles
 *******************************************************************************/
 
-html { 
-  background: url("../images/MT_Background1_1024x1119.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 body {
   box-sizing: border-box;
   color:#373737;
@@ -361,7 +353,12 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background: #F2F2F2;
+  background: url("../images/MT_Background1_1024x1119.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+/*  background: #F2F2F2; */
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
@@ -373,8 +370,6 @@ Full-Width Styles
 #footer_wrap {
   background: #212121;
 }
-
-
 
 /*******************************************************************************
 Small Device Styles
