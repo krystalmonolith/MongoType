@@ -28,12 +28,12 @@
 
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
+      <div class="mjd-text">
       <h2><a name="a-mongodb-command-line-tool-to-dump-the-contents-of-a-collection-and-its-associated-bson-type-information" class="anchor" href=
       "#a-mongodb-command-line-tool-to-dump-the-contents-of-a-collection-and-its-associated-bson-type-information"></a>A MongoDB command line tool to dump the
       contents of a collection and its associated BSON type information.</h2>
       
 	
-      <div class="mjd-text">
 	<h2>Usage:</h2>
 	<h3>MongoType Command Line Syntax:</h3>
 	<div>
@@ -63,7 +63,6 @@
 	    <tr><td>-c</td><td>--config</td><td>path of configuration file. Default configuration file: ~/.mongotype</td></tr>
 	  </tbody>
 	</table>
-      </div>
 
 <h5>MongoDB Server Options:</h5>
     -h [ --host ] arg (=localhost) MongoDB server host name: <host>[:port]
@@ -73,31 +72,31 @@
     -s [ --style ] arg (=0)       Output Style: {dotted,tree,json,jsonpacked}.
     -t [ --type ] arg (=7)        BSON Type: {none,name,desc,code,all}.
     -f [ --scalarfirst ] arg (=0) Output scalar objects elements before any 
-      <ul>
-      </ul>
+	<ul>
+	</ul>
 
-                                embedded objects or arrays.
+				  embedded objects or arrays.
 
-      <hr/>
+	<hr/>
 
-      <a name="doxygen-docs" href="doxygen/output/html/index.html">
-	<span class="mjd-highlights">MongoType Code Documentation</span>
-      </a> complements of 
-      <a href="http://www.stack.nl/~dimitri/doxygen/">
-	<img class="mjd-logo" alt="doxygen" src="images/doxygen_small.png"/>
-      </a>
+	<a name="doxygen-docs" href="doxygen/output/html/index.html">
+	  <span class="mjd-highlights">MongoType Code Documentation</span>
+	</a> complements of 
+	<a href="http://www.stack.nl/~dimitri/doxygen/">
+	  <img class="mjd-logo" alt="doxygen" src="images/doxygen_small.png"/>
+	</a>
 
-      <hr/>
+	<hr/>
 
-      <h3>Compilation &amp; Linking Prerequisites:</h3>
-      <ul>
-	<li>GNU g++ (gcc v4.7.3 or greater, uses --std=c++0`x )</li>
-	<li><a href="https://github.com/mongodb/mongo-cxx-driver">MongoDB C++ Client Library</a> using the "legacy" branch.</li>
-	<li><a href="http://www.boost.org/">Boost</a> 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See 
-	    <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>. MongoType will probably compile with Boost 1.50+ with minor backporting.
-	</li>
-      </ul>
-      
+	<h3>Compilation &amp; Linking Prerequisites:</h3>
+	<ul>
+	  <li>GNU g++ (gcc v4.7.3 or greater, uses --std=c++0`x )</li>
+	  <li><a href="https://github.com/mongodb/mongo-cxx-driver">MongoDB C++ Client Library</a> using the "legacy" branch.</li>
+	  <li><a href="http://www.boost.org/">Boost</a> 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See 
+	      <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>. MongoType will probably compile with Boost 1.50+ with minor backporting.
+	  </li>
+	</ul>
+      </div>
     </section>
   </div><!-- FOOTER  -->
 
