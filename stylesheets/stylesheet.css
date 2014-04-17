@@ -429,7 +429,7 @@ Small Device Styles
 .mjd-logo {
   margin: 0;
   padding: 0;
-  border: 0;
+  border: 2px solid black;
   font: inherit;
-  vertical-align: text-bottom;
+  vertical-align: middle;
 }
