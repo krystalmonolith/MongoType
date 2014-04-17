@@ -53,26 +53,40 @@
 	    <tr style="font-weight: bold"><th>Short<br/>Option</th><th>Long<br/>Option</th><th>Option<br/>Description</th></tr>
 	  </thead>
 	  <tbody>
-	    <tr><td>-h</td><td>--help</td><td>print help message</td></tr>
-	    <tr><td>-v</td><td>--version</td><td>print version string</td></tr>
-	    <tr><td>-d</td><td>--debug</td><td>print debugging info</td></tr>
-	    <tr><td>-q</td><td>--stack</td><td>print stack debugging info</td></tr>
-	    <tr><td>-c</td><td>--config</td><td>path of configuration file. Default configuration file: ~/.mongotype</td></tr>
+	    <tr><td></td><td>--help</td><td>Print help message and exit.</td></tr>
+	    <tr><td>-v</td><td>--version</td><td>Print version string and exit.</td></tr>
+	    <tr><td>-d</td><td>--debug</td><td>Generate debugging info.</td></tr>
+	    <tr><td>-q</td><td>--stack</td><td>Generate stack debugging info.</td></tr>
+	    <tr><td>-c</td><td>--config</td><td>Path to configuration file. Default configuration file: ${HOME}/.mongotype</td></tr>
 	  </tbody>
 	</table>
 
-<h5>MongoDB Server Options:</h5>
-    -h [ --host ] arg (=localhost) MongoDB server host name: <host>[:port]
-    -p [ --port ] arg (=27017)     MongoDB server port number.
+	<h5>MongoDB Server Options:</h5>
+	<table  style="text-align: center; border: 1px solid black;">
+	  <thead>
+	    <tr style="font-weight: bold"><th>Short<br/>Option</th><th>Long<br/>Option</th><th>Option<br/>Description</th></tr>
+	  </thead>
+	  <tbody>
+	    <tr><td>-h</td><td>--host</td><td>MongoDB server host name. Default: localhost</td></tr>
+	    <tr><td>-p</td><td>--port</td><td>MongoDB server port number. Default: 27017</td></tr>
+	  </tbody>
+	</table>
 
-<h5>Output Format Options:</h5>
-    -s [ --style ] arg (=0)       Output Style: {dotted,tree,json,jsonpacked}.
-    -t [ --type ] arg (=7)        BSON Type: {none,name,desc,code,all}.
-    -f [ --scalarfirst ] arg (=0) Output scalar objects elements before any embedded objects or arrays.
+	<h5>Output Format Options:</h5>
+	<table  style="text-align: center; border: 1px solid black;">
+	  <thead>
+	    <tr style="font-weight: bold"><th>Short<br/>Option</th><th>Long<br/>Option</th><th>Option<br/>Description</th></tr>
+	  </thead>
+	  <tbody>
+	    <tr><td>-s</td><td>--style</td><td>Output Style:<ul><li>dotted</li><li>tree</li><li>json</li><li>jsonpacked</li></ul>}. Default: json</td></tr>
+	    <tr><td>-t</td><td>--type</td><td>BSON Type:<ul><li>none</li><li>name</li><li>desc</li><li>code</li><li>all</li></ul>Default: all</td></tr>
+	    <tr><td>-f</td><td>--scalarfirst</td><td>Output scalar objects elements before any embedded objects or arrays.</td></tr>
+	  </tbody>
+	</table>
 
 	<hr/>
 
-	<h2>The C++ Code:</h2>
+	<h3>The C++ Code:</h3>
 	<a name="doxygen-docs" href="doxygen/output/html/index.html">
 	  <span class="mjd-highlights">MongoType Code Documentation</span>
 	</a> complements of 
