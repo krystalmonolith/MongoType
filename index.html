@@ -37,24 +37,19 @@
       contents of a collection and its associated BSON type information.</h2>
       
       <hr/>
+	<a name="doxygen-docs" href="doxygen/output/html/index.html">
+	  <span class="mjd-highlights">MongoType Code Documentation</span>
+	</a> complements of 
+	<a href="http://www.stack.nl/~dimitri/doxygen/">
+	  <img class="mjd-logo" alt="doxygen" src="images/doxygen_small.png"/>
+	</a><br/>
+	
+	<h3>Compilation &amp; Linking Prerequisites:</h3>
 	<ul>
-	  <li>
-	    <a name="doxygen-docs" href="doxygen/output/html/index.html">
-	      <span class="mjd-highlights">Code Documentation</span>
-	    </a> complements of 
-	    <a href="http://www.stack.nl/~dimitri/doxygen/">
-	      <img class="mjd-logo" alt="doxygen" src="images/doxygen_small.png"/>
-	    </a>
-	  </li>
-	  <li>
-	    <h3>Compilation &amp; Linking Prerequisites:</h3>
-	    <ul>
-	      <li>GNU g++ (gcc v4.7.3 or greater, uses --std=c++0`x )</li>
-	      <li><a href="https://github.com/mongodb/mongo-cxx-driver">MongoDB C++ Client Library</a> using the "legacy" branch.</li>
-	      <li><a href="http://www.boost.org/">Boost</a> 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See 
-	          <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>. MongoType will probably compile with Boost 1.50+ with minor backporting.
-	      </li>
-	    </ul>
+	  <li>GNU g++ (gcc v4.7.3 or greater, uses --std=c++0`x )</li>
+	  <li><a href="https://github.com/mongodb/mongo-cxx-driver">MongoDB C++ Client Library</a> using the "legacy" branch.</li>
+	  <li><a href="http://www.boost.org/">Boost</a> 1.55.x or greater. This is because of g++ compile option --std=c++0x and issues with TIME_UTC. See 
+	      <a href="https://jira.mongodb.org/browse/SERVER-6340">MongoDB JIRA Issue SERVER-6340</a>. MongoType will probably compile with Boost 1.50+ with minor backporting.
 	  </li>
 	</ul>
       <hr/>
