@@ -353,12 +353,7 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background: url("../images/MT_Background1_1024x1119.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-/*  background: #F2F2F2; */
+  background: #E8E8E8;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
