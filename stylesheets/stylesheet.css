@@ -260,10 +260,6 @@ Full-Width Styles
 
 .outer {
   width: 100%;
-  background-image: url("images/MT_Background1_1024x1119.jpg");
-  background-repeat:no-repeat;
-  background-attachment:fixed;  
-
 }
 
 .inner {
@@ -357,7 +353,9 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background: #f2f2f2;
+  background-image: url("images/MT_Background1_1024x1119.jpg");
+  background-repeat:no-repeat;
+  background-attachment:fixed;  
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
