@@ -423,7 +423,7 @@ Small Device Styles
 }
 
 /************************
- * MJD
+ * MJD styles
 ************************/
 
 .mjd-logo {
@@ -432,4 +432,8 @@ Small Device Styles
   border: 0;
   font: inherit;
   vertical-align: middle;
+}
+
+.mjd-highlights {
+  font-size: 120%;
 }
