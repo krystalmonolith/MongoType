@@ -442,6 +442,7 @@ Small Device Styles
   font-size: 100%;
   font-style: normal;
   font-family: "Courier New", Courier, serif;
+  text-wrap: suppress;
 }
 
 .mjd-usagecommand {
