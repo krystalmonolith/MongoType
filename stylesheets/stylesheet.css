@@ -438,12 +438,15 @@ Small Device Styles
   font-size: 120%;
 }
 
-.mjd-usagetitle {
-  font-size: 120%;
-  font-style: bold;
-}
-
 .mjd-usagetext {
   font-size: 100%;
   font-style: normal;
+  font-family: "Courier New", Courier, serif;
+}
+
+.mjd-usagecommand {
+  font-size: 120%;
+  font-style: normal;
+  font-family: "Courier New", Courier, monospace;
+  border: 1px dotted blue;
 }
