@@ -1,6 +1,6 @@
 <map id="BSONTypeFormatter.cpp" name="BSONTypeFormatter.cpp">
 <area shape="rect" id="node3" href="$BSONTypeFormatter_8hpp.html" title="BSONTypeFormatter.hpp" alt="" coords="557,83,728,112"/>
 <area shape="rect" id="node5" href="$mongotype_8hpp.html" title="MongoType Common Definitions File." alt="" coords="540,237,649,267"/>
-<area shape="rect" id="node35" href="$Parameters_8hpp.html" title="Parameters.hpp" alt="" coords="585,160,700,189"/>
+<area shape="rect" id="node35" href="$Parameters_8hpp.html" title="MongoType Parameter Parsing and Access." alt="" coords="585,160,700,189"/>
 <area shape="rect" id="node38" href="$BSONTypeMap_8hpp.html" title="BSON Type Lookup Class Definitions." alt="" coords="724,160,863,189"/>
 </map>

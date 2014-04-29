@@ -116,7 +116,22 @@ $(document).ready(function(){initNavTree('classmongotype_1_1IBSONObjectVisitor.h
  <a href="classmongotype_1_1IBSONObjectVisitor.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>&gt;</code></p>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Details:</h2>
+<div class="textblock"><p>Visitor interface for parsing nested BSON data objects. </p>
+<p><b>Usage:</b> </p>
+<ol>
+<li>
+Derive a class <em>V</em> from interface <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a> and implement each onX() function. </li>
+<li>
+Instantiate an instance of V called v. </li>
+<li>
+Construct a <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> object <em>p</em> using the instance of the derived class <em>v</em> as the parameter to constructor <a class="el" href="classmongotype_1_1BSONObjectParser.html#a5300eae5328c66398537bdeb6b41fb34" title="Construct a BSON Object parser.">BSONObjectParser::BSONObjectParser(IBSONObjectVisitor&amp;)</a>. </li>
+<li>
+Parse a BSON object (mongo::BSONobj) <em>o</em> using virtual void <a class="el" href="classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)">BSONObjectParser::parse</a>(const BSONObj&amp; <em>o</em>), i.e., <em>p</em>.parse(<em>o</em>). </li>
+</ol>
+
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00370">370</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+</div><div class="dynheader">
 Inheritance diagram for mongotype::IBSONObjectVisitor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmongotype_1_1IBSONObjectVisitor__inherit__graph.png" border="0" usemap="#mongotype_1_1IBSONObjectVisitor_inherit__map" alt="Inheritance graph"/></div>
@@ -150,22 +165,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8cc8710f7c8a2c580ab03ef517c81ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">BSON Element Event.  <a href="#a8cc8710f7c8a2c580ab03ef517c81ab0">More...</a><br/></td></tr>
 <tr class="separator:a8cc8710f7c8a2c580ab03ef517c81ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Visitor interface for parsing nested BSON data objects. </p>
-<p><b>Usage:</b> </p>
-<ol>
-<li>
-Derive a class <em>V</em> from interface <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a> and implement each onX() function. </li>
-<li>
-Instantiate an instance of V called v. </li>
-<li>
-Construct a <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> object <em>p</em> using the instance of the derived class <em>v</em> as the parameter to constructor <a class="el" href="classmongotype_1_1BSONObjectParser.html#a5300eae5328c66398537bdeb6b41fb34" title="Construct a BSON Object parser.">BSONObjectParser::BSONObjectParser(IBSONObjectVisitor&amp;)</a>. </li>
-<li>
-Parse a BSON object (mongo::BSONobj) <em>o</em> using virtual void <a class="el" href="classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)">BSONObjectParser::parse</a>(const BSONObj&amp; <em>o</em>), i.e., <em>p</em>.parse(<em>o</em>). </li>
-</ol>
-
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00347">347</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="abe9007d9bbdcd03fb34ac1aa7e487313"></a>
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +187,7 @@ Parse a BSON object (mongo::BSONobj) <em>o</em> using virtual void <a class="el"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00349">349</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00372">372</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
 </div>
 </div>
@@ -225,7 +225,7 @@ Parse a BSON object (mongo::BSONobj) <em>o</em> using virtual void <a class="el"
 
 <p>Implemented in <a class="el" href="classmongotype_1_1JSONDump.html#aadf254ce5de667b570510ce9e05f9940">mongotype::JSONDump</a>, <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#aab5b27210e4fa0ae41a7a1a02f7c06dc">mongotype::BSONObjectTypeDump</a>, and <a class="el" href="classmongotype_1_1BSONDotNotationDump.html#ac85ecc8c01caa84e7919fd639455118c">mongotype::BSONDotNotationDump</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00446">mongotype::BSONObjectParser::parseElementRecursive()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00472">mongotype::BSONObjectParser::parseElementRecursive()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -271,7 +271,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implemented in <a class="el" href="classmongotype_1_1JSONDump.html#adf34bb8af9cdf7be7c871aa94ba4fa49">mongotype::JSONDump</a>, <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#a2b4dd1b3b734d806566e823fb73fc4aa">mongotype::BSONObjectTypeDump</a>, and <a class="el" href="classmongotype_1_1BSONDotNotationDump.html#a6385eed86a9f7588ed9737a4d68155a8">mongotype::BSONDotNotationDump</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00446">mongotype::BSONObjectParser::parseElementRecursive()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00472">mongotype::BSONObjectParser::parseElementRecursive()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -317,7 +317,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implemented in <a class="el" href="classmongotype_1_1JSONDump.html#aab84a5407b0346cbf469162efd0179e6">mongotype::JSONDump</a>, <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#ad1cb92b2db86fcb21a163b39d91c744b">mongotype::BSONObjectTypeDump</a>, and <a class="el" href="classmongotype_1_1BSONDotNotationDump.html#aa6b1571ea664362442d9c8c70003d38a">mongotype::BSONDotNotationDump</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00446">mongotype::BSONObjectParser::parseElementRecursive()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00472">mongotype::BSONObjectParser::parseElementRecursive()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -363,7 +363,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implemented in <a class="el" href="classmongotype_1_1JSONDump.html#ad63e5e6c1badd585ecb09e3582e71ccf">mongotype::JSONDump</a>, <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#ae88835a36a825029164c719553dfb310">mongotype::BSONObjectTypeDump</a>, and <a class="el" href="classmongotype_1_1BSONDotNotationDump.html#a3ba14176c53923ae1537edf0a859bf3b">mongotype::BSONDotNotationDump</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00495">mongotype::BSONObjectParser::parseObjectRecursive()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00523">mongotype::BSONObjectParser::parseObjectRecursive()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -409,7 +409,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implemented in <a class="el" href="classmongotype_1_1JSONDump.html#afac97b53777d190aad7fc9a6c2e16415">mongotype::JSONDump</a>, <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#aab6a887664e1b6d442de32ab6872d0a8">mongotype::BSONObjectTypeDump</a>, and <a class="el" href="classmongotype_1_1BSONDotNotationDump.html#a2496c6ff6e9b52427e01c65f423bef63">mongotype::BSONDotNotationDump</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00495">mongotype::BSONObjectParser::parseObjectRecursive()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00523">mongotype::BSONObjectParser::parseObjectRecursive()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -448,7 +448,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implemented in <a class="el" href="classmongotype_1_1JSONDump.html#a8c935b46fe095697baff8f8a1b77c7e1">mongotype::JSONDump</a>, <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#a22930804ad2c7ee19ffe8ed16546c6b8">mongotype::BSONObjectTypeDump</a>, and <a class="el" href="classmongotype_1_1BSONDotNotationDump.html#abbbd3af21d8f61c72edb2c960ce17c99">mongotype::BSONDotNotationDump</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00532">mongotype::BSONObjectParser::parse()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00560">mongotype::BSONObjectParser::parse()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -487,7 +487,7 @@ Here is the caller graph for this function:</div>
 
 <p>Implemented in <a class="el" href="classmongotype_1_1JSONDump.html#a4fbd0e06c2373786491e18faece1727c">mongotype::JSONDump</a>, <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#ac5d2c2730bc82175d268c6585f298bd4">mongotype::BSONObjectTypeDump</a>, and <a class="el" href="classmongotype_1_1BSONDotNotationDump.html#a18dc54e90ef6c7e13ae45d274b3f09e8">mongotype::BSONDotNotationDump</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00532">mongotype::BSONObjectParser::parse()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00560">mongotype::BSONObjectParser::parse()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -509,7 +509,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacemongotype.html">mongotype</a></li><li class="navelem"><a class="el" href="classmongotype_1_1IBSONObjectVisitor.html">IBSONObjectVisitor</a></li>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:13 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

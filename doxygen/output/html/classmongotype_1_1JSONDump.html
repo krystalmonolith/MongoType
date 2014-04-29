@@ -119,7 +119,13 @@ $(document).ready(function(){initNavTree('classmongotype_1_1JSONDump.html','');}
  <a href="classmongotype_1_1JSONDump.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>&gt;</code></p>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Details:</h2>
+<div class="textblock"><p>BSON -&gt; JSON Dump. </p>
+<p>Provides an std::ostream comparable output operator for dumping a JSON representation of the given BSON object. <a class="el" href="classmongotype_1_1JSONDump.html" title="BSON -&gt; JSON Dump.">JSONDump</a> implements interface <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a> and uses the BSON object parsing events to output the BSON object's JSON representation.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a>, <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a>, <a class="el" href="classmongotype_1_1IBSONRenderer.html">IBSONRenderer</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00049">49</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
+</div><div class="dynheader">
 Inheritance diagram for mongotype::JSONDump:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmongotype_1_1JSONDump__inherit__graph.png" border="0" usemap="#mongotype_1_1JSONDump_inherit__map" alt="Inheritance graph"/></div>
@@ -206,13 +212,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:add5ee60dc8b1e28e547a72e5f5a2caef"><td class="memItemLeft" align="right" valign="top">function&lt; ostream &amp;()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1JSONDump.html#add5ee60dc8b1e28e547a72e5f5a2caef">getOStream</a></td></tr>
 <tr class="separator:add5ee60dc8b1e28e547a72e5f5a2caef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>BSON -&gt; JSON Dump. </p>
-<p>Provides an std::ostream comparable output operator for dumping a JSON representation of the given BSON object. <a class="el" href="classmongotype_1_1JSONDump.html" title="BSON -&gt; JSON Dump.">JSONDump</a> implements interface <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a> and uses the BSON object parsing events to output the BSON object's JSON representation.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a>, <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a>, <a class="el" href="classmongotype_1_1IBSONRenderer.html">IBSONRenderer</a> </dd></dl>
-
-<p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00049">49</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1b955ee57df312f0a96e2cbde033ee8e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +348,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00087">87</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">mongotype::BSONParserStack::depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00181">mongotype::BSONParserStackItem::getArrayIndex()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00173">mongotype::BSONParserStackItem::getElementIndex()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00150">mongotype::BSONParserStackItem::getType()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">mongotype::BSONParserStack::item()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">mongotype::BSONParserStack::top()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">mongotype::BSONParserStack::depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00193">mongotype::BSONParserStackItem::getArrayIndex()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00185">mongotype::BSONParserStackItem::getElementIndex()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00162">mongotype::BSONParserStackItem::getType()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">mongotype::BSONParserStack::item()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">mongotype::BSONParserStack::top()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
 
 <p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00118">nextLine()</a>.</p>
 
@@ -396,7 +396,7 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00099">99</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">mongotype::BSONParserStack::depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00169">mongotype::BSONParserStackItem::getKey()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00150">mongotype::BSONParserStackItem::getType()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00069">istr()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">mongotype::BSONParserStack::item()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">mongotype::BSONParserStack::top()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">mongotype::BSONParserStack::depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00181">mongotype::BSONParserStackItem::getKey()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00162">mongotype::BSONParserStackItem::getType()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00069">istr()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">mongotype::BSONParserStack::item()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">mongotype::BSONParserStack::top()</a>.</p>
 
 <p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00118">nextLine()</a>.</p>
 
@@ -589,7 +589,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00118">118</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="JSONDump_8hpp_source.html#l00087">emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00099">emitKey()</a>, <a class="el" href="Parameters_8hpp_source.html#l00073">mongotype::Parameters::isStackDebug()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00051">params</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00321">mongotype::BSONParserStack::toString()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
+<p>References <a class="el" href="JSONDump_8hpp_source.html#l00087">emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00099">emitKey()</a>, <a class="el" href="Parameters_8hpp_source.html#l00123">mongotype::Parameters::isStackDebug()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00051">params</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00344">mongotype::BSONParserStack::toString()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
 
 <p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00143">onArrayStart()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00152">onElement()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00134">onObjectStart()</a>.</p>
 
@@ -648,7 +648,7 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00148">148</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">mongotype::BSONParserStack::depth()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00069">istr()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">mongotype::BSONParserStack::depth()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00069">istr()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -744,7 +744,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00152">152</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00159">mongotype::BSONParserStackItem::getElement()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00118">nextLine()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">mongotype::BSONParserStack::top()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00171">mongotype::BSONParserStackItem::getElement()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00118">nextLine()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">mongotype::BSONParserStack::top()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -792,7 +792,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00139">139</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">mongotype::BSONParserStack::depth()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00069">istr()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">mongotype::BSONParserStack::depth()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00069">istr()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -955,7 +955,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00196">196</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00532">mongotype::BSONObjectParser::parse()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00560">mongotype::BSONObjectParser::parse()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00060">tstr()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1022,7 +1022,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="JSONDump_8hpp_source.html#l00060">60</a> of file <a class="el" href="JSONDump_8hpp_source.html">JSONDump.hpp</a>.</p>
 
-<p>References <a class="el" href="JSONDump_8hpp_source.html#l00054">getOStream</a>, <a class="el" href="Parameters_8hpp_source.html#l00071">mongotype::Parameters::isDebug()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00051">params</a>.</p>
+<p>References <a class="el" href="JSONDump_8hpp_source.html#l00054">getOStream</a>, <a class="el" href="Parameters_8hpp_source.html#l00121">mongotype::Parameters::isDebug()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00051">params</a>.</p>
 
 <p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00181">begin()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00087">emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00188">end()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00069">istr()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00118">nextLine()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00143">onArrayStart()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00152">onElement()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00134">onObjectStart()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00196">render()</a>, and <a class="el" href="JSONDump_8hpp_source.html#l00065">tstr()</a>.</p>
 
@@ -1165,7 +1165,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacemongotype.html">mongotype</a></li><li class="navelem"><a class="el" href="classmongotype_1_1JSONDump.html">JSONDump</a></li>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:13 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

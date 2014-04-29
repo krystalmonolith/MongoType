@@ -1,6 +1,6 @@
 <map id="mongotype::BSONDotNotationDump::onElement" name="mongotype::BSONDotNotationDump::onElement">
 <area shape="rect" id="node3" href="$classmongotype_1_1BSONParserStackItem.html#a8cbac385eecafb86290e103a667a0d2c" title="mongotype::BSONParserStack\lItem::getElement" alt="" coords="271,39,473,86"/>
-<area shape="rect" id="node7" href="$classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="BSON Object Type Strings Stream Output Operator." alt="" coords="264,178,480,225"/>
+<area shape="rect" id="node7" href="$classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="Stringize the BSON type per the mask." alt="" coords="264,178,480,225"/>
 <area shape="rect" id="node17" href="$classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c" title="Return the TOS item, leaving it in place." alt="" coords="257,360,487,389"/>
 <area shape="rect" id="node5" href="$classmongotype_1_1BSONParserStackItem.html#ae3e88b1fc38b3f25eebd95939f6635db" title="mongotype::BSONParserStack\lItem::validate" alt="" coords="540,5,743,51"/>
 <area shape="rect" id="node9" href="$classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e" title="mongotype::Parameters\l::getTypeMask" alt="" coords="561,74,721,121"/>

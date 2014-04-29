@@ -1,7 +1,7 @@
 <map id="mongotype::BSONParserStack::push" name="mongotype::BSONParserStack::push">
 <area shape="rect" id="node3" href="$classmongotype_1_1BSONObjectParser.html#aa5708e37cde258cc1f68d97a70229072" title="Recursively parse a BSONElement." alt="" coords="259,74,467,121"/>
 <area shape="rect" id="node5" href="$classmongotype_1_1BSONObjectParser.html#a431940dbfd10c340180bfbe4e661fc3d" title="Recursively parse a BSON Object." alt="" coords="515,74,723,121"/>
-<area shape="rect" id="node17" href="$classmongotype_1_1BSONParserStack.html#aae450648b62202e2dfa516ed75751d63" title="Push the BSON object." alt="" coords="261,194,464,241"/>
+<area shape="rect" id="node17" href="$classmongotype_1_1BSONParserStack.html#aae450648b62202e2dfa516ed75751d63" title="Wrap the mongo::BSONObj object in a dynamically allocated BSONParserStackItem and push the resultant ..." alt="" coords="261,194,464,241"/>
 <area shape="rect" id="node8" href="$classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)" alt="" coords="771,74,979,121"/>
 <area shape="rect" id="node10" href="$classmongotype_1_1BSONDotNotationDump.html#a2ce66157801210f4b57d33e8d547809d" title="mongotype::BSONDotNotation\lDump::render" alt="" coords="1027,5,1229,51"/>
 <area shape="rect" id="node12" href="$classmongotype_1_1BSONObjectTypeDump.html#a852f127fe68519856703944a456b665c" title="mongotype::BSONObjectType\lDump::render" alt="" coords="1029,74,1227,121"/>

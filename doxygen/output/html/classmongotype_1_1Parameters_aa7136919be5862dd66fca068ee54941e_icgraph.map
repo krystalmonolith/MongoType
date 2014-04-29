@@ -1,5 +1,5 @@
 <map id="mongotype::Parameters::getTypeMask" name="mongotype::Parameters::getTypeMask">
-<area shape="rect" id="node3" href="$classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="BSON Object Type Strings Stream Output Operator." alt="" coords="217,39,433,86"/>
+<area shape="rect" id="node3" href="$classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="Stringize the BSON type per the mask." alt="" coords="217,39,433,86"/>
 <area shape="rect" id="node5" href="$classmongotype_1_1BSONDotNotationDump.html#aa6b1571ea664362442d9c8c70003d38a" title="BSON Element Event." alt="" coords="491,5,693,51"/>
 <area shape="rect" id="node7" href="$classmongotype_1_1BSONTypeFormatter.html#a8e69018ce9fdcbed6c693a03740863b2" title="BSON Object Type Strings Stream Output Operator." alt="" coords="484,74,700,121"/>
 </map>

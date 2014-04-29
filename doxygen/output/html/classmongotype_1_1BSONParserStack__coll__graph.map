@@ -1,5 +1,5 @@
 <map id="mongotype::BSONParserStack" name="mongotype::BSONParserStack">
-<area shape="rect" id="node6" href="$classmongotype_1_1BSONParserStackItem.html" title="Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement." alt="" coords="77,219,307,248"/>
+<area shape="rect" id="node6" href="$classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement." alt="" coords="77,219,307,248"/>
 <area shape="rect" id="node8" title="STL class." alt="" coords="28,113,108,143"/>
 <area shape="rect" id="node10" title="STL class." alt="" coords="5,6,131,53"/>
 <area shape="rect" id="node12" href="$unionmongotype_1_1BSONParserStackItem_1_1Item.html" title="mongotype::BSONParserStack\lItem::Item" alt="" coords="132,105,335,151"/>

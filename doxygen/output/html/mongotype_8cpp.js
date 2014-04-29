@@ -4,5 +4,5 @@ var mongotype_8cpp =
     [ "dumpCollection", "mongotype_8cpp.html#a40090cf1ed55be271cfe90a55385867d", null ],
     [ "LICENSE", "mongotype_8cpp.html#a51561de1cb4d1ba9ace3313695fe8485", null ],
     [ "main", "mongotype_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97", null ],
-    [ "VERSION", "mongotype_8cpp.html#a2b50b6426a18b45b1aed6311c03173d3", null ]
+    [ "VERSION", "mongotype_8cpp.html#aef7ba66f5219e86ac3c3fd9c5d2f5e30", null ]
 ];

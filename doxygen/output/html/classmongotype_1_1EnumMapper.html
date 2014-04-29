@@ -115,7 +115,14 @@ $(document).ready(function(){initNavTree('classmongotype_1_1EnumMapper.html','')
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>&gt;</code></p>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Details:</h2>
+<div class="textblock"><h3>template&lt;class E&gt;<br/>
+class mongotype::EnumMapper&lt; E &gt;</h3>
+
+<p>Map enumeration integers to their string equivalents. </p>
+
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00068">68</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+</div><div class="dynheader">
 Collaboration diagram for mongotype::EnumMapper&lt; E &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmongotype_1_1EnumMapper__coll__graph.png" border="0" usemap="#mongotype_1_1EnumMapper_3_01E_01_4_coll__map" alt="Collaboration graph"/></div>
@@ -144,13 +151,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aaaf5b7f57b30a5b0a719cc7a17ed5847"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmongotype_1_1EnumMapper.html#aae7f7b56980d1cfe980d2fce4fb9158e">EnumMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1EnumMapper.html#aaaf5b7f57b30a5b0a719cc7a17ed5847">enumMap</a></td></tr>
 <tr class="separator:aaaf5b7f57b30a5b0a719cc7a17ed5847"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;class E&gt;<br/>
-class mongotype::EnumMapper&lt; E &gt;</h3>
-
-
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00036">36</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="aae7f7b56980d1cfe980d2fce4fb9158e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +172,7 @@ template&lt;class E &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00037">37</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00069">69</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
 </div>
 </div>
@@ -195,7 +196,7 @@ template&lt;class E &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00038">38</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00070">70</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
 </div>
 </div>
@@ -223,7 +224,7 @@ template&lt;class E &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00043">43</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00075">75</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
 </div>
 </div>
@@ -261,10 +262,19 @@ template&lt;class E &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Look up the enumeration value corresponding to the input string in the associative array. and return its enumeration value, or the default value if it is not found. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>The key string. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">defValue</td><td>The default enumeration value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The enumeration value if the string is found, or the default value if it is not found. </dd></dl>
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00045">45</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00088">88</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
-<p>References <a class="el" href="Parameters_8hpp_source.html#l00040">mongotype::EnumMapper&lt; E &gt;::enumMap</a>.</p>
+<p>References <a class="el" href="Parameters_8hpp_source.html#l00072">mongotype::EnumMapper&lt; E &gt;::enumMap</a>.</p>
 
 </div>
 </div>
@@ -301,10 +311,18 @@ template&lt;class E &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Insert an string key and its corresponding enumeration value to the internal associative array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>The key string. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The enumeration value. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00044">44</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00081">81</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
-<p>References <a class="el" href="Parameters_8hpp_source.html#l00040">mongotype::EnumMapper&lt; E &gt;::enumMap</a>.</p>
+<p>References <a class="el" href="Parameters_8hpp_source.html#l00072">mongotype::EnumMapper&lt; E &gt;::enumMap</a>.</p>
 
 </div>
 </div>
@@ -329,9 +347,9 @@ template&lt;class E &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00040">40</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00072">72</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Parameters_8hpp_source.html#l00045">mongotype::EnumMapper&lt; E &gt;::find()</a>, and <a class="el" href="Parameters_8hpp_source.html#l00044">mongotype::EnumMapper&lt; E &gt;::insert()</a>.</p>
+<p>Referenced by <a class="el" href="Parameters_8hpp_source.html#l00088">mongotype::EnumMapper&lt; E &gt;::find()</a>, and <a class="el" href="Parameters_8hpp_source.html#l00081">mongotype::EnumMapper&lt; E &gt;::insert()</a>.</p>
 
 </div>
 </div>
@@ -344,7 +362,7 @@ template&lt;class E &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacemongotype.html">mongotype</a></li><li class="navelem"><a class="el" href="classmongotype_1_1EnumMapper.html">EnumMapper</a></li>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:13 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

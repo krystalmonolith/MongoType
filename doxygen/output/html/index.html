@@ -100,15 +100,13 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">MongoType Utility </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>MongoType is a command line utility designed to dump out the contents of a MongoDB collection with the associated BSON data types.<br/>
-</p>
+<div class="textblock"><p>MongoType is a command line utility designed to dump out the contents of a MongoDB collection with the associated BSON data types. </p>
+<hr/>
 <dl class="section author"><dt>Author</dt><dd>Mark Deazley &lt;<a href="#" onclick="location.href='mai'+'lto:'+'mde'+'az'+'ley'+'@g'+'mai'+'l.'+'com'; return false;">mdeaz<span style="display: none;">.nosp@m.</span>ley@<span style="display: none;">.nosp@m.</span>gmail<span style="display: none;">.nosp@m.</span>.com</a>&gt; </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>2.4 </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright &copy; 2013-2014 by Mark Deazley<br/>
-<br/>
-</dd></dl>
-<p><b>License:</b> <em>Free Software Foundation’s GNU AGPL v3.0.</em><br/>
-</p>
+<dl class="section version"><dt>Version</dt><dd>2.4.1 </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright &copy; 2013-2014 by Mark Deazley</dd></dl>
+<h4>License</h4>
+<h5>Free Software Foundation’s GNU AGPL v3.0.</h5>
 <p>This program is free software: you can redistribute it and/or modify<br/>
  it under the terms of the GNU Affero General Public License as<br/>
  published by the Free Software Foundation, either version 3 of the<br/>
@@ -122,12 +120,59 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>You should have received a copy of the GNU Affero General Public License<br/>
  along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a> .<br/>
  </p>
+<hr/>
+<h4>Hints:</h4>
+<ul>
+<li>This documentation is heavily hyperlinked: Navigate around to get a feel for the different views, .i.e., files, namespaces, classes, etc are all different views of the programs structure.</li>
+<li>The colorized and hyperlinked program source code matching this version of the documentation is accessed by clicking on the line number links or the links on the file and class pages. <hr/>
+</li>
+</ul>
+<h3>Summary of Operation:</h3>
+<h4><a class="el" href="mongotype_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main()</a> Function:</h4>
+<p>The <a class="el" href="mongotype_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main()</a> functionality is relatively simple:</p>
+<ul>
+<li>Instantiate a <a class="el" href="classmongotype_1_1Parameters.html">mongotype::Parameters</a> object.</li>
+<li>Parse the command line options and positional parameters with call to <a class="el" href="classmongotype_1_1Parameters.html#a88e40faa427200be69cf6eda421f7d3e">mongotype::Parameters::parse</a>.</li>
+<li>Fetch the collection and output it in <a class="el" href="namespacemongotype.html#a40090cf1ed55be271cfe90a55385867d">mongotype::dumpCollection</a> per the parsed command line.</li>
+</ul>
+<h4>mongotype NameSpace:</h4>
+<p>The <a class="el" href="namespacemongotype.html">mongotype</a> namespace is where the majority of the code resides to avoid conflicts.</p>
+<h5>The <a class="el" href="namespacemongotype.html#a40090cf1ed55be271cfe90a55385867d">mongotype::dumpCollection</a> function:</h5>
+<p>This is a catch-all function that:</p>
+<ul>
+<li>Opens a connection to the MongoDB database and gets a cursor to the collection specified by the Parameters object.</li>
+<li>Constructs an object that sub-classes <a class="el" href="classmongotype_1_1IBSONRenderer.html">mongotype::IBSONRenderer</a> that corresponds to the current <a class="el" href="namespacemongotype.html#ab17f046c9d052456da5522f8eee3e57f">mongotype::StyleParam</a>.</li>
+<li>Invokes the object's <a class="el" href="classmongotype_1_1IBSONRenderer.html#aa9cb5569abf1b9422a222be572549a34">mongotype::IBSONRenderer::begin</a> function once to initialize rendering.</li>
+<li>Invokes the object's <a class="el" href="classmongotype_1_1IBSONRenderer.html#a8fc0535940ee3ce828302605dc8874bd">mongotype::IBSONRenderer::render</a> function with each MongoDb document returned by the cursor.</li>
+<li>Invokes the object's <a class="el" href="classmongotype_1_1IBSONRenderer.html#aa85a88eda31915468141168bd0344633">mongotype::IBSONRenderer::end</a> function once to finalize rendering.</li>
+</ul>
+<h5>Command Line Parameter Parsing:</h5>
+<p>The <a class="el" href="classmongotype_1_1Parameters.html">mongotype::Parameters</a> class uses the <a href="http://boost.org/">boost::program_options</a> library to do the command line parsing, supplying initialization, validation overload functions, and getter access functions. While technically <em>not</em> an immutable class it functions as such in MongoType once command line parsing is completed.</p>
+<h5>Interface <a class="el" href="classmongotype_1_1IBSONRenderer.html">mongotype::IBSONRenderer</a>:</h5>
+<p>All the concrete style implementation classes implement <a class="el" href="classmongotype_1_1IBSONRenderer.html">mongotype::IBSONRenderer</a> to provide a polymorphic <em>begin-render-end</em> rendering sequence to create the output. This interface allows the style classes to customize the output but present a common interface .aka. API.</p>
+<h5>Interface <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">mongotype::IBSONObjectVisitor</a>:</h5>
+<p>All the concrete style implementation classes <em>also</em> implement <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">mongotype::IBSONObjectVisitor</a> to receive the events that are generated when a mongo::BSONObj object is parsed. This interface allows the style implementation classes to parse BSON objects via the common implementation class <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">mongotype::BSONObjectParser</a>.</p>
+<h5>BSON Object Parser: <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">mongotype::BSONObjectParser</a></h5>
+<p>The mechanics of decomposing BSON objects is encapsulated in the <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">mongotype::BSONObjectParser</a> class which relies on <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">mongotype::IBSONObjectVisitor</a> implementors described below. It supplies the instance method <a class="el" href="classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)">mongotype::BSONObjectParser::parse</a> as the entry point to initiate parsing of a mongo::BSONObj object.</p>
+<h5>Style Implementation Classes</h5>
+<p>The following classes implement <a class="el" href="classmongotype_1_1IBSONRenderer.html">mongotype::IBSONRenderer</a> and <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">mongotype::IBSONObjectVisitor</a> as described above:</p>
+<ul>
+<li><a class="el" href="classmongotype_1_1BSONObjectTypeDump.html" title="Human readable BSON Object Dump.">mongotype::BSONObjectTypeDump</a> - Implements &ndash;style=tree</li>
+<li><a class="el" href="classmongotype_1_1BSONDotNotationDump.html" title="Human readable BSON Object Dump.">mongotype::BSONDotNotationDump</a> - Implements &ndash;style=dotted</li>
+<li><a class="el" href="classmongotype_1_1JSONDump.html" title="BSON -&gt; JSON Dump.">mongotype::JSONDump</a> - Implements &ndash;style=json and &ndash;style=jsonpacked</li>
+</ul>
+<h4>Utility Classes:</h4>
+<ul>
+<li><a class="el" href="classmongotype_1_1BSONTypeMap.html" title="BSON Element Type String Lookup.">mongotype::BSONTypeMap</a> - Decodes BSON Type codes into mnemonics and description strings.</li>
+<li><a class="el" href="classmongotype_1_1BSONTypeFormatter.html" title="BSON Element Type String Lookup.">mongotype::BSONTypeFormatter</a> - Formats BSON Type Codes into strings per the current <a class="el" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">mongotype::Parameters::getTypeMask</a> value.</li>
+<li><a class="el" href="classmongotype_1_1EnumMapper.html">mongotype::EnumMapper</a> - Maps enumeration integers to their string equivalent. </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:14 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('BSONTypeFormatter_8hpp_source.html',''
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BSONTYPEFORMATTER_HPP_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mongotype_8hpp.html" title="MongoType Common Definitions File.">mongotype.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Parameters_8hpp.html">Parameters.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Parameters_8hpp.html" title="MongoType Parameter Parsing and Access.">Parameters.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="BSONTypeMap_8hpp.html" title="BSON Type Lookup Class Definitions.">BSONTypeMap.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>mongotype {</div>
@@ -134,46 +134,46 @@ $(document).ready(function(){initNavTree('BSONTypeFormatter_8hpp_source.html',''
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                        <a class="code" href="classmongotype_1_1BSONTypeMap.html" title="BSON Element Type String Lookup.">BSONTypeMap</a>(e), <a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>(pparams) {</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f">   45</a></span>&#160;        <span class="keywordtype">string</span> <a class="code" href="classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="BSON Object Type Strings Stream Output Operator.">to_string</a>() {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordtype">string</span> s;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>()) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                        <span class="keyword">const</span> <a class="code" href="classmongotype_1_1BSONTypeElement.html" title="Store the name and description of a single BSON data type.">BSONTypeElement</a>&amp; bsts = <a class="code" href="classmongotype_1_1BSONTypeMap.html#addfd21b6af551ac771978196ebdfa2c1">lookup</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        s = <span class="stringliteral">&quot;(&quot;</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>() &amp; <a class="code" href="namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2aaf2ce9f8dfd7da7ef0f9f4ffc8673396">TYPE_NAME</a>) {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                s += bsts.<a class="code" href="classmongotype_1_1BSONTypeElement.html#ab0b2e6ef6c50afc27fefd13369859311">getName</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>() &amp; <a class="code" href="namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2a3269d9e7113adb70f1753b7786054956">TYPE_DESC</a>) {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                <span class="keywordflow">if</span> (s.length()) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                        s += <span class="stringliteral">&quot;/&quot;</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                s += bsts.<a class="code" href="classmongotype_1_1BSONTypeElement.html#a79adfcb8cf9c643f75170d5537c2690a">getDesc</a>();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>() &amp; <a class="code" href="namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2a7856c7eaf7f34f8fa2dc24dcc33e83c0">TYPE_CODE</a>) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                <span class="keywordflow">if</span> (s.length()) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                        s += <span class="stringliteral">&quot;/&quot;</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                s += std::to_string((<span class="keywordtype">int</span>)(<a class="code" href="classmongotype_1_1BSONTypeMap.html#ad124931e708fb695466d208e37921924">element</a>.type()));</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        s += <span class="stringliteral">&quot;)&quot;</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="keywordflow">return</span> s;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a8e69018ce9fdcbed6c693a03740863b2">   75</a></span>&#160;        <a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a8e69018ce9fdcbed6c693a03740863b2" title="BSON Object Type Strings Stream Output Operator.">OSTREAM_FRIEND</a>(<a class="code" href="classmongotype_1_1BSONTypeFormatter.html" title="BSON Element Type String Lookup.">BSONTypeFormatter</a>&amp; bstf) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">return</span> out &lt;&lt; bstf.<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="BSON Object Type Strings Stream Output Operator.">to_string</a>();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f">   44</a></span>&#160;        <span class="keywordtype">string</span> <a class="code" href="classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="Stringize the BSON type per the mask.">to_string</a>() {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordtype">string</span> s;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>()) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <span class="keyword">const</span> <a class="code" href="classmongotype_1_1BSONTypeElement.html" title="Store the name and description of a single BSON data type.">BSONTypeElement</a>&amp; bsts = <a class="code" href="classmongotype_1_1BSONTypeMap.html#addfd21b6af551ac771978196ebdfa2c1">lookup</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                        s = <span class="stringliteral">&quot;(&quot;</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>() &amp; <a class="code" href="namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2aaf2ce9f8dfd7da7ef0f9f4ffc8673396">TYPE_NAME</a>) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                s += bsts.<a class="code" href="classmongotype_1_1BSONTypeElement.html#ab0b2e6ef6c50afc27fefd13369859311">getName</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>() &amp; <a class="code" href="namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2a3269d9e7113adb70f1753b7786054956">TYPE_DESC</a>) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                <span class="keywordflow">if</span> (s.length()) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                        s += <span class="stringliteral">&quot;/&quot;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                s += bsts.<a class="code" href="classmongotype_1_1BSONTypeElement.html#a79adfcb8cf9c643f75170d5537c2690a">getDesc</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a159c8ef5f9e76af9bb612158c2da4ca2">params</a>.<a class="code" href="classmongotype_1_1Parameters.html#aa7136919be5862dd66fca068ee54941e">getTypeMask</a>() &amp; <a class="code" href="namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2a7856c7eaf7f34f8fa2dc24dcc33e83c0">TYPE_CODE</a>) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                <span class="keywordflow">if</span> (s.length()) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                        s += <span class="stringliteral">&quot;/&quot;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                s += std::to_string((<span class="keywordtype">int</span>)(<a class="code" href="classmongotype_1_1BSONTypeMap.html#ad124931e708fb695466d208e37921924">element</a>.type()));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        s += <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">return</span> s;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a8e69018ce9fdcbed6c693a03740863b2">   73</a></span>&#160;        <a class="code" href="classmongotype_1_1BSONTypeFormatter.html#a8e69018ce9fdcbed6c693a03740863b2" title="BSON Object Type Strings Stream Output Operator.">OSTREAM_FRIEND</a>(<a class="code" href="classmongotype_1_1BSONTypeFormatter.html" title="BSON Element Type String Lookup.">BSONTypeFormatter</a>&amp; bstf) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">return</span> out &lt;&lt; bstf.<a class="code" href="classmongotype_1_1BSONTypeFormatter.html#af82d3abd661fdc31c31045155586da8f" title="Stringize the BSON type per the mask.">to_string</a>();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <span class="comment">/* namespace mongotype */</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <span class="comment">/* namespace mongotype */</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BSONTYPEFORMATTER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BSONTYPEFORMATTER_HPP_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="BSONTypeFormatter_8hpp.html">BSONTypeFormatter.hpp</a></li>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:13 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

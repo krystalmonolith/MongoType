@@ -7,7 +7,7 @@ var classmongotype_1_1BSONParserStack =
     [ "pop", "classmongotype_1_1BSONParserStack.html#a97e9ac805a0db1947d228bd7021718e9", null ],
     [ "push", "classmongotype_1_1BSONParserStack.html#ac3bdcca1115d778160c0a10599c04288", null ],
     [ "push", "classmongotype_1_1BSONParserStack.html#aae450648b62202e2dfa516ed75751d63", null ],
-    [ "push", "classmongotype_1_1BSONParserStack.html#a3a7ae148066f3f3eb7693590a61ac6f2", null ],
+    [ "push", "classmongotype_1_1BSONParserStack.html#ae8cb11379702a6ea1de35ec331c0c51d", null ],
     [ "throwCount", "classmongotype_1_1BSONParserStack.html#a05ff889682046febdf142943fde76dca", null ],
     [ "top", "classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c", null ],
     [ "toString", "classmongotype_1_1BSONParserStack.html#addb6ed52ed767add9efa058fd0358e64", null ],

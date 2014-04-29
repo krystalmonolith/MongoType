@@ -119,7 +119,13 @@ $(document).ready(function(){initNavTree('classmongotype_1_1BSONObjectTypeDump.h
  <a href="classmongotype_1_1BSONObjectTypeDump.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="BSONObjectTypeDump_8hpp_source.html">BSONObjectTypeDump.hpp</a>&gt;</code></p>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Details:</h2>
+<div class="textblock"><p>Human readable BSON Object Dump. </p>
+<p>Provides an std::ostream comparable output operator for dumping a human readable text version of the given BSON object. <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html" title="Human readable BSON Object Dump.">BSONObjectTypeDump</a> implements interface <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a> and uses the BSON object parsing events to output the BSON object's text representation.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a>, <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00051">51</a> of file <a class="el" href="BSONObjectTypeDump_8hpp_source.html">BSONObjectTypeDump.hpp</a>.</p>
+</div><div class="dynheader">
 Inheritance diagram for mongotype::BSONObjectTypeDump:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmongotype_1_1BSONObjectTypeDump__inherit__graph.png" border="0" usemap="#mongotype_1_1BSONObjectTypeDump_inherit__map" alt="Inheritance graph"/></div>
@@ -198,13 +204,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ad1fdf15616082a6d358790ea7807f140"><td class="memItemLeft" align="right" valign="top">function&lt; ostream &amp;()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1BSONObjectTypeDump.html#ad1fdf15616082a6d358790ea7807f140">getOStream</a></td></tr>
 <tr class="separator:ad1fdf15616082a6d358790ea7807f140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Human readable BSON Object Dump. </p>
-<p>Provides an std::ostream comparable output operator for dumping a human readable text version of the given BSON object. <a class="el" href="classmongotype_1_1BSONObjectTypeDump.html" title="Human readable BSON Object Dump.">BSONObjectTypeDump</a> implements interface <a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a> and uses the BSON object parsing events to output the BSON object's text representation.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classmongotype_1_1IBSONObjectVisitor.html" title="Visitor interface for parsing nested BSON data objects.">IBSONObjectVisitor</a>, <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> </dd></dl>
-
-<p>Definition at line <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00051">51</a> of file <a class="el" href="BSONObjectTypeDump_8hpp_source.html">BSONObjectTypeDump.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a71d2ac6fd0aef54dd44be1eaeefbf1ac"></a>
 <div class="memitem">
 <div class="memproto">
@@ -455,7 +455,7 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00089">89</a> of file <a class="el" href="BSONObjectTypeDump_8hpp_source.html">BSONObjectTypeDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00185">mongotype::BSONParserStackItem::getArrayCount()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00055">level</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">mongotype::BSONParserStack::top()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00197">mongotype::BSONParserStackItem::getArrayCount()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00055">level</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">mongotype::BSONParserStack::top()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -503,7 +503,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00098">98</a> of file <a class="el" href="BSONObjectTypeDump_8hpp_source.html">BSONObjectTypeDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00159">mongotype::BSONParserStackItem::getElement()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00058">istr()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00052">params</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">mongotype::BSONParserStack::top()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00171">mongotype::BSONParserStackItem::getElement()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00058">istr()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00052">params</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">mongotype::BSONParserStack::top()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -599,7 +599,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00074">74</a> of file <a class="el" href="BSONObjectTypeDump_8hpp_source.html">BSONObjectTypeDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00181">mongotype::BSONParserStackItem::getArrayIndex()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00058">istr()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00055">level</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">mongotype::BSONParserStack::top()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00193">mongotype::BSONParserStackItem::getArrayIndex()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00058">istr()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00055">level</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">mongotype::BSONParserStack::top()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -716,7 +716,7 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00142">142</a> of file <a class="el" href="BSONObjectTypeDump_8hpp_source.html">BSONObjectTypeDump.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00054">initialToken</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00532">mongotype::BSONObjectParser::parse()</a>.</p>
+<p>References <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00056">getOStream</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00054">initialToken</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00560">mongotype::BSONObjectParser::parse()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -889,7 +889,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacemongotype.html">mongotype</a></li><li class="navelem"><a class="el" href="classmongotype_1_1BSONObjectTypeDump.html">BSONObjectTypeDump</a></li>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:13 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

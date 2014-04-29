@@ -1,6 +1,6 @@
 <map id="Parameters.hpp" name="Parameters.hpp">
 <area shape="rect" id="node3" href="$mongotype_8cpp.html" title="MongoType Main Implementation File." alt="" coords="120,237,229,267"/>
-<area shape="rect" id="node5" href="$Parameters_8cpp.html" title="Parameters.cpp" alt="" coords="29,83,144,112"/>
+<area shape="rect" id="node5" href="$Parameters_8cpp.html" title="MongoType Parameter Parsing and Access." alt="" coords="29,83,144,112"/>
 <area shape="rect" id="node7" href="$BSONDotNotationDump_8hpp.html" title="BSONDotNotationDump.hpp" alt="" coords="147,160,336,189"/>
 <area shape="rect" id="node10" href="$BSONObjectTypeDump_8hpp.html" title="BSON Object Type Stream Definitions." alt="" coords="555,160,741,189"/>
 <area shape="rect" id="node15" href="$BSONTypeFormatter_8hpp.html" title="BSONTypeFormatter.hpp" alt="" coords="360,83,531,112"/>

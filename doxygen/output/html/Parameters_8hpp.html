@@ -111,6 +111,9 @@ $(document).ready(function(){initNavTree('Parameters_8hpp.html','');});
 <div class="title">Parameters.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>MongoType Parameter Parsing and Access.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="mongotype_8hpp_source.html">mongotype.hpp</a>&gt;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Parameters.hpp:</div>
@@ -124,7 +127,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="Parameters_8hpp__dep__incl.png" border="0" usemap="#Parameters_8hppdep" alt=""/></div>
 <map name="Parameters_8hppdep" id="Parameters_8hppdep">
-<area shape="rect" id="node3" href="mongotype_8cpp.html" title="MongoType Main Implementation File." alt="" coords="120,237,229,267"/><area shape="rect" id="node5" href="Parameters_8cpp.html" title="Parameters.cpp" alt="" coords="29,83,144,112"/><area shape="rect" id="node7" href="BSONDotNotationDump_8hpp.html" title="BSONDotNotationDump.hpp" alt="" coords="147,160,336,189"/><area shape="rect" id="node10" href="BSONObjectTypeDump_8hpp.html" title="BSON Object Type Stream Definitions." alt="" coords="555,160,741,189"/><area shape="rect" id="node15" href="BSONTypeFormatter_8hpp.html" title="BSONTypeFormatter.hpp" alt="" coords="360,83,531,112"/><area shape="rect" id="node21" href="JSONDump_8hpp.html" title="JSON Dump Definitions." alt="" coords="168,83,285,112"/><area shape="rect" id="node12" href="BSONObjectTypeDump_8cpp.html" title="BSON Object Type Stream Implementation." alt="" coords="555,237,741,267"/><area shape="rect" id="node17" href="BSONTypeFormatter_8cpp.html" title="BSONTypeFormatter.cpp" alt="" coords="360,160,531,189"/></map>
+<area shape="rect" id="node3" href="mongotype_8cpp.html" title="MongoType Main Implementation File." alt="" coords="120,237,229,267"/><area shape="rect" id="node5" href="Parameters_8cpp.html" title="MongoType Parameter Parsing and Access." alt="" coords="29,83,144,112"/><area shape="rect" id="node7" href="BSONDotNotationDump_8hpp.html" title="BSONDotNotationDump.hpp" alt="" coords="147,160,336,189"/><area shape="rect" id="node10" href="BSONObjectTypeDump_8hpp.html" title="BSON Object Type Stream Definitions." alt="" coords="555,160,741,189"/><area shape="rect" id="node15" href="BSONTypeFormatter_8hpp.html" title="BSONTypeFormatter.hpp" alt="" coords="360,83,531,112"/><area shape="rect" id="node21" href="JSONDump_8hpp.html" title="JSON Dump Definitions." alt="" coords="168,83,285,112"/><area shape="rect" id="node12" href="BSONObjectTypeDump_8cpp.html" title="BSON Object Type Stream Implementation." alt="" coords="555,237,741,267"/><area shape="rect" id="node17" href="BSONTypeFormatter_8cpp.html" title="BSONTypeFormatter.cpp" alt="" coords="360,160,531,189"/></map>
 </div>
 </div>
 <p><a href="Parameters_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -174,7 +177,35 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:aca35f87d6d199b5daf385e8602ef04d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>MongoType Parameter Parsing and Access. </p>
+<ul>
+<li>Uses boost::program_options for parsing of command line options.</li>
+<li>Provides a read-only interface to parsed parameters.</li>
+</ul>
+<dl class="section author"><dt>Author</dt><dd>Mark Deazley &lt;<a href="#" onclick="location.href='mai'+'lto:'+'mde'+'az'+'ley'+'@g'+'mai'+'l.'+'com'; return false;">mdeaz<span style="display: none;">.nosp@m.</span>ley@<span style="display: none;">.nosp@m.</span>gmail<span style="display: none;">.nosp@m.</span>.com</a>&gt;</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright &copy; 2013 by Mark Deazley<br/>
+<br/>
+</dd></dl>
+<p><b>License:</b> <em>Free Software Foundation’s GNU AGPL v3.0.</em><br/>
+</p>
+<p>This program is free software: you can redistribute it and/or modify<br/>
+ it under the terms of the GNU Affero General Public License as<br/>
+ published by the Free Software Foundation, either version 3 of the<br/>
+ License, or (at your option) any later version.<br/>
+</p>
+<p>This program is distributed in the hope that it will be useful,<br/>
+ but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+ GNU Affero General Public License for more details.<br/>
+</p>
+<p>You should have received a copy of the GNU Affero General Public License<br/>
+ along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a> .<br/>
+</p>
+<p>Creation Date: January 21, 2014 Eclipse Project: MongoType </p>
+
+<p>Definition in file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a7f4d28fb8f32519cc52857992115f3c9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -185,9 +216,9 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00013">13</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00037">37</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Parameters_8cpp_source.html#l00068">mongotype::Parameters::parse()</a>.</p>
+<p>Referenced by <a class="el" href="Parameters_8cpp_source.html#l00092">mongotype::Parameters::parse()</a>.</p>
 
 </div>
 </div>
@@ -201,9 +232,9 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00014">14</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00038">38</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Parameters_8cpp_source.html#l00068">mongotype::Parameters::parse()</a>.</p>
+<p>Referenced by <a class="el" href="Parameters_8cpp_source.html#l00092">mongotype::Parameters::parse()</a>.</p>
 
 </div>
 </div>
@@ -217,9 +248,9 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00015">15</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Parameters_8hpp_source.html#l00039">39</a> of file <a class="el" href="Parameters_8hpp_source.html">Parameters.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="Parameters_8cpp_source.html#l00068">mongotype::Parameters::parse()</a>.</p>
+<p>Referenced by <a class="el" href="Parameters_8cpp_source.html#l00092">mongotype::Parameters::parse()</a>.</p>
 
 </div>
 </div>
@@ -229,7 +260,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="Parameters_8hpp.html">Parameters.hpp</a></li>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:13 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

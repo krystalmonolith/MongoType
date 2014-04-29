@@ -25,5 +25,5 @@ var classmongotype_1_1BSONParserStackItem =
     [ "elementIndex", "classmongotype_1_1BSONParserStackItem.html#a52ff18e375b1f3ee7c51ba981c08347e", null ],
     [ "item", "classmongotype_1_1BSONParserStackItem.html#a8e246a2c603e0ed9729171ef212e7558", null ],
     [ "key", "classmongotype_1_1BSONParserStackItem.html#a0e6e887645324ebf599a5560e12a7250", null ],
-    [ "type", "classmongotype_1_1BSONParserStackItem.html#a5cc761f86c41b32e9a63228681615320", null ]
+    [ "type", "classmongotype_1_1BSONParserStackItem.html#a7225e452f1625e5b312a2915464130b8", null ]
 ];

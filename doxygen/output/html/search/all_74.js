@@ -5,7 +5,7 @@ var searchData=
   ['top',['top',['../classmongotype_1_1BSONParserStack.html#aa755757e535fca353bd147e5dd97f81c',1,'mongotype::BSONParserStack']]],
   ['tostring',['toString',['../classmongotype_1_1BSONParserStackItem.html#aae3df94dde75487ac91060d7cc660855',1,'mongotype::BSONParserStackItem::toString()'],['../classmongotype_1_1BSONParserStack.html#addb6ed52ed767add9efa058fd0358e64',1,'mongotype::BSONParserStack::toString()']]],
   ['tstr',['tstr',['../classmongotype_1_1JSONDump.html#a51bb8e0adce524b8684592bb9661ede3',1,'mongotype::JSONDump::tstr(const char *token)'],['../classmongotype_1_1JSONDump.html#a4c49b32a70618c8bcaee81212e08bd02',1,'mongotype::JSONDump::tstr(string &amp;token)']]],
-  ['type',['type',['../classmongotype_1_1BSONParserStackItem.html#a5cc761f86c41b32e9a63228681615320',1,'mongotype::BSONParserStackItem']]],
+  ['type',['type',['../classmongotype_1_1BSONParserStackItem.html#a7225e452f1625e5b312a2915464130b8',1,'mongotype::BSONParserStackItem']]],
   ['type_5fall',['TYPE_ALL',['../namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2aefdd7884b271e24fd61fb8414196d0b9',1,'mongotype']]],
   ['type_5fcode',['TYPE_CODE',['../namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2a7856c7eaf7f34f8fa2dc24dcc33e83c0',1,'mongotype']]],
   ['type_5fdesc',['TYPE_DESC',['../namespacemongotype.html#aca35f87d6d199b5daf385e8602ef04d2a3269d9e7113adb70f1753b7786054956',1,'mongotype']]],

@@ -116,16 +116,23 @@ $(document).ready(function(){initNavTree('classmongotype_1_1BSONParserStack.html
 </div><!--header-->
 <div class="contents">
 
-<p>Stack of <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement.">BSONParserStackItem</a> for storing the <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> parse context.  
+<p>Stack of <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> for storing the <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> parse context.  
  <a href="classmongotype_1_1BSONParserStack.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>&gt;</code></p>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Details:</h2>
+<div class="textblock"><p>Stack of <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> for storing the <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> parse context. </p>
+<p>Stores the current state of the parsed BSON objects in a FILO data structure.</p>
+<dl class="section note"><dt>Note</dt><dd>"TOS" == "Top Of Stack"<br/>
+"FILO" == "First-In-Last-Out" </dd></dl>
+
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00237">237</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+</div><div class="dynheader">
 Collaboration diagram for mongotype::BSONParserStack:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmongotype_1_1BSONParserStack__coll__graph.png" border="0" usemap="#mongotype_1_1BSONParserStack_coll__map" alt="Collaboration graph"/></div>
 <map name="mongotype_1_1BSONParserStack_coll__map" id="mongotype_1_1BSONParserStack_coll__map">
-<area shape="rect" id="node6" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement." alt="" coords="77,219,307,248"/><area shape="rect" id="node8" title="STL class." alt="" coords="28,113,108,143"/><area shape="rect" id="node10" title="STL class." alt="" coords="5,6,131,53"/><area shape="rect" id="node12" href="unionmongotype_1_1BSONParserStackItem_1_1Item.html" title="mongotype::BSONParserStack\lItem::Item" alt="" coords="132,105,335,151"/></map>
+<area shape="rect" id="node6" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement." alt="" coords="77,219,307,248"/><area shape="rect" id="node8" title="STL class." alt="" coords="28,113,108,143"/><area shape="rect" id="node10" title="STL class." alt="" coords="5,6,131,53"/><area shape="rect" id="node12" href="unionmongotype_1_1BSONParserStackItem_1_1Item.html" title="mongotype::BSONParserStack\lItem::Item" alt="" coords="132,105,335,151"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -138,11 +145,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa755757e535fca353bd147e5dd97f81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the TOS item, leaving it in place.  <a href="#aa755757e535fca353bd147e5dd97f81c">More...</a><br/></td></tr>
 <tr class="separator:aa755757e535fca353bd147e5dd97f81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae450648b62202e2dfa516ed75751d63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1BSONParserStack.html#aae450648b62202e2dfa516ed75751d63">push</a> (const BSONObj &amp;object, const string &amp;key=string(), int elementIndex=0, int elementCount=1, int arrayIndex=-1, int arrayCount=0)</td></tr>
-<tr class="memdesc:aae450648b62202e2dfa516ed75751d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push the BSON object.  <a href="#aae450648b62202e2dfa516ed75751d63">More...</a><br/></td></tr>
+<tr class="memdesc:aae450648b62202e2dfa516ed75751d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrap the mongo::BSONObj object in a dynamically allocated <a class="el" href="classmongotype_1_1BSONParserStackItem.html">BSONParserStackItem</a> and push the resultant <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> to the stack.  <a href="#aae450648b62202e2dfa516ed75751d63">More...</a><br/></td></tr>
 <tr class="separator:aae450648b62202e2dfa516ed75751d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a7ae148066f3f3eb7693590a61ac6f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1BSONParserStack.html#a3a7ae148066f3f3eb7693590a61ac6f2">push</a> (<a class="el" href="classmongotype_1_1BSONParserStackItem.html#a6c50d9192fe2013587b9c408157cc8ae">BSONParserStackItem::ItemType</a> type, const BSONElement &amp;element, const string &amp;pkey=string(), int pelementIndex=0, int pelementCount=1, int parrayIndex=-1, int parrayCount=0)</td></tr>
-<tr class="memdesc:a3a7ae148066f3f3eb7693590a61ac6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push the BSON element.  <a href="#a3a7ae148066f3f3eb7693590a61ac6f2">More...</a><br/></td></tr>
-<tr class="separator:a3a7ae148066f3f3eb7693590a61ac6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8cb11379702a6ea1de35ec331c0c51d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1BSONParserStack.html#ae8cb11379702a6ea1de35ec331c0c51d">push</a> (<a class="el" href="classmongotype_1_1BSONParserStackItem.html#a6c50d9192fe2013587b9c408157cc8ae">BSONParserStackItem::ItemType</a> type, const BSONElement &amp;element, const string &amp;key=string(), int elementIndex=0, int elementCount=1, int arrayIndex=-1, int arrayCount=0)</td></tr>
+<tr class="memdesc:ae8cb11379702a6ea1de35ec331c0c51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrap the mongo::BSONElement element/array in a dynamically allocated <a class="el" href="classmongotype_1_1BSONParserStackItem.html">BSONParserStackItem</a> and push the resultant <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> to the stack.  <a href="#ae8cb11379702a6ea1de35ec331c0c51d">More...</a><br/></td></tr>
+<tr class="separator:ae8cb11379702a6ea1de35ec331c0c51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebfb82fe311ccf91b1e66a4e9c8f1827"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1BSONParserStack.html#aebfb82fe311ccf91b1e66a4e9c8f1827">drop</a> ()</td></tr>
 <tr class="memdesc:aebfb82fe311ccf91b1e66a4e9c8f1827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drop the TOS.  <a href="#aebfb82fe311ccf91b1e66a4e9c8f1827">More...</a><br/></td></tr>
 <tr class="separator:aebfb82fe311ccf91b1e66a4e9c8f1827"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,14 +182,7 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a7ce05bf4a6353eb5de483873ade5a859"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmongotype_1_1BSONParserStack.html#aefb4758317b5af36f29108ff4c8f5871">Stack</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmongotype_1_1BSONParserStack.html#a7ce05bf4a6353eb5de483873ade5a859">stack</a></td></tr>
 <tr class="separator:a7ce05bf4a6353eb5de483873ade5a859"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Stack of <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement.">BSONParserStackItem</a> for storing the <a class="el" href="classmongotype_1_1BSONObjectParser.html" title="The BSON Parser.">BSONObjectParser</a> parse context. </p>
-<p>Stores the current state of the parsed BSON objects in a FILO data structure.</p>
-<dl class="section note"><dt>Note</dt><dd>"TOS" == "Top Of Stack"<br/>
-"FILO" == "First-In-Last-Out" </dd></dl>
-
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00225">225</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="aefb4758317b5af36f29108ff4c8f5871"></a>
 <div class="memitem">
 <div class="memproto">
@@ -201,7 +201,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00226">226</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00238">238</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
 </div>
 </div>
@@ -227,11 +227,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">231</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">243</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00228">stack</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00240">stack</a>.</p>
 
-<p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00087">mongotype::JSONDump::emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00099">mongotype::JSONDump::emitKey()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">item()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00148">mongotype::JSONDump::onArrayEnd()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00139">mongotype::JSONDump::onObjectEnd()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00234">throwCount()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">top()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00321">toString()</a>.</p>
+<p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00087">mongotype::JSONDump::emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00099">mongotype::JSONDump::emitKey()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">item()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00148">mongotype::JSONDump::onArrayEnd()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00139">mongotype::JSONDump::onObjectEnd()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00246">throwCount()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">top()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00344">toString()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -268,11 +268,11 @@ Here is the caller graph for this function:</div>
 <p>Drop the TOS. </p>
 <dl class="section note"><dt>Note</dt><dd>TOS item is destroyed. </dd></dl>
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00317">317</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00340">340</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00248">pop()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">pop()</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00446">mongotype::BSONObjectParser::parseElementRecursive()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00495">mongotype::BSONObjectParser::parseObjectRecursive()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00472">mongotype::BSONObjectParser::parseElementRecursive()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00523">mongotype::BSONObjectParser::parseObjectRecursive()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -336,11 +336,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Item ownership unaffected. </dd></dl>
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">275</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">287</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00228">stack</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00234">throwCount()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00240">stack</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00246">throwCount()</a>.</p>
 
-<p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00087">mongotype::JSONDump::emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00099">mongotype::JSONDump::emitKey()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">top()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00321">toString()</a>.</p>
+<p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00087">mongotype::JSONDump::emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00099">mongotype::JSONDump::emitKey()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">top()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00344">toString()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -393,11 +393,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Releases item ownership to caller, i.e., the called is now responsible for freeing the returned item. </dd></dl>
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00248">248</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">260</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00228">stack</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00234">throwCount()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00240">stack</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00246">throwCount()</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00317">drop()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00340">drop()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -444,24 +444,24 @@ Here is the caller graph for this function:</div>
 <p>Push the item. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">item</td><td>The bare pointer to the item to be stored on the stack. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">item</td><td>The reference to the item to be stored on the stack. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Takes item ownership from caller, i.e., if not first popped the contained item(s) will be destroyed and freed when the <a class="el" href="classmongotype_1_1BSONParserStack.html" title="Stack of BSONParserStackItem for storing the BSONObjectParser parse context.">BSONParserStack</a> instance is destroyed . </dd></dl>
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">260</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00272">272</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00228">stack</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00240">stack</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00446">mongotype::BSONObjectParser::parseElementRecursive()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00495">mongotype::BSONObjectParser::parseObjectRecursive()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00300">push()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00472">mongotype::BSONObjectParser::parseElementRecursive()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00523">mongotype::BSONObjectParser::parseObjectRecursive()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00317">push()</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmongotype_1_1BSONParserStack_ac3bdcca1115d778160c0a10599c04288_icgraph.png" border="0" usemap="#classmongotype_1_1BSONParserStack_ac3bdcca1115d778160c0a10599c04288_icgraph" alt=""/></div>
 <map name="classmongotype_1_1BSONParserStack_ac3bdcca1115d778160c0a10599c04288_icgraph" id="classmongotype_1_1BSONParserStack_ac3bdcca1115d778160c0a10599c04288_icgraph">
-<area shape="rect" id="node3" href="classmongotype_1_1BSONObjectParser.html#aa5708e37cde258cc1f68d97a70229072" title="Recursively parse a BSONElement." alt="" coords="259,74,467,121"/><area shape="rect" id="node5" href="classmongotype_1_1BSONObjectParser.html#a431940dbfd10c340180bfbe4e661fc3d" title="Recursively parse a BSON Object." alt="" coords="515,74,723,121"/><area shape="rect" id="node17" href="classmongotype_1_1BSONParserStack.html#aae450648b62202e2dfa516ed75751d63" title="Push the BSON object." alt="" coords="261,194,464,241"/><area shape="rect" id="node8" href="classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)" alt="" coords="771,74,979,121"/><area shape="rect" id="node10" href="classmongotype_1_1BSONDotNotationDump.html#a2ce66157801210f4b57d33e8d547809d" title="mongotype::BSONDotNotation\lDump::render" alt="" coords="1027,5,1229,51"/><area shape="rect" id="node12" href="classmongotype_1_1BSONObjectTypeDump.html#a852f127fe68519856703944a456b665c" title="mongotype::BSONObjectType\lDump::render" alt="" coords="1029,74,1227,121"/><area shape="rect" id="node14" href="classmongotype_1_1JSONDump.html#aa665e226752e13fa66af689c9f7186c0" title="mongotype::JSONDump\l::render" alt="" coords="1045,143,1211,190"/></map>
+<area shape="rect" id="node3" href="classmongotype_1_1BSONObjectParser.html#aa5708e37cde258cc1f68d97a70229072" title="Recursively parse a BSONElement." alt="" coords="259,74,467,121"/><area shape="rect" id="node5" href="classmongotype_1_1BSONObjectParser.html#a431940dbfd10c340180bfbe4e661fc3d" title="Recursively parse a BSON Object." alt="" coords="515,74,723,121"/><area shape="rect" id="node17" href="classmongotype_1_1BSONParserStack.html#aae450648b62202e2dfa516ed75751d63" title="Wrap the mongo::BSONObj object in a dynamically allocated BSONParserStackItem and push the resultant ..." alt="" coords="261,194,464,241"/><area shape="rect" id="node8" href="classmongotype_1_1BSONObjectParser.html#a8b652f9a361a0583d0ad9c983db9acc1" title="Parse a BSON Object (BSONObj)" alt="" coords="771,74,979,121"/><area shape="rect" id="node10" href="classmongotype_1_1BSONDotNotationDump.html#a2ce66157801210f4b57d33e8d547809d" title="mongotype::BSONDotNotation\lDump::render" alt="" coords="1027,5,1229,51"/><area shape="rect" id="node12" href="classmongotype_1_1BSONObjectTypeDump.html#a852f127fe68519856703944a456b665c" title="mongotype::BSONObjectType\lDump::render" alt="" coords="1029,74,1227,121"/><area shape="rect" id="node14" href="classmongotype_1_1JSONDump.html#aa665e226752e13fa66af689c9f7186c0" title="mongotype::JSONDump\l::render" alt="" coords="1045,143,1211,190"/></map>
 </div>
 </p>
 
@@ -523,18 +523,23 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Push the BSON object. </p>
+<p>Wrap the mongo::BSONObj object in a dynamically allocated <a class="el" href="classmongotype_1_1BSONParserStackItem.html">BSONParserStackItem</a> and push the resultant <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> to the stack. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td>The bare pointer to the BSON object to be encapsulated in a <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement.">BSONParserStackItem</a> object and pushed on the stack. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td>The reference to the BSON object to be encapsulated in a <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> object and pushed on the stack. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>The BSON key string of the contained mongo::BSONObj. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">elementIndex</td><td>The element index of the contained mongo::BSONObj See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a52ff18e375b1f3ee7c51ba981c08347e">BSONParserStackItem::elementIndex</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">elementCount</td><td>The element count. See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a2ede681d82f891b0e6b3d20df081bced">BSONParserStackItem::elementCount</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arrayIndex</td><td>The array index of the contained mongo::BSONObj See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a34fcfba1760516c0069e344af3391a57">BSONParserStackItem::arrayIndex</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arrayCount</td><td>The array count. See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a51b532be88e272c4619e5701db16b6ac">BSONParserStackItem::arrayCount</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section see"><dt>See Also</dt><dd>void <a class="el" href="classmongotype_1_1BSONParserStack.html#ac3bdcca1115d778160c0a10599c04288" title="Push the item.">BSONParserStack::push(const BSONParserStackItem* item)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00300">300</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00317">317</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">push()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00272">push()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -547,7 +552,7 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a3a7ae148066f3f3eb7693590a61ac6f2"></a>
+<a class="anchor" id="ae8cb11379702a6ea1de35ec331c0c51d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -570,31 +575,31 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>pkey</em> = <code>string()</code>, </td>
+          <td class="paramname"><em>key</em> = <code>string()</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pelementIndex</em> = <code>0</code>, </td>
+          <td class="paramname"><em>elementIndex</em> = <code>0</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>pelementCount</em> = <code>1</code>, </td>
+          <td class="paramname"><em>elementCount</em> = <code>1</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>parrayIndex</em> = <code>-1</code>, </td>
+          <td class="paramname"><em>arrayIndex</em> = <code>-1</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>parrayCount</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>arrayCount</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -609,24 +614,30 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Push the BSON element. </p>
+<p>Wrap the mongo::BSONElement element/array in a dynamically allocated <a class="el" href="classmongotype_1_1BSONParserStackItem.html">BSONParserStackItem</a> and push the resultant <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> to the stack. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>The bare pointer to the BSON element to be encapsulated in a <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement.">BSONParserStackItem</a> object and pushed on the stack. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>The ItemType of this element. For valid values see <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a648d31ed05030403a0989b8b71d4ff35">BSONParserStackItem::BSONParserStackItem(ItemType ptype, const BSONElement* element, const string&amp; pkey, int pelementIndex, int pelementCount, int parrayIndex, int parrayCount)</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>The reference to the BSON element to be encapsulated in a <a class="el" href="classmongotype_1_1BSONParserStackItem.html" title="Container class for const references to mongo::BSONObj and mongo::BSONElement.">BSONParserStackItem</a> object and pushed on the stack. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>The BSON key string of the contained mongo::BSONObj. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">elementIndex</td><td>The element index of the contained mongo::BSONObj See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a52ff18e375b1f3ee7c51ba981c08347e">BSONParserStackItem::elementIndex</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">elementCount</td><td>The element count. See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a2ede681d82f891b0e6b3d20df081bced">BSONParserStackItem::elementCount</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arrayIndex</td><td>The array index of the contained mongo::BSONObj See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a34fcfba1760516c0069e344af3391a57">BSONParserStackItem::arrayIndex</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arrayCount</td><td>The array count. See <a class="el" href="classmongotype_1_1BSONParserStackItem.html#a51b532be88e272c4619e5701db16b6ac">BSONParserStackItem::arrayCount</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section see"><dt>See Also</dt><dd>void <a class="el" href="classmongotype_1_1BSONParserStack.html#ac3bdcca1115d778160c0a10599c04288" title="Push the item.">BSONParserStack::push(const BSONParserStackItem* item)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00309">309</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00332">332</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">push()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00272">push()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classmongotype_1_1BSONParserStack_a3a7ae148066f3f3eb7693590a61ac6f2_cgraph.png" border="0" usemap="#classmongotype_1_1BSONParserStack_a3a7ae148066f3f3eb7693590a61ac6f2_cgraph" alt=""/></div>
-<map name="classmongotype_1_1BSONParserStack_a3a7ae148066f3f3eb7693590a61ac6f2_cgraph" id="classmongotype_1_1BSONParserStack_a3a7ae148066f3f3eb7693590a61ac6f2_cgraph">
+<div class="center"><img src="classmongotype_1_1BSONParserStack_ae8cb11379702a6ea1de35ec331c0c51d_cgraph.png" border="0" usemap="#classmongotype_1_1BSONParserStack_ae8cb11379702a6ea1de35ec331c0c51d_cgraph" alt=""/></div>
+<map name="classmongotype_1_1BSONParserStack_ae8cb11379702a6ea1de35ec331c0c51d_cgraph" id="classmongotype_1_1BSONParserStack_ae8cb11379702a6ea1de35ec331c0c51d_cgraph">
 <area shape="rect" id="node3" href="classmongotype_1_1BSONParserStack.html#ac3bdcca1115d778160c0a10599c04288" title="Push the item." alt="" coords="260,5,463,51"/></map>
 </div>
 </p>
@@ -655,11 +666,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00234">234</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00246">246</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">depth()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">depth()</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">item()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00248">pop()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">item()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">pop()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -712,9 +723,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Item ownership unaffected. </dd></dl>
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00291">291</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00303">303</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">depth()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">item()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">depth()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">item()</a>.</p>
 
 <p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00087">mongotype::JSONDump::emitComma()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00099">mongotype::JSONDump::emitKey()</a>, <a class="el" href="BSONDotNotationDump_8hpp_source.html#l00077">mongotype::BSONDotNotationDump::onArrayStart()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00089">mongotype::BSONObjectTypeDump::onArrayStart()</a>, <a class="el" href="BSONDotNotationDump_8hpp_source.html#l00087">mongotype::BSONDotNotationDump::onElement()</a>, <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00098">mongotype::BSONObjectTypeDump::onElement()</a>, <a class="el" href="JSONDump_8hpp_source.html#l00152">mongotype::JSONDump::onElement()</a>, <a class="el" href="BSONDotNotationDump_8hpp_source.html#l00071">mongotype::BSONDotNotationDump::onObjectEnd()</a>, <a class="el" href="BSONDotNotationDump_8hpp_source.html#l00062">mongotype::BSONDotNotationDump::onObjectStart()</a>, and <a class="el" href="BSONObjectTypeDump_8hpp_source.html#l00074">mongotype::BSONObjectTypeDump::onObjectStart()</a>.</p>
 
@@ -759,9 +770,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00321">321</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00344">344</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">item()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00189">mongotype::BSONParserStackItem::toString()</a>.</p>
+<p>References <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">item()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00201">mongotype::BSONParserStackItem::toString()</a>.</p>
 
 <p>Referenced by <a class="el" href="JSONDump_8hpp_source.html#l00118">mongotype::JSONDump::nextLine()</a>.</p>
 
@@ -804,9 +815,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00228">228</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="BSONObjectParser_8hpp_source.html#l00240">240</a> of file <a class="el" href="BSONObjectParser_8hpp_source.html">BSONObjectParser.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00231">depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00275">item()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00248">pop()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">push()</a>.</p>
+<p>Referenced by <a class="el" href="BSONObjectParser_8hpp_source.html#l00243">depth()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00287">item()</a>, <a class="el" href="BSONObjectParser_8hpp_source.html#l00260">pop()</a>, and <a class="el" href="BSONObjectParser_8hpp_source.html#l00272">push()</a>.</p>
 
 </div>
 </div>
@@ -819,7 +830,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacemongotype.html">mongotype</a></li><li class="navelem"><a class="el" href="classmongotype_1_1BSONParserStack.html">BSONParserStack</a></li>
-    <li class="footer">Generated on Mon Apr 21 2014 08:46:13 for MongoType by
+    <li class="footer">Generated on Mon Apr 28 2014 20:19:25 for MongoType by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
