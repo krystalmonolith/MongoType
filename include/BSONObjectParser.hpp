@@ -21,7 +21,7 @@
  * You should have received a copy of the GNU Affero General Public License<br/>
  * along with this program.  If not, see http://www.gnu.org/licenses/ .<br/>
  * 
- * Creation Date: Oct 30, 2013
+ * Creation Date: October 30, 2013
  * Eclipse Project: MongoType
  * 
  */
@@ -43,9 +43,9 @@ namespace mongotype {
 
 /**
  * \class BSONParserStackItem
- * \brief Container class for pointers to ::mongo::BSONObj and ::mongo::BSONElement.
+ * \brief Container class for const references to mongo::BSONObj and mongo::BSONElement.
  *
- * Implemented because the ::mongo::BSONObj and ::mongo::BSONElement do not have common base class. This class implements a tagged union to store the BSON object pointers.
+ * This class wraps the tagged union BSONParserStackItem::Item to store the objects and elements.
  */
 
 class BSONParserStackItem {
@@ -61,67 +61,68 @@ public:
 
 private:
 	/**
-	 * \var type The contained BSON object''s type.
+	 * The contained BSON object''s type.
 	 */
 	ItemType type;
 
 	/**
-	 * \union Item Common BSON object pointer storage.
+	 * Common BSON object pointer storage.
+	 * \note IMO: Should be handled with class hierarchy.
 	 */
 
 	union Item {
 		/**
-		 * \var object Reference to the ::mongo::BSONObj
+		 * Reference to a mongo::BSONObj.
 		 */
 		const BSONObj* object;
 		/**
-		 * \fn Item(const BSONObj* pobject)
-		 * \brief Construct the enum with a ::mongo::BSONObj.
-		 * \param pobject The pointer to the ::mongo::BSONObj.
+		 * \brief Construct the enum with a mongo::BSONObj.
+		 * \param pobject The pointer to the mongo::BSONObj.
 		 */
 		Item(const BSONObj* pobject) : object(pobject) {}
 		/**
-		 * \var element Reference to a mongo::BSONElement.
+		 * Reference to a mongo::BSONElement.
 		 */
 		const BSONElement* element;
 		/**
-		 * \fn Item(const BSONElement* pelement)
-		 * \brief Construct the enum with a ::mongo::BSONElement.
-		 * \param pelement The pointer to the ::mongo::BSONElement.
+		 * \brief Construct the enum with a mongo::BSONElement.
+		 * \param pelement The pointer to the mongo::BSONElement.
 		 */
 		Item(const BSONElement* pelement) : element(pelement) {}
 	} item;
 
-	/*
-	 * \var Name of the BSON object/array/element, or the empty string if this is the root object.
+	/**
+	 * Key name of the BSON object/array/element, or the empty string if this is the root object.
 	 */
 	const string& key;
 
-	/*
-	 * \var The zero based index of the BSON object/array/element within the parent object.
+	/**
+	 * The zero based index of the BSON object/array/element within the parent object.
 	 */
 	int elementIndex;
 
-	/*
-	 * \var The count of all the BSON object(s)/array(s)/element(s) within the parent object.
+	/**
+	 * The count of all the BSON object(s)/array(s)/element(s) within the parent object.
 	 */
 	int elementCount;
 
-	/*
-	 * \var The zero based index of BSON element within the containing BSON array, or -1 if the BSON element is not contained within a BSON array.
-	 * <ul><li>arrayIndex == -1 if object is not contained in an array.</li><li>arrayIndex >= 0 if object is contained within an array.</li></ul>
+	/**
+	 * The zero based index of BSON element within the containing BSON array, or -1 if the BSON element is not contained within a BSON array.
+	 * - arrayIndex == -1 if object is not contained in an array, or ...
+	 * - arrayIndex >= 0 if object is contained within an array.
 	 */
 	int arrayIndex;
 
-	/*
-	 * \var The count of all BSON element(s) within the containing BSON array, or 0 if the BSON element is not contained within a BSON array.
-	 * <ul><li>arrayCount == 0 if object is not contained in an array.</li><li>arrayCount > 0 if object is contained within an array.</li></ul>
+	/**
+	 * The count of all BSON element(s) within the containing BSON array, or 0 if the BSON element is not contained within a BSON array.
+	 * - arrayCount == 0 if object is not contained in an array, or ...
+	 * - arrayCount > 0 if object is contained within an array.
 	 */
 	int arrayCount;
 
 private:
 	/**
-	 * \fn validate Throw an error if the wrong type of fetch from the union occurs.
+	 * Throw an error if the wrong type of fetch from the union occurs.
 	 * \param t The ItemType being fetched.
 	 * \throws std::logic_error Thrown if the passed type does not match the stored type.
 	 */
@@ -133,16 +134,27 @@ private:
 
 public:
 	/**
-	 * \fn BSONParserStackItem(const BSONObj* object)
-	 * \brief Construct a BSONParserStackItem containing a pointer to a mongo::BSONObj.
-	 * \param object The pointer to the mongo::BSONObj.
+	 * Construct a BSONParserStackItem containing a pointer to a mongo::BSONObj. The \ref ItemType is implicitly set to \ref OBJECT.
+	 * \param[in] object The pointer to the mongo::BSONObj.
+	 * \param[in] pkey The BSON key string of the contained mongo::BSONObj.
+	 * \param[in] pelementIndex The element index of the contained mongo::BSONObj See \ref elementIndex.
+	 * \param[in] pelementCount The element count. See \ref elementCount.
+	 * \param[in] parrayIndex The array index of the contained mongo::BSONObj See \ref arrayIndex.
+	 * \param[in] parrayCount The array count. See \ref arrayCount.
 	 */
 	BSONParserStackItem(const BSONObj* object, const string& pkey, int pelementIndex, int pelementCount, int parrayIndex, int parrayCount)
 		: type(OBJECT), item(object), key(pkey), elementIndex(pelementIndex), elementCount(pelementCount), arrayIndex(parrayIndex), arrayCount(parrayCount) {}
 	/**
-	 * \fn BSONParserStackItem(const BSONElement* element)
-	 * \brief Construct a BSONParserStackItem containing a pointer to a mongo::BSONElement.
-	 * \param element The pointer to the mongo::BSONElement.
+	 * Construct a BSONParserStackItem containing a pointer to a mongo::BSONElement.
+	 * \param[in] ptype The \ref ItemType of this element. The valid types are:
+	 * - \ref ARRAY
+	 * - \ref ELEMENT
+	 * \param[in] element The pointer to the mongo::BSONElement.
+	 * \param[in] pkey The BSON key string of the contained mongo::BSONObj.
+	 * \param[in] pelementIndex The element index of the contained mongo::BSONObj See \ref elementIndex.
+	 * \param[in] pelementCount The element count. See \ref elementCount.
+	 * \param[in] parrayIndex The array index of the contained mongo::BSONObj See \ref arrayIndex.
+	 * \param[in] parrayCount The array count. See \ref arrayCount.
 	 */
 	BSONParserStackItem(ItemType ptype, const BSONElement* element, const string& pkey, int pelementIndex, int pelementCount, int parrayIndex, int parrayCount)
 		: type(ptype), item(element), key(pkey), elementIndex(pelementIndex), elementCount(pelementCount), arrayIndex(parrayIndex), arrayCount(parrayCount) {}
@@ -254,7 +266,7 @@ protected:
 
 	/**
 	 * \brief Push the item.
-	 * \param[in] item The bare pointer to the item to be stored on the stack.
+	 * \param[in] item The reference to the item to be stored on the stack.
 	 * \note Takes item ownership from caller, i.e., if not first popped the contained item(s) will be destroyed and freed when the BSONParserStack instance is destroyed .
 	 */
 	void push(const BSONParserStackItem* item) {
@@ -293,8 +305,13 @@ public:
 	}
 
 	/**
-	 * \brief Push the BSON object.
-	 * \param[in] object The bare pointer to the BSON object to be encapsulated in a BSONParserStackItem object and pushed on the stack.
+	 * \brief Wrap the mongo::BSONObj object in a dynamically allocated \ref BSONParserStackItem and push the resultant BSONParserStackItem to the stack.
+	 * \param[in] object The reference to the BSON object to be encapsulated in a BSONParserStackItem object and pushed on the stack.
+	 * \param[in] key The BSON key string of the contained mongo::BSONObj.
+	 * \param[in] elementIndex The element index of the contained mongo::BSONObj See \ref BSONParserStackItem::elementIndex.
+	 * \param[in] elementCount The element count. See \ref BSONParserStackItem::elementCount.
+	 * \param[in] arrayIndex The array index of the contained mongo::BSONObj See \ref BSONParserStackItem::arrayIndex.
+	 * \param[in] arrayCount The array count. See \ref BSONParserStackItem::arrayCount.
 	 * \see void BSONParserStack::push(const BSONParserStackItem* item)
 	 */
 	void push(const BSONObj& object, const string& key = string(), int elementIndex=0, int elementCount=1, int arrayIndex=-1, int arrayCount=0) {
@@ -302,12 +319,18 @@ public:
 	}
 
 	/**
-	 * \brief Push the BSON element.
-	 * \param[in] element The bare pointer to the BSON element to be encapsulated in a BSONParserStackItem object and pushed on the stack.
+	 * \brief Wrap the mongo::BSONElement element/array in a dynamically allocated \ref BSONParserStackItem and push the resultant BSONParserStackItem to the stack.
+	 * \param[in] type The ItemType of this element. For valid values see \ref BSONParserStackItem::BSONParserStackItem(ItemType ptype, const BSONElement* element, const string& pkey, int pelementIndex, int pelementCount, int parrayIndex, int parrayCount).
+	 * \param[in] element The reference to the BSON element to be encapsulated in a BSONParserStackItem object and pushed on the stack.
+	 * \param[in] key The BSON key string of the contained mongo::BSONObj.
+	 * \param[in] elementIndex The element index of the contained mongo::BSONObj See \ref BSONParserStackItem::elementIndex.
+	 * \param[in] elementCount The element count. See \ref BSONParserStackItem::elementCount.
+	 * \param[in] arrayIndex The array index of the contained mongo::BSONObj See \ref BSONParserStackItem::arrayIndex.
+	 * \param[in] arrayCount The array count. See \ref BSONParserStackItem::arrayCount.
 	 * \see void BSONParserStack::push(const BSONParserStackItem* item)
 	 */
-	void push(BSONParserStackItem::ItemType type, const BSONElement& element, const string& pkey = string(), int pelementIndex=0, int pelementCount=1, int parrayIndex=-1, int parrayCount=0) {
-		push(new BSONParserStackItem(type, &element, pkey, pelementIndex, pelementCount, parrayIndex, parrayCount));
+	void push(BSONParserStackItem::ItemType type, const BSONElement& element, const string& key = string(), int elementIndex=0, int elementCount=1, int arrayIndex=-1, int arrayCount=0) {
+		push(new BSONParserStackItem(type, &element, key, elementIndex, elementCount, arrayIndex, arrayCount));
 	}
 
 	/**
@@ -434,13 +457,16 @@ protected:
 
 	/*!
 	 * \brief Recursively parse a BSONElement
-	 * \param[in] element The element to recursively dump.
+	 * \param[in] element The element to recursively process.
+	 * \param[in] key The BSON key string of the mongo::BSONObj.
+	 * \param[in] elementIndex The element index of the contained mongo::BSONObj See \ref BSONParserStackItem::elementIndex.
+	 * \param[in] elementCount The element count. See \ref BSONParserStackItem::elementCount.
+	 * \param[in] arrayIndex The array index of the contained mongo::BSONObj See \ref BSONParserStackItem::arrayIndex.
+	 * \param[in] arrayCount The array count. See \ref BSONParserStackItem::arrayCount.
 	 *
-	 * <ul>
-	 * <li>If it is a BSON object (BSONObj) dump it via indirect recursion by calling parseObjectRecursive().</li>
-	 * <li>If it is a BSON array iterate through the contained BSONElement(s) and dump via direct recursion by calling parseElementRecursive().</li>
-	 * <li>If it is neither an object nor an array simply dump the BSONElement by printing its key, value, and BSON data type.</li>
-	 * </ul>
+	 * - If it is a BSON object (BSONObj) parse it via indirect recursion by calling parseObjectRecursive().
+	 * - If it is a BSON array iterate through the contained BSONElement(s) and process via direct recursion by calling parseElementRecursive().
+	 * - If it is neither an object nor an array simply invoke the visitors onElement virtual method to process the BSONElement.
 	 */
 
 	virtual void parseElementRecursive(const BSONElement& element, string& key, int elementIndex=0, int elementCount=1, int arrayIndex = -1, int arrayCount = 0) {
@@ -482,14 +508,16 @@ protected:
 
 	/*!
 	 * \brief Recursively parse a BSON Object.
-	 * \param[in] key The key string of the object to dump.
-	 * \param[in] object The BSON object to dump.
-	 * \param[in] elementIndex The index of the object's BSONElement within its parent object.
-	 * \param[in] elementCount The count of BSONElement(s) within the parent object.
-	 * \param[in] arrayIndex The array index of the BSON object being parsed.
-	 * <ul><li>arrayIndex == -1 if the element is not contained in an array.</li><li>arrayIndex >= 0 if the element is contained within an array.</li></ul>
+	 * \param[in] object The BSON object to process.
+	 * \param[in] key The BSON key string of the mongo::BSONObj.
+	 * \param[in] elementIndex The element index of the contained mongo::BSONObj See \ref BSONParserStackItem::elementIndex.
+	 * \param[in] elementCount The element count. See \ref BSONParserStackItem::elementCount.
+	 * \param[in] arrayIndex The array index of the contained mongo::BSONObj See \ref BSONParserStackItem::arrayIndex.
+	 * \param[in] arrayCount The array count. See \ref BSONParserStackItem::arrayCount.
+	 * - arrayIndex == -1 if the element is not contained in an array.
+	 * - arrayIndex >= 0 if the element is contained within an array.
 	 *
-	 * Iterate through all the BSONElement(s) contained in the BSONObj and dump them via indirect recursion by calling parseElementRecursive().
+	 * Iterate through all the BSONElement(s) contained in the BSONObj and process them via indirect recursion by calling parseElementRecursive().
 	 */
 
 	virtual void parseObjectRecursive(const BSONObj& object, string& key, int elementIndex=0, int elementCount=1, int arrayIndex = -1, int arrayCount = 0) {
@@ -526,7 +554,7 @@ public:
 	 * \brief Parse a BSON Object (BSONObj)
 	 * \param[in] object The BSON object to parse.
 	 *
-	 * Parse the given BSON object and invoke the event handlers of the IBSONObjectVisitor visitor \i subclass registered by constructor BSONObjectParser::BSONObjectParser(IBSONObjectVisitor& pvisitor).
+	 * Parse the given BSON object and invoke the event handlers of the IBSONObjectVisitor visitor _subclass_ registered by constructor BSONObjectParser::BSONObjectParser(IBSONObjectVisitor& pvisitor).
 	 */
 
 	virtual void parse(const BSONObj& object) {

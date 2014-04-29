@@ -38,9 +38,8 @@ public:
 	}
 
 	/*!
-	 * \brief BSON Object Type Strings Stream Output Operator.
-	 * \param[in,out] out The std::ostream to write the BSON type strings.
-	 * \param[in] bos The BSONTypeFormatter object to write to the output stream.
+	 * \brief Stringize the BSON type per the mask.
+	 * \return A string representation of the BSON type.
 	 */
 	string to_string() {
 		string s;
@@ -69,7 +68,6 @@ public:
 
 	/*!
 	 * \brief BSON Object Type Strings Stream Output Operator.
-	 * \param[in,out] out The std::ostream to write the BSON type strings.
 	 * \param[in] bstf The BSONTypeFormatter object to write to the output stream.
 	 */
 	OSTREAM_FRIEND(BSONTypeFormatter& bstf) {

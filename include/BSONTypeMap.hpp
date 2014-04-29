@@ -123,9 +123,8 @@ public:
 	}
 
 	/*!
-	 * \brief BSON Object Type Strings Stream Output Operator.
-	 * \param[in,out] out The std::ostream to write the BSON type strings.
-	 * \param[in] bos The BSONTypeMap object to write to the output stream.
+	 * \brief Stringize BSON Object Type.
+	 * \return String representation of the BSON type.
 	 */
 	string to_string() {
 		const BSONTypeElement& bsts = lookup();
@@ -139,8 +138,7 @@ public:
 
 	/*!
 	 * \brief BSON Object Type Strings Stream Output Operator.
-	 * \param[in,out] out The std::ostream to write the BSON type strings.
-	 * \param[in] bos The BSONTypeMap object to write to the output stream.
+	 * \param[in] bstn The BSONTypeMap object to write to the output stream.
 	 */
 	OSTREAM_FRIEND(BSONTypeMap& bstn) {
 		return out << bstn.to_string();

@@ -6,28 +6,17 @@
  *
  * MongoType is a command line utility designed to dump
  * out the contents of a MongoDB collection with the associated
- * BSON data types.<br/>
+ * BSON data types.
  *
- * <strong>BSON Definition: </strong><a href="http://bsonspec.org/">BSON Website</a><br>
- * <strong>JSON Definition: </strong><a href="http://json.org/">JSON Website</a><br/>
- * <strong>MongoDB C++ Driver: </strong><a href="https://github.com/mongodb/mongo-cxx-driver">mongo-cxx-driver at GitHub</a>
- *
- * <h3>Usage:</h3>
- *
- * <b>mongotype</b> <i>&lt;collectionName&gt;</i> [<i>&lt;host>&gt;</i>[:<i>&lt;port&gt;</i>]]<br/>
- *
- * <h3>Where:</h3>
- * <ul>
- *   <li><i>&lt;collectionName&gt;</i> is the required name of the MongoDB collection to dump. Collection names follow the format &quot;<i>&lt;db&gt;</i>.<i>&lt;collection&gt;</i>&quot;.</li>
- *   <li><i>&lt;host&gt;</i> or <i>&lt;host&gt;</i>:<i>&lt;port&gt;</i> are the optional MongoDB host/port.</li>
- *   <li>The default &quot;<i>&lt;host&gt;</i>:<i>&lt;port&gt;</i>&quot; is &quot;localhost:27017&quot;.</li>
- * </ul>
+ * ---
  *
  * \author Mark Deazley &lt;mdeazley@gmail.com&gt;
- * \version 2.4
- * \copyright Copyright &copy; 2013-2014 by Mark Deazley<br/><br/>
+ * \version 2.4.1
+ * \copyright Copyright &copy; 2013-2014 by Mark Deazley
  *
- * <b>License:</b> <i>Free Software Foundation’s GNU AGPL v3.0.</i><br/>
+ * #### License
+ *
+ * ##### Free Software Foundation’s GNU AGPL v3.0.
  *
  * This program is free software: you can redistribute it and/or modify<br/>
  * it under the terms of the GNU Affero General Public License as<br/>
@@ -41,6 +30,73 @@
  *
  * You should have received a copy of the GNU Affero General Public License<br/>
  * along with this program.  If not, see http://www.gnu.org/licenses/ .<br/>
+ *
+ * ---
+ *
+ * #### Hints:
+ *
+ * - This documentation is heavily hyperlinked: Navigate around to get a feel for the different views, .i.e., files, namespaces, classes, etc are all different views of the programs structure.
+ * - The colorized and hyperlinked program source code matching this version of the documentation is accessed by clicking on the line number links or the links on the file and class pages.
+ *
+ * ---
+ *
+ * ### Summary of Operation:
+ * #### main() Function:
+ *
+ * The main() functionality is relatively simple:
+ *
+ * - Instantiate a mongotype::Parameters object.
+ * - Parse the command line options and positional parameters with call to mongotype::Parameters::parse.
+ * - Fetch the collection and output it in mongotype::dumpCollection per the parsed command line.
+ *
+ * #### mongotype NameSpace:
+ *
+ * The \ref mongotype namespace is where the majority of the code resides to avoid conflicts.
+ *
+ * ##### The mongotype::dumpCollection function:
+ *
+ * This is a catch-all function that:
+ *
+ *  - Opens a connection to the MongoDB database and gets a cursor to the collection specified by the Parameters object.
+ *  - Constructs an object that sub-classes mongotype::IBSONRenderer that corresponds to the current mongotype::StyleParam.
+ *  - Invokes the object's mongotype::IBSONRenderer::begin function once to initialize rendering.
+ *  - Invokes the object's mongotype::IBSONRenderer::render function with each MongoDb document returned by the cursor.
+ *  - Invokes the object's mongotype::IBSONRenderer::end function once to finalize rendering.
+ *
+ * ##### Command Line Parameter Parsing:
+ *
+ * The mongotype::Parameters class uses the <a href="http://boost.org/">boost::program_options</a> library to
+ * do the command line parsing, supplying initialization, validation overload functions, and getter access functions.
+ * While technically _not_ an immutable class it functions as such in MongoType once command line parsing is completed.
+ *
+ * ##### Interface mongotype::IBSONRenderer:
+ *
+ * All the concrete style implementation classes implement mongotype::IBSONRenderer to provide a polymorphic _begin-render-end_ rendering sequence
+ * to create the output. This interface allows the style classes to customize the output but present a common interface .aka. API.
+ *
+ * ##### Interface mongotype::IBSONObjectVisitor:
+ *
+ * All the concrete style implementation classes _also_ implement mongotype::IBSONObjectVisitor to receive the events that are generated when a mongo::BSONObj object is parsed.
+ * This interface allows the style implementation classes to parse BSON objects via the common implementation class mongotype::BSONObjectParser.
+ *
+ * ##### BSON Object Parser: mongotype::BSONObjectParser
+ *
+ * The mechanics of decomposing BSON objects is encapsulated in the mongotype::BSONObjectParser class which relies on mongotype::IBSONObjectVisitor implementors described below.
+ * It supplies the instance method mongotype::BSONObjectParser::parse as the entry point to initiate parsing of a mongo::BSONObj object.
+ *
+ * ##### Style Implementation Classes
+ *
+ * The following classes implement mongotype::IBSONRenderer and mongotype::IBSONObjectVisitor as described above:
+ *
+ *  - mongotype::BSONObjectTypeDump - Implements --style=tree
+ *  - mongotype::BSONDotNotationDump - Implements --style=dotted
+ *  - mongotype::JSONDump - Implements --style=json and --style=jsonpacked
+ *
+ *  #### Utility Classes:
+ *
+ *  - mongotype::BSONTypeMap - Decodes BSON Type codes into mnemonics and description strings.
+ *  - mongotype::BSONTypeFormatter - Formats BSON Type Codes into strings per the current mongotype::Parameters::getTypeMask value.
+ *  - mongotype::EnumMapper - Maps enumeration integers to their string equivalent.
  */
 
 //----------------------------------------------------------------------------
@@ -62,7 +118,7 @@ namespace mongotype {
 
 //----------------------------------------------------------------------------
 
-const string VERSION("2.4");
+const string VERSION("2.4.1");
 const string COPYRIGHT("Copyright (c) 2013 by Mark Deazley");
 const string LICENSE(
 		"Free Software Foundation’s GNU AGPL v3.0.\n"
